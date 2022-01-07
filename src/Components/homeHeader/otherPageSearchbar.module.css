@@ -1,0 +1,98 @@
+.header {
+  padding: 0;
+  max-width: 650px;
+  position: absolute;
+  z-index: 1;
+  margin-left: 50px;
+  max-height: 50px;
+}
+.search-bar {
+  max-height: 50px;
+  line-height: 50px;
+}
+.formInput {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 600px;
+  margin: 0;
+  padding: 0 20px;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid grey;
+  outline: none;
+  max-height: 50px;
+}
+.searchInput {
+  font-size: 16px;
+  line-height: 50px;
+  border: none !important;
+  outline: none;
+  width: 500px;
+  padding-left: 20px;
+}
+
+.buttonInput {
+  font-size: 24px;
+  outline: none;
+  border: none;
+  background-color: #28a745;
+  padding: 0;
+  outline: none;
+  position: absolute;
+  right: -1px;
+  width: 70.53px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  height: 50px;
+  color: white;
+  font-weight: 600;
+}
+
+.search-bar-panel {
+  width: 600px;
+  background: white;
+  height: auto;
+  border-radius: 5px;
+  padding: 0 20px;
+  margin-top: 5px;
+  overflow: hidden;
+  overflow-y: auto;
+  list-style: none;
+}
+.search-bar-panel-active {
+  width: 600px;
+  background: white;
+  height: 200px;
+  border-radius: 5px;
+  padding: 0 20px;
+  margin-top: 5px;
+  overflow: hidden;
+  overflow-y: auto;
+  list-style: none;
+  position: absolute;
+  z-index: 10;
+  border: 1px solid grey;
+}
+
+.search-bar-panel-active::-webkit-scrollbar {
+  display: none !important;
+}
+
+.aStyleSearchbar {
+  color: black !important;
+  font-size: 16px;
+}
+
+.liStyleSearchbar {
+  padding: 20px 0 20px 20px;
+}
+.liStyleSearchbar:hover {
+  background-color: lightslategrey !important;
+}
+
+.formInput i {
+  font-size: 20px;
+  margin-left: -30px;
+  line-height: 50px;
+}
