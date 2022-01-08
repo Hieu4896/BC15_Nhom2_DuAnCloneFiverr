@@ -71,3 +71,13 @@
 .PageNumber button:disabled {
   visibility: hidden;
 }
+.sortButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sortButton button {
+  margin-right: 20px;
+  width: 90px;
+}

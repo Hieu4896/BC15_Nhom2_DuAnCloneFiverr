@@ -9,32 +9,70 @@ import {
   getApiDanhSachCongViec,
   getApiTypeJob,
 } from "../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
-import _ from "lodash";
+import _, { debounce } from "lodash";
+import { C } from "lodash";
 import { useState } from "react";
 
 export default function DanhSachCongViecDesktop(props) {
   let keyWord = props.match.params.typejob;
-  let { danhSachCongViec } = useSelector(
-    (rootReducer) => rootReducer.DanhSachCongViecReducer
-  );
+
   let Pages = [];
+
   let [currentPage, setcurrentPage] = useState(1);
   let [itemPerPage, setitemPerPage] = useState(12);
   let [pageNumberLimit, setpageNumberLimit] = useState(5);
   let [maxpageNumberLimit, setmaxpageNumberLimit] = useState(5);
   let [minpageNumberLimit, setminpageNumberLimit] = useState(0);
-
   let indexOfLastItem = currentPage * itemPerPage; //4
   let indexOfFirstItem = indexOfLastItem - itemPerPage; //0
-  // let [newFilter, setnewFilter] = useState([]);
+  let { danhSachCongViec } = useSelector(
+    (rootReducer) => rootReducer.DanhSachCongViecReducer
+  );
+
+  let [proServices, setproServices] = useState(false);
+  let [localSellers, setlocalSellers] = useState(false);
+  let [onlineSellers, setonlineSellers] = useState(false);
+  let [data, setdata] = useState("");
   let dispatch = useDispatch();
   useEffect(() => {
     const actionDanhSachCongViec = getApiDanhSachCongViec();
     dispatch(actionDanhSachCongViec);
   }, []);
+  const handleDataChange = debounce((newData) => {
+    setdata(newData);
+    console.log(newData);
+
+    if (newData === "proServices") {
+      setproServices(true);
+      setlocalSellers(null);
+      setonlineSellers(null);
+      setcurrentPage(1);
+    } else if (newData === "localSellers") {
+      setlocalSellers(true);
+      setproServices(null);
+      setonlineSellers(null);
+      setcurrentPage(1);
+    } else if (newData === "onlineSellers") {
+      setonlineSellers(true);
+      setproServices(null);
+      setlocalSellers(null);
+      setcurrentPage(1);
+    } else {
+      setonlineSellers(false);
+      setproServices(false);
+      setlocalSellers(false);
+      setcurrentPage(1);
+    }
+  }, 200);
 
   const newFilter = danhSachCongViec.filter((value) => {
-    return value.name.toLowerCase().includes(keyWord.toLowerCase());
+    if (
+      value.onlineSellers === onlineSellers ||
+      value.localSellers === localSellers ||
+      value.proServices === proServices
+    ) {
+      return value.name.toLowerCase().includes(keyWord.toLowerCase());
+    }
   });
   let currentItem = newFilter.slice(indexOfFirstItem, indexOfLastItem);
   console.log(currentItem);
@@ -146,21 +184,88 @@ export default function DanhSachCongViecDesktop(props) {
       setminpageNumberLimit(minpageNumberLimit - pageNumberLimit);
     }
   };
+
   return (
     <div style={{ padding: "5px 50px", maxWidth: 1381.09 }}>
       <h1 style={{ fontSize: 30 }}>Results for "{keyWord}"</h1>
       <div
         style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
+          // display: "flex",
+          // alignItems: "center",
+          // justifyContent: "space-between",
           padding: "0  15px",
         }}
       >
         {" "}
-        <div style={{ color: "teal", fontSize: 20 }}>
+        <span style={{ color: "teal", fontSize: 20 }}>
           {newFilter.length} services available
-        </div>
+        </span>
+        {/* <div className={Style["sortButton"]}>
+          <button
+            onClick={() => {
+              setproServices(true);
+              setlocalSellers(null);
+              setonlineSellers(null);
+              setcurrentPage(1);
+            }}
+          >
+            proServices
+          </button>
+          <button
+            onClick={() => {
+              setlocalSellers(true);
+              setproServices(null);
+              setonlineSellers(null);
+              setcurrentPage(1);
+            }}
+          >
+            localSellers
+          </button>
+          <button
+            onClick={() => {
+              setonlineSellers(true);
+              setlocalSellers(null);
+              setproServices(null);
+              setcurrentPage(1);
+            }}
+          >
+            onlineSellers
+          </button>
+          <button
+            onClick={() => {
+              setonlineSellers(false);
+              setlocalSellers(false);
+              setproServices(false);
+              setcurrentPage(1);
+            }}
+          >
+            Default
+          </button>
+        </div> */}
+        <form style={{ width: "20%" }}>
+          <h4>Sort by :</h4>
+          <select
+            name="cars"
+            className="custom-select"
+            value={data}
+            onChange={(e) => {
+              handleDataChange(e.target.value);
+            }}
+          >
+            <option id="default" value="default">
+              default
+            </option>
+            <option id="proServices" value="proServices">
+              proServices
+            </option>
+            <option id="localSellers" value="localSellers">
+              localSellers
+            </option>
+            <option id="onlineSellers" value="onlineSellers">
+              onlineSellers
+            </option>
+          </select>
+        </form>
       </div>
 
       <div
