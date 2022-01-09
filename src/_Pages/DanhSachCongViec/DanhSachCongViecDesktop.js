@@ -10,7 +10,6 @@ import {
   getApiTypeJob,
 } from "../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
 import _, { debounce } from "lodash";
-import { C } from "lodash";
 import { useState } from "react";
 
 export default function DanhSachCongViecDesktop(props) {

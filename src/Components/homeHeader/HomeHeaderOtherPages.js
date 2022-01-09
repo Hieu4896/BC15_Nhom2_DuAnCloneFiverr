@@ -86,7 +86,9 @@ export default function HomeHeaderOtherPages(props) {
     return _.uniqBy(typeJob, "name").map((typeJob, index) => {
       return (
         <li className={Style["typeJob"]}>
-          <span key={index}>{typeJob.name}</span>
+          <NavLink to={`/loaicongviec/${typeJob._id}`} key={index}>
+            {typeJob.name}
+          </NavLink>
           <div
             className={
               typeJob.name === "Lifestyle" ||
