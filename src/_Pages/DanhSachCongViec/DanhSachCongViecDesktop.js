@@ -14,7 +14,9 @@ import { useState } from "react";
 
 export default function DanhSachCongViecDesktop(props) {
   let keyWord = props.match.params.typejob;
-
+  let { danhSachCongViec } = useSelector(
+    (rootReducer) => rootReducer.DanhSachCongViecReducer
+  );
   let Pages = [];
 
   let [currentPage, setcurrentPage] = useState(1);
@@ -24,45 +26,48 @@ export default function DanhSachCongViecDesktop(props) {
   let [minpageNumberLimit, setminpageNumberLimit] = useState(0);
   let indexOfLastItem = currentPage * itemPerPage; //4
   let indexOfFirstItem = indexOfLastItem - itemPerPage; //0
-  let { danhSachCongViec } = useSelector(
-    (rootReducer) => rootReducer.DanhSachCongViecReducer
-  );
 
   let [proServices, setproServices] = useState(false);
   let [localSellers, setlocalSellers] = useState(false);
   let [onlineSellers, setonlineSellers] = useState(false);
-  let [data, setdata] = useState("");
+  let [data, setdata] = useState("default");
   let dispatch = useDispatch();
   useEffect(() => {
     const actionDanhSachCongViec = getApiDanhSachCongViec();
     dispatch(actionDanhSachCongViec);
   }, []);
-  const handleDataChange = debounce((newData) => {
-    setdata(newData);
-    console.log(newData);
-
+  const handleDataChange = (newData) => {
     if (newData === "proServices") {
       setproServices(true);
       setlocalSellers(null);
       setonlineSellers(null);
       setcurrentPage(1);
+      setmaxpageNumberLimit(5);
+      setminpageNumberLimit(0);
     } else if (newData === "localSellers") {
       setlocalSellers(true);
       setproServices(null);
       setonlineSellers(null);
       setcurrentPage(1);
+      setmaxpageNumberLimit(5);
+      setminpageNumberLimit(0);
     } else if (newData === "onlineSellers") {
       setonlineSellers(true);
       setproServices(null);
       setlocalSellers(null);
       setcurrentPage(1);
+      setmaxpageNumberLimit(5);
+      setminpageNumberLimit(0);
     } else {
       setonlineSellers(false);
       setproServices(false);
       setlocalSellers(false);
       setcurrentPage(1);
+      setmaxpageNumberLimit(5);
+      setminpageNumberLimit(0);
     }
-  }, 200);
+    setdata(newData);
+  };
 
   const newFilter = danhSachCongViec.filter((value) => {
     if (

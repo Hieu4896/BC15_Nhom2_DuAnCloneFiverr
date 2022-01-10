@@ -12,7 +12,7 @@ import {
   getApiTypeJob,
 } from "../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
 import _ from "lodash";
-export default function HomeHeaderOtherPages(props) {
+export default function DanhSachCongViecHeader(props) {
   let [filteredData, setFilteredData] = useState([]);
   let [wordEntered, setWordEntered] = useState("");
   let [wordSearch, setwordSearch] = useState(props.match.params.typejob);
@@ -114,7 +114,7 @@ export default function HomeHeaderOtherPages(props) {
               <input
                 type="text"
                 className="searchInput"
-                placeholder={props.match.params.typejob}
+                placeholder="Find Services"
                 onChange={handleChangeInput}
                 value={wordEntered}
               />

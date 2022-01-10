@@ -9,6 +9,7 @@ import DanhSachCongViecDesktop from "./_Pages/DanhSachCongViec/DanhSachCongViecD
 import HomeHeaderOtherPages from "./Components/homeHeader/HomeHeaderOtherPages";
 import { OtherPagesTemplate } from "./_Templates/OtherPagesTemplate/OtherPagesTemplate";
 import LoaiCongViecDesktop from "./_Pages/LoaiCongViec/LoaiCongViecDesktop";
+import { DanhSachCongViecTemPlate } from "./_Templates/DanhSachCongViecTemplate/DanhSachCongViecTemplate";
 
 export const history = createBrowserHistory();
 function App() {
@@ -28,7 +29,7 @@ function App() {
           path="/danhsachcongviec/:typejob"
           Component={DanhSachCongViecDesktop}
         />
-        <OtherPagesTemplate
+        <DanhSachCongViecTemPlate
           exact
           path="/loaicongviec/:subtypejob"
           Component={LoaiCongViecDesktop}
