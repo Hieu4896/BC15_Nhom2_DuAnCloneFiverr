@@ -3,12 +3,13 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { getApiDanhSachCongViecTheoTen } from "../../Redux/Actions/HomeActions/HomeAction";
+// import { getApiDanhSachCongViecTheoTen } from "../../Redux/Actions/HomeActions/HomeAction";
 import StyleSearchbar from "./otherPageSearchbar.module.css";
 import StyleHeader from "./otherPagesHeader.module.css";
 import Style from "../../_Pages/DanhSachCongViec/DanhSachCongViecDesktop.module.css";
 import {
   getApiDanhSachCongViec,
+  getApiDanhSachCongViecTheoTen2,
   getApiTypeJob,
 } from "../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
 import _ from "lodash";
@@ -24,7 +25,7 @@ export default function DanhSachCongViecHeader(props) {
   );
   let dispatch = useDispatch();
   useEffect(() => {
-    const action = getApiDanhSachCongViecTheoTen();
+    const action = getApiDanhSachCongViecTheoTen2();
     const actionTypeJob = getApiTypeJob();
     dispatch(actionTypeJob);
     dispatch(action);

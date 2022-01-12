@@ -15,7 +15,6 @@ export const history = createBrowserHistory();
 function App() {
   return (
     <Router history={history}>
-      {/* <HomeHeader /> */}
       <Switch>
         <HomeTemplate exact path="/home" Component={HomeDesktop} />
         <Route exact path="/homeheader" component={HomeHeader} />

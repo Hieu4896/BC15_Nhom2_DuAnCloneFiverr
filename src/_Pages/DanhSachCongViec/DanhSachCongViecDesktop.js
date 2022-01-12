@@ -14,6 +14,8 @@ import { useState } from "react";
 
 export default function DanhSachCongViecDesktop(props) {
   let keyWord = props.match.params.typejob;
+  console.log(keyWord);
+
   let { danhSachCongViec } = useSelector(
     (rootReducer) => rootReducer.DanhSachCongViecReducer
   );
@@ -31,11 +33,8 @@ export default function DanhSachCongViecDesktop(props) {
   let [localSellers, setlocalSellers] = useState(false);
   let [onlineSellers, setonlineSellers] = useState(false);
   let [data, setdata] = useState("default");
-  let dispatch = useDispatch();
-  useEffect(() => {
-    const actionDanhSachCongViec = getApiDanhSachCongViec();
-    dispatch(actionDanhSachCongViec);
-  }, []);
+  let [backToTop, setbackToTop] = useState(false);
+
   const handleDataChange = (newData) => {
     if (newData === "proServices") {
       setproServices(true);
@@ -80,8 +79,21 @@ export default function DanhSachCongViecDesktop(props) {
   });
   let currentItem = newFilter.slice(indexOfFirstItem, indexOfLastItem);
   console.log(currentItem);
-  console.log(newFilter);
+  let dispatch = useDispatch();
+  useEffect(() => {
+    const actionDanhSachCongViec = getApiDanhSachCongViec();
+    dispatch(actionDanhSachCongViec);
+    window.addEventListener("scroll", toggleBackToTop);
+    return () => {
+      window.removeEventListener("scroll", toggleBackToTop);
+    };
+  }, []);
+
   const handleClick = (event) => {
+    window.scrollTo({
+      top: 0,
+      behavior: "auto",
+    });
     setcurrentPage(Number(event.target.id));
   };
   const renderDanhSachCongViec = () => {
@@ -174,6 +186,10 @@ export default function DanhSachCongViecDesktop(props) {
     });
   };
   const handleNextButton = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "auto",
+    });
     setcurrentPage(currentPage + 1);
     if (currentPage + 1 > maxpageNumberLimit) {
       setmaxpageNumberLimit(maxpageNumberLimit + pageNumberLimit);
@@ -182,10 +198,21 @@ export default function DanhSachCongViecDesktop(props) {
   };
 
   const handlePrevButton = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "auto",
+    });
     setcurrentPage(currentPage - 1);
     if ((currentPage - 1) % pageNumberLimit == 0) {
       setmaxpageNumberLimit(maxpageNumberLimit - pageNumberLimit);
       setminpageNumberLimit(minpageNumberLimit - pageNumberLimit);
+    }
+  };
+  const toggleBackToTop = () => {
+    if (window.pageYOffset > 300) {
+      setbackToTop(true);
+    } else {
+      setbackToTop(false);
     }
   };
 

@@ -9,9 +9,11 @@ import StyleHeader from "./otherPagesHeader.module.css";
 import Style from "../../_Pages/DanhSachCongViec/DanhSachCongViecDesktop.module.css";
 import {
   getApiDanhSachCongViec,
+  getApiDanhSachCongViecTheoTen2,
   getApiTypeJob,
 } from "../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
 import _ from "lodash";
+import DanhSachCongViecDesktop from "../../_Pages/DanhSachCongViec/DanhSachCongViecDesktop";
 export default function HomeHeaderOtherPages(props) {
   let [filteredData, setFilteredData] = useState([]);
   let [wordEntered, setWordEntered] = useState("");
@@ -24,11 +26,14 @@ export default function HomeHeaderOtherPages(props) {
   );
   let dispatch = useDispatch();
   useEffect(() => {
-    const action = getApiDanhSachCongViecTheoTen();
-    const actionTypeJob = getApiTypeJob();
-    dispatch(actionTypeJob);
+    const action = getApiDanhSachCongViecTheoTen2();
     dispatch(action);
   }, []);
+  useEffect(() => {
+    const actionTypeJob = getApiTypeJob();
+    dispatch(actionTypeJob);
+  }, []);
+
   const handleChangeInput = (event) => {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
