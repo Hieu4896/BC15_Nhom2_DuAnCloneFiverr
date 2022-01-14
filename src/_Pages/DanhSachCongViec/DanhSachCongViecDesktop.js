@@ -31,10 +31,22 @@ export default function DanhSachCongViecDesktop(props) {
   let [localSellers, setlocalSellers] = useState(false);
   let [onlineSellers, setonlineSellers] = useState(false);
   let [data, setdata] = useState("default");
+  let [backToTop, setbackToTop] = useState(false);
+  const toggleBackToTop = () => {
+    if (window.pageYOffset > 300) {
+      setbackToTop(true);
+    } else {
+      setbackToTop(false);
+    }
+  };
   let dispatch = useDispatch();
   useEffect(() => {
     const actionDanhSachCongViec = getApiDanhSachCongViec();
     dispatch(actionDanhSachCongViec);
+    window.addEventListener("scroll", toggleBackToTop);
+    return () => {
+      window.removeEventListener("scroll", toggleBackToTop);
+    };
   }, []);
   const handleDataChange = (newData) => {
     if (newData === "proServices") {
@@ -81,7 +93,12 @@ export default function DanhSachCongViecDesktop(props) {
   let currentItem = newFilter.slice(indexOfFirstItem, indexOfLastItem);
   console.log(currentItem);
   console.log(newFilter);
+
   const handleClick = (event) => {
+    window.scrollTo({
+      top: 0,
+      behavior: "auto",
+    });
     setcurrentPage(Number(event.target.id));
   };
   const renderDanhSachCongViec = () => {
@@ -174,6 +191,10 @@ export default function DanhSachCongViecDesktop(props) {
     });
   };
   const handleNextButton = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "auto",
+    });
     setcurrentPage(currentPage + 1);
     if (currentPage + 1 > maxpageNumberLimit) {
       setmaxpageNumberLimit(maxpageNumberLimit + pageNumberLimit);
@@ -182,6 +203,10 @@ export default function DanhSachCongViecDesktop(props) {
   };
 
   const handlePrevButton = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "auto",
+    });
     setcurrentPage(currentPage - 1);
     if ((currentPage - 1) % pageNumberLimit == 0) {
       setmaxpageNumberLimit(maxpageNumberLimit - pageNumberLimit);
@@ -204,48 +229,6 @@ export default function DanhSachCongViecDesktop(props) {
         <span style={{ color: "teal", fontSize: 20 }}>
           {newFilter.length} services available
         </span>
-        {/* <div className={Style["sortButton"]}>
-          <button
-            onClick={() => {
-              setproServices(true);
-              setlocalSellers(null);
-              setonlineSellers(null);
-              setcurrentPage(1);
-            }}
-          >
-            proServices
-          </button>
-          <button
-            onClick={() => {
-              setlocalSellers(true);
-              setproServices(null);
-              setonlineSellers(null);
-              setcurrentPage(1);
-            }}
-          >
-            localSellers
-          </button>
-          <button
-            onClick={() => {
-              setonlineSellers(true);
-              setlocalSellers(null);
-              setproServices(null);
-              setcurrentPage(1);
-            }}
-          >
-            onlineSellers
-          </button>
-          <button
-            onClick={() => {
-              setonlineSellers(false);
-              setlocalSellers(false);
-              setproServices(false);
-              setcurrentPage(1);
-            }}
-          >
-            Default
-          </button>
-        </div> */}
         <form style={{ width: "20%" }}>
           <h4>Sort by :</h4>
           <select
