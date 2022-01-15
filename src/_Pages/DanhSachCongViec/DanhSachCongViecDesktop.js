@@ -120,7 +120,7 @@ export default function DanhSachCongViecDesktop(props) {
               {job.name}
             </p>
             <i
-              class="fas fa-star"
+              className="fas fa-star"
               style={{ color: "orange", marginRight: 5, padding: "0 10px" }}
             ></i>
             <span style={{ color: "orange" }}>{job.rating}</span>
@@ -142,7 +142,7 @@ export default function DanhSachCongViecDesktop(props) {
                   padding: "0 10px",
                   color: "#00000047",
                 }}
-                class="fas fa-heart"
+                className="fas fa-heart"
               ></i>
               <span
                 style={{
@@ -166,7 +166,6 @@ export default function DanhSachCongViecDesktop(props) {
   for (let i = 1; i <= Math.ceil(newFilter.length / itemPerPage); i++) {
     Pages.push(i);
   }
-  console.log(Pages);
   const renderPagesNumber = () => {
     return Pages.map((number, index) => {
       if (number < maxpageNumberLimit + 1 && number > minpageNumberLimit) {
@@ -217,7 +216,7 @@ export default function DanhSachCongViecDesktop(props) {
   };
 
   return (
-    <div style={{ padding: "5px 50px", maxWidth: 1381.09 }}>
+    <div style={{ padding: "5px 50px" }}>
       <h1 style={{ fontSize: 30 }}>Results for "{keyWord}"</h1>
       <div
         style={{
@@ -231,48 +230,6 @@ export default function DanhSachCongViecDesktop(props) {
         <span style={{ color: "teal", fontSize: 20 }}>
           {newFilter.length} services available
         </span>
-        {/* <div className={Style["sortButton"]}>
-          <button
-            onClick={() => {
-              setproServices(true);
-              setlocalSellers(null);
-              setonlineSellers(null);
-              setcurrentPage(1);
-            }}
-          >
-            proServices
-          </button>
-          <button
-            onClick={() => {
-              setlocalSellers(true);
-              setproServices(null);
-              setonlineSellers(null);
-              setcurrentPage(1);
-            }}
-          >
-            localSellers
-          </button>
-          <button
-            onClick={() => {
-              setonlineSellers(true);
-              setlocalSellers(null);
-              setproServices(null);
-              setcurrentPage(1);
-            }}
-          >
-            onlineSellers
-          </button>
-          <button
-            onClick={() => {
-              setonlineSellers(false);
-              setlocalSellers(false);
-              setproServices(false);
-              setcurrentPage(1);
-            }}
-          >
-            Default
-          </button>
-        </div> */}
         <form style={{ width: "20%" }}>
           <h4>Sort by :</h4>
           <select

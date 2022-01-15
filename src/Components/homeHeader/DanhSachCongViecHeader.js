@@ -31,6 +31,7 @@ export default function DanhSachCongViecHeader(props) {
     dispatch(action);
   }, []);
   const handleChangeInput = (event) => {
+    event.preventDefault();
     const searchWord = event.target.value;
     setWordEntered(searchWord);
     const newFilter = congViecTheoTen.filter((value) => {
@@ -129,7 +130,7 @@ export default function DanhSachCongViecHeader(props) {
                   }}
                   onClick={clearInput}
                 >
-                  <i class="fas fa-backspace"></i>
+                  <i className="fas fa-backspace"></i>
                 </button>
               ) : (
                 ""

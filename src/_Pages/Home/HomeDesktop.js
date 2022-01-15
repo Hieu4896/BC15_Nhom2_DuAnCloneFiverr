@@ -47,6 +47,7 @@ export default function HomeDesktop(props) {
     dispatch(action);
   }, []);
   const handleChangeInput = (event) => {
+    event.preventDefault();
     const searchWord = event.target.value;
     setWordEntered(searchWord);
     const newFilter = congViecTheoTen.filter((value) => {
@@ -144,7 +145,7 @@ export default function HomeDesktop(props) {
                 style={{ border: "none", outline: "none", background: "none" }}
                 onClick={clearInput}
               >
-                <i class="fas fa-backspace"></i>
+                <i className="fas fa-backspace"></i>
               </button>
             ) : (
               ""
@@ -167,20 +168,20 @@ export default function HomeDesktop(props) {
           >
             {renderCongViec()}
           </ul>
-          <div class="popular">
+          <div className="popular">
             Popular:{" "}
             <ul>
               <li>
-                <a class="text-body-2">Website Design</a>
+                <a className="text-body-2">Website Design</a>
               </li>
               <li>
-                <a class="text-body-2">WordPress</a>
+                <a className="text-body-2">WordPress</a>
               </li>
               <li>
-                <a class="text-body-2">Logo Design</a>
+                <a className="text-body-2">Logo Design</a>
               </li>
               <li>
-                <a class="text-body-2">NFT Art</a>
+                <a className="text-body-2">NFT Art</a>
               </li>
             </ul>
           </div>

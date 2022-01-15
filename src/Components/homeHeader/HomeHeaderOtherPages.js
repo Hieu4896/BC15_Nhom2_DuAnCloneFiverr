@@ -12,12 +12,12 @@ import {
   getApiDanhSachCongViecTheoTen2,
   getApiTypeJob,
 } from "../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
-import _ from "lodash";
+import _, { debounce } from "lodash";
 import DanhSachCongViecDesktop from "../../_Pages/DanhSachCongViec/DanhSachCongViecDesktop";
 export default function HomeHeaderOtherPages(props) {
   let [filteredData, setFilteredData] = useState([]);
   let [wordEntered, setWordEntered] = useState("");
-  let [wordSearch, setwordSearch] = useState(props.match.params.typejob);
+  let [placeHolder, setplaceHolder] = useState(props.match.params.typejob);
   let { congViecTheoTen } = useSelector(
     (rootReducer) => rootReducer.HomeReducer
   );
@@ -35,6 +35,7 @@ export default function HomeHeaderOtherPages(props) {
   }, []);
 
   const handleChangeInput = (event) => {
+    event.preventDefault();
     const searchWord = event.target.value;
     setWordEntered(searchWord);
     const newFilter = congViecTheoTen.filter((value) => {
@@ -46,11 +47,14 @@ export default function HomeHeaderOtherPages(props) {
     } else {
       setFilteredData(newFilter);
     }
+    console.log(searchWord);
   };
+
+  console.log(wordEntered);
   const clearInput = () => {
     setFilteredData([]);
     setWordEntered("");
-    setwordSearch("Find Services");
+    setplaceHolder("Find Services");
   };
   const renderCongViec = () => {
     if (filteredData.length != 0) {
@@ -119,7 +123,7 @@ export default function HomeHeaderOtherPages(props) {
               <input
                 type="text"
                 className="searchInput"
-                placeholder={props.match.params.typejob}
+                placeholder={placeHolder}
                 onChange={handleChangeInput}
                 value={wordEntered}
               />
@@ -133,7 +137,7 @@ export default function HomeHeaderOtherPages(props) {
                   }}
                   onClick={clearInput}
                 >
-                  <i class="fas fa-backspace"></i>
+                  <i className="fas fa-backspace"></i>
                 </button>
               ) : (
                 ""
