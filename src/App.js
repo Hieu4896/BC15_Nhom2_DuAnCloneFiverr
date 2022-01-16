@@ -33,12 +33,6 @@ function App() {
           path="/loaicongviec/:subtypejob"
           Component={LoaiCongViecDesktop}
         />
-
-        {/* <Route
-          exact
-          path="/danhsachcongviec"
-          component={DanhSachCongViecDesktop}
-        /> */}
         <HomeTemplate exact path="/" Component={HomeDesktop} />
       </Switch>
     </Router>

@@ -7,11 +7,7 @@ import { getApiDanhSachCongViecTheoTen } from "../../Redux/Actions/HomeActions/H
 import StyleSearchbar from "./otherPageSearchbar.module.css";
 import StyleHeader from "./otherPagesHeader.module.css";
 import Style from "../../_Pages/DanhSachCongViec/DanhSachCongViecDesktop.module.css";
-import {
-  getApiDanhSachCongViec,
-  getApiDanhSachCongViecTheoTen2,
-  getApiTypeJob,
-} from "../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
+import { getApiTypeJob } from "../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
 import _, { debounce } from "lodash";
 import DanhSachCongViecDesktop from "../../_Pages/DanhSachCongViec/DanhSachCongViecDesktop";
 export default function HomeHeaderOtherPages(props) {
@@ -26,7 +22,7 @@ export default function HomeHeaderOtherPages(props) {
   );
   let dispatch = useDispatch();
   useEffect(() => {
-    const action = getApiDanhSachCongViecTheoTen2();
+    const action = getApiDanhSachCongViecTheoTen();
     dispatch(action);
   }, []);
   useEffect(() => {
@@ -77,34 +73,35 @@ export default function HomeHeaderOtherPages(props) {
 
   const renderTypejob = () => {
     return _.uniqBy(typeJob, "name").map((typeJob, index) => {
-      return (
-        <li className={Style["typeJob"]}>
-          <NavLink to={`/loaicongviec/${typeJob._id}`} key={index}>
-            {typeJob.name}
-          </NavLink>
-          <div
-            className={
-              typeJob.name === "Lifestyle" ||
-              typeJob.name === "Business" ||
-              typeJob.name === "Data" ||
-              typeJob.name === "Programming & Tech"
-                ? Style["subTypeJobIf"]
-                : Style["subTypeJob"]
-            }
-          >
-            {typeJob.subTypeJobs.map((subTypeJobs, index) => {
-              return (
-                <li
-                  key={index}
-                  style={{ display: "inline-block", padding: "10px 30px" }}
-                >
-                  {subTypeJobs.name}
-                </li>
-              );
-            })}
-          </div>
-        </li>
-      );
+      if (typeJob.subTypeJobs.length > 0) {
+        return (
+          <li className={Style["typeJob"]}>
+            <NavLink to={`/loaicongviec/${typeJob._id}`} key={index}>
+              {typeJob.name}
+            </NavLink>
+            <li
+              className={
+                typeJob.name === "CaptainMeow" ||
+                typeJob.name === "ttv" ||
+                typeJob.name === "Programming & Tech"
+                  ? Style["subTypeJobIf"]
+                  : Style["subTypeJob"]
+              }
+            >
+              {typeJob.subTypeJobs.map((subTypeJobs, index) => {
+                return (
+                  <li
+                    key={index}
+                    style={{ display: "inline-block", padding: "20px" }}
+                  >
+                    {subTypeJobs.name}
+                  </li>
+                );
+              })}
+            </li>
+          </li>
+        );
+      }
     });
   };
 

@@ -14,8 +14,6 @@ import { useState } from "react";
 
 export default function DanhSachCongViecDesktop(props) {
   let keyWord = props.match.params.typejob;
-  console.log(keyWord);
-
   let { danhSachCongViec } = useSelector(
     (rootReducer) => rootReducer.DanhSachCongViecReducer
   );

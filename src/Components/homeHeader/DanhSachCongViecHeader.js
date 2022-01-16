@@ -3,16 +3,13 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-// import { getApiDanhSachCongViecTheoTen } from "../../Redux/Actions/HomeActions/HomeAction";
+
 import StyleSearchbar from "./otherPageSearchbar.module.css";
 import StyleHeader from "./otherPagesHeader.module.css";
 import Style from "../../_Pages/DanhSachCongViec/DanhSachCongViecDesktop.module.css";
-import {
-  getApiDanhSachCongViec,
-  getApiDanhSachCongViecTheoTen2,
-  getApiTypeJob,
-} from "../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
+import { getApiTypeJob } from "../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
 import _ from "lodash";
+import { getApiDanhSachCongViecTheoTen } from "../../Redux/Actions/HomeActions/HomeAction";
 export default function DanhSachCongViecHeader(props) {
   let [filteredData, setFilteredData] = useState([]);
   let [wordEntered, setWordEntered] = useState("");
@@ -25,7 +22,7 @@ export default function DanhSachCongViecHeader(props) {
   );
   let dispatch = useDispatch();
   useEffect(() => {
-    const action = getApiDanhSachCongViecTheoTen2();
+    const action = getApiDanhSachCongViecTheoTen();
     const actionTypeJob = getApiTypeJob();
     dispatch(actionTypeJob);
     dispatch(action);
@@ -70,34 +67,35 @@ export default function DanhSachCongViecHeader(props) {
 
   const renderTypejob = () => {
     return _.uniqBy(typeJob, "name").map((typeJob, index) => {
-      return (
-        <li className={Style["typeJob"]}>
-          <NavLink to={`/loaicongviec/${typeJob._id}`} key={index}>
-            {typeJob.name}
-          </NavLink>
-          <div
-            className={
-              typeJob.name === "Lifestyle" ||
-              typeJob.name === "Business" ||
-              typeJob.name === "Data" ||
-              typeJob.name === "Programming & Tech"
-                ? Style["subTypeJobIf"]
-                : Style["subTypeJob"]
-            }
-          >
-            {typeJob.subTypeJobs.map((subTypeJobs, index) => {
-              return (
-                <li
-                  key={index}
-                  style={{ display: "inline-block", padding: "10px 30px" }}
-                >
-                  {subTypeJobs.name}
-                </li>
-              );
-            })}
-          </div>
-        </li>
-      );
+      if (typeJob.subTypeJobs.length > 0) {
+        return (
+          <li className={Style["typeJob"]}>
+            <NavLink to={`/loaicongviec/${typeJob._id}`} key={index}>
+              {typeJob.name}
+            </NavLink>
+            <li
+              className={
+                typeJob.name === "CaptainMeow" ||
+                typeJob.name === "ttv" ||
+                typeJob.name === "Programming & Tech"
+                  ? Style["subTypeJobIf"]
+                  : Style["subTypeJob"]
+              }
+            >
+              {typeJob.subTypeJobs.map((subTypeJobs, index) => {
+                return (
+                  <li
+                    key={index}
+                    style={{ display: "inline-block", padding: "10px 30px" }}
+                  >
+                    {subTypeJobs.name}
+                  </li>
+                );
+              })}
+            </li>
+          </li>
+        );
+      }
     });
   };
 

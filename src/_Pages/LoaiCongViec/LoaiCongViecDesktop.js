@@ -3,21 +3,14 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import _, { debounce } from "lodash";
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import {
   getApiCongViecTheoLoaiCongViecChinh,
   getApiLoaiCongViec,
-} from "../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+} from "../../Redux/Actions/LoaiCongViecActions/LoaiCongViecAntion";
 export default function LoaiCongViecDesktop(props) {
   let id = props.match.params.subtypejob;
-  let dispatch = useDispatch();
-  useEffect(() => {
-    const actionLoaiCongViec = getApiLoaiCongViec(id);
-    const actionCongViecTheoLoaiCongViecChinh =
-      getApiCongViecTheoLoaiCongViecChinh(id);
-    dispatch(actionLoaiCongViec);
-    dispatch(actionCongViecTheoLoaiCongViecChinh);
-  }, [id]);
+
   let { loaiCongViec } = useSelector(
     (rootReducer) => rootReducer.LoaiCongViecReducer
   );
@@ -44,6 +37,15 @@ export default function LoaiCongViecDesktop(props) {
       );
     });
   };
+  let dispatch = useDispatch();
+  useEffect(() => {
+    const actionLoaiCongViec = getApiLoaiCongViec(id);
+    const actionCongViecTheoLoaiCongViecChinh =
+      getApiCongViecTheoLoaiCongViecChinh(id);
+    dispatch(actionLoaiCongViec);
+    dispatch(actionCongViecTheoLoaiCongViecChinh);
+  }, [id]);
+
   return (
     <div style={{ padding: "0 50px" }}>
       <h2 style={{ textAlign: "center", padding: "20px 0" }}>
