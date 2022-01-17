@@ -10,7 +10,9 @@ import Style from "../../_Pages/DanhSachCongViec/DanhSachCongViecDesktop.module.
 import { getApiTypeJob } from "../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
 import _, { debounce } from "lodash";
 import DanhSachCongViecDesktop from "../../_Pages/DanhSachCongViec/DanhSachCongViecDesktop";
+import HomeFooter from "../homeFooter/HomeFooter";
 export default function HomeHeaderOtherPages(props) {
+  const [keyword, setKeyword] = useState(props.match.params.typejob);
   let [filteredData, setFilteredData] = useState([]);
   let [wordEntered, setWordEntered] = useState("");
   let [placeHolder, setplaceHolder] = useState(props.match.params.typejob);
@@ -20,6 +22,7 @@ export default function HomeHeaderOtherPages(props) {
   let { typeJob } = useSelector(
     (rootReducer) => rootReducer.DanhSachCongViecReducer
   );
+
   let dispatch = useDispatch();
   useEffect(() => {
     const action = getApiDanhSachCongViecTheoTen();
@@ -56,14 +59,14 @@ export default function HomeHeaderOtherPages(props) {
     if (filteredData.length != 0) {
       return filteredData.slice(0, 10).map((prop, index) => {
         return (
-          <NavLink
+          <a
             className="aStyleSearchbar"
-            to={`/danhsachcongviec/${prop.name}`}
+            href={`/danhsachcongviec/${prop.name}`}
           >
             <li className={StyleSearchbar["liStyleSearchbar"]} key={index}>
               {prop.name}
             </li>
-          </NavLink>
+          </a>
         );
       });
     } else {
@@ -203,6 +206,8 @@ export default function HomeHeaderOtherPages(props) {
           </ul>
         </div>
       </div>
+      <DanhSachCongViecDesktop keyWord={keyword} wordParams={wordEntered} />
+      <HomeFooter />
     </div>
   );
 }

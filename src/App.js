@@ -20,13 +20,8 @@ function App() {
         <Route exact path="/homeheader" component={HomeHeader} />
         <Route
           exact
-          path="/otherpagesheader"
-          component={HomeHeaderOtherPages}
-        />
-        <OtherPagesTemplate
-          exact
           path="/danhsachcongviec/:typejob"
-          Component={DanhSachCongViecDesktop}
+          component={HomeHeaderOtherPages}
         />
         <DanhSachCongViecTemPlate
           exact

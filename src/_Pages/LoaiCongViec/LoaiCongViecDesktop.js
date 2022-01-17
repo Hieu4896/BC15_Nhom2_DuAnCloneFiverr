@@ -8,15 +8,17 @@ import {
   getApiCongViecTheoLoaiCongViecChinh,
   getApiLoaiCongViec,
 } from "../../Redux/Actions/LoaiCongViecActions/LoaiCongViecAntion";
+import { useState } from "react";
 export default function LoaiCongViecDesktop(props) {
   let id = props.match.params.subtypejob;
 
-  let { loaiCongViec } = useSelector(
+  const { loaiCongViec } = useSelector(
     (rootReducer) => rootReducer.LoaiCongViecReducer
   );
-  let { congViecTheoLoaiCongViec } = useSelector(
+  const { congViecTheoLoaiCongViec } = useSelector(
     (rootReducer) => rootReducer.LoaiCongViecReducer
   );
+  const [loading, setLoading] = useState(false);
 
   const renderLoaiCongViec = () => {
     return loaiCongViec.subTypeJobs.map((value, index) => {
@@ -39,6 +41,19 @@ export default function LoaiCongViecDesktop(props) {
   };
   let dispatch = useDispatch();
   useEffect(() => {
+    let timeOut = setTimeout(() => {
+      const actionLoaiCongViec = getApiLoaiCongViec(id);
+      const actionCongViecTheoLoaiCongViecChinh =
+        getApiCongViecTheoLoaiCongViecChinh(id);
+      dispatch(actionLoaiCongViec);
+      dispatch(actionCongViecTheoLoaiCongViecChinh);
+      setLoading(true);
+    }, 1000);
+    return () => {
+      clearTimeout(timeOut);
+    };
+  }, []);
+  useEffect(() => {
     const actionLoaiCongViec = getApiLoaiCongViec(id);
     const actionCongViecTheoLoaiCongViecChinh =
       getApiCongViecTheoLoaiCongViecChinh(id);
@@ -47,21 +62,33 @@ export default function LoaiCongViecDesktop(props) {
   }, [id]);
 
   return (
-    <div style={{ padding: "0 50px" }}>
-      <h2 style={{ textAlign: "center", padding: "20px 0" }}>
-        {loaiCongViec.name}
-      </h2>
-      <div className="row">
-        <div className="col-4">
-          <h6 style={{ fontSize: 20, padding: "10px 0" }}>
+    <div style={{ position: "relative" }}>
+      {loading ? (
+        <div style={{ padding: "0 50px" }}>
+          <h2 style={{ textAlign: "center", padding: "20px 0" }}>
             {loaiCongViec.name}
-          </h6>
-          {renderLoaiCongViec()}
+          </h2>
+          <div className="row">
+            <div className="col-4">
+              <h6 style={{ fontSize: 20, padding: "10px 0" }}>
+                {loaiCongViec.name}
+              </h6>
+              {renderLoaiCongViec()}
+            </div>
+            <div className="col-8">
+              <div className="row">{renderCongViecTheoLoaiCongViec()}</div>
+            </div>
+          </div>
         </div>
-        <div className="col-8">
-          <div className="row">{renderCongViecTheoLoaiCongViec()}</div>
+      ) : (
+        <div
+          style={{ position: "absolute", right: "50%" }}
+          class="spinner-grow text-success"
+          role="status"
+        >
+          <span class="sr-only">Loading...</span>
         </div>
-      </div>
+      )}
     </div>
   );
 }
