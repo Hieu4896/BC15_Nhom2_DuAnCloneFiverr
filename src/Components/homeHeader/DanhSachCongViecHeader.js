@@ -75,9 +75,10 @@ export default function DanhSachCongViecHeader(props) {
             </NavLink>
             <li
               className={
-                typeJob.name === "CaptainMeow" ||
-                typeJob.name === "ttv" ||
-                typeJob.name === "Programming & Tech"
+                typeJob.name === "Data" ||
+                typeJob.name === "Business" ||
+                typeJob.name === "Programming & Tech" ||
+                typeJob.name === "Lifestyle"
                   ? Style["subTypeJobIf"]
                   : Style["subTypeJob"]
               }

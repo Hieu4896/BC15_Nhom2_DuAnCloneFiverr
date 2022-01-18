@@ -1,4 +1,9 @@
-.DanhSachLoaiCongViec {
-  display: flex;
-  justify-content: space-between;
+.liLoaiCongViec {
+  margin-bottom: 20px;
+}
+.liLoaiCongViec a {
+  color: black;
+}
+.liLoaiCongViec a:hover {
+  color: rgb(59, 206, 59) !important;
 }

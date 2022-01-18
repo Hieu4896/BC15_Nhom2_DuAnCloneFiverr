@@ -78,15 +78,17 @@ export default function HomeHeaderOtherPages(props) {
     return _.uniqBy(typeJob, "name").map((typeJob, index) => {
       if (typeJob.subTypeJobs.length > 0) {
         return (
-          <li className={Style["typeJob"]}>
-            <NavLink to={`/loaicongviec/${typeJob._id}`} key={index}>
+          <li key={index} className={Style["typeJob"]}>
+            <NavLink to={`/loaicongviec/${typeJob._id}`}>
               {typeJob.name}
             </NavLink>
+
             <li
               className={
-                typeJob.name === "CaptainMeow" ||
-                typeJob.name === "ttv" ||
-                typeJob.name === "Programming & Tech"
+                typeJob.name === "Data" ||
+                typeJob.name === "Business" ||
+                typeJob.name === "Programming & Tech" ||
+                typeJob.name === "Lifestyle"
                   ? Style["subTypeJobIf"]
                   : Style["subTypeJob"]
               }

@@ -8,6 +8,7 @@ import {
   getApiCongViecTheoLoaiCongViecChinh,
   getApiLoaiCongViec,
 } from "../../Redux/Actions/LoaiCongViecActions/LoaiCongViecAntion";
+import Style from "./LoaiCongViecDesktop.module.css";
 import { useState } from "react";
 export default function LoaiCongViecDesktop(props) {
   let id = props.match.params.subtypejob;
@@ -22,7 +23,18 @@ export default function LoaiCongViecDesktop(props) {
 
   const renderLoaiCongViec = () => {
     return loaiCongViec.subTypeJobs.map((value, index) => {
-      return <p key={index}>{value.name}</p>;
+      return (
+        <li className={Style["liLoaiCongViec"]}>
+          {" "}
+          <NavLink
+            style={{ color: "black" }}
+            to={`/danhsachcongviec/${value.name}`}
+            key={index}
+          >
+            {value.name}
+          </NavLink>
+        </li>
+      );
     });
   };
   const renderCongViecTheoLoaiCongViec = () => {
@@ -73,7 +85,10 @@ export default function LoaiCongViecDesktop(props) {
               <h6 style={{ fontSize: 20, padding: "10px 0" }}>
                 {loaiCongViec.name}
               </h6>
-              {renderLoaiCongViec()}
+              <ul style={{ listStyle: "none", padding: "20px 0" }}>
+                {" "}
+                {renderLoaiCongViec()}
+              </ul>
             </div>
             <div className="col-8">
               <div className="row">{renderCongViecTheoLoaiCongViec()}</div>
