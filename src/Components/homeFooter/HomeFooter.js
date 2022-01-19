@@ -4,8 +4,8 @@ import "./homeFooter.css";
 export default function HomeFooter(props) {
   return (
     <div className="footer">
-      <div className="row" style={{ margin: 0 }}>
-        <div className="col-3 customBasis">
+      <div className="footer-Categories">
+        <div>
           <ul className="ulHomeFooter">
             <h3 className="h3HomeFooter">Categories</h3>
 
@@ -62,7 +62,7 @@ export default function HomeFooter(props) {
             </li>
           </ul>
         </div>
-        <div className="col-3 customBasis">
+        <div>
           <ul className="ulHomeFooter">
             <h3 className="h3HomeFooter">About</h3>
 
@@ -103,7 +103,7 @@ export default function HomeFooter(props) {
             </li>
           </ul>
         </div>
-        <div className="col-3 customBasis">
+        <div>
           <ul className="ulHomeFooter">
             <h3 className="h3HomeFooter">Support</h3>
 
@@ -129,57 +129,7 @@ export default function HomeFooter(props) {
             </li>
           </ul>
         </div>
-        <div className="col-3 customBasis">
-          <ul className="ulHomeFooter">
-            <h3 className="h3HomeFooter">Community</h3>
-            <li className="liHomeFooter">
-              <NavLink className="aHomeFooter" to="/">
-                Events
-              </NavLink>
-            </li>
-            <li className="liHomeFooter">
-              <NavLink className="aHomeFooter" to="/">
-                Blog
-              </NavLink>
-            </li>
-            <li className="liHomeFooter">
-              <NavLink className="aHomeFooter" to="/">
-                Forum{" "}
-              </NavLink>
-            </li>
-            <li className="liHomeFooter">
-              <NavLink className="aHomeFooter" to="/">
-                Community Standeards
-              </NavLink>
-            </li>
-            <li className="liHomeFooter">
-              <NavLink className="aHomeFooter" to="/">
-                Podcast
-              </NavLink>
-            </li>
-            <li className="liHomeFooter">
-              <NavLink className="aHomeFooter" to="/">
-                Affilliates
-              </NavLink>
-            </li>
-            <li className="liHomeFooter">
-              <NavLink className="aHomeFooter" to="/">
-                Invite a Friend
-              </NavLink>
-            </li>
-            <li className="liHomeFooter">
-              <NavLink className="aHomeFooter" to="/">
-                Become a Seller
-              </NavLink>
-            </li>
-            <li className="liHomeFooter">
-              <NavLink className="aHomeFooter" to="/">
-                Fiverr Elevate
-              </NavLink>
-            </li>
-          </ul>
-        </div>
-        <div className="col-3 customBasis">
+        <div>
           <ul className="ulHomeFooter">
             <h3 className="h3HomeFooter">Community</h3>
             <li className="liHomeFooter">
@@ -230,9 +180,9 @@ export default function HomeFooter(props) {
           </ul>
         </div>
       </div>
-      <div className="bottom">
-        <div className="left">
-          <div className="fiverr-logo-footer">
+      <div className="row d-flex align-items-baseline justify-content-center mt-5 pb-3">
+        <div className="col-8 fiverr-logo-footer">
+          <div>
             <svg
               width="91"
               height="27"
@@ -250,8 +200,8 @@ export default function HomeFooter(props) {
           </div>
           <p className="text-body-2"> © Fiverr International Ltd. 2021</p>
         </div>
-        <div className="right">
-          <ul>
+        <div className="col-4">
+          <ul className="social-Platform">
             <li>
               <i className="fab fa-twitter"></i>
             </li>

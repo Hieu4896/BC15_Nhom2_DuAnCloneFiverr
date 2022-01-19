@@ -33,15 +33,11 @@
 
 .ulHeader {
   list-style: none;
-  float: right;
-  margin: 0 !important;
 }
 
 .ulHeader .liHeader {
   font-size: 17px;
   font-weight: 600;
-  display: inline-block;
-  margin: 0 20px;
   line-height: 50px;
 }
 

@@ -8,9 +8,11 @@ import StyleSearchbar from "./otherPageSearchbar.module.css";
 import StyleHeader from "./otherPagesHeader.module.css";
 import Style from "../../_Pages/DanhSachCongViec/DanhSachCongViecDesktop.module.css";
 import { getApiTypeJob } from "../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
-import _, { debounce } from "lodash";
+import _ from "lodash";
+import "./searchForm.scss";
 import DanhSachCongViecDesktop from "../../_Pages/DanhSachCongViec/DanhSachCongViecDesktop";
 import HomeFooter from "../homeFooter/HomeFooter";
+
 export default function HomeHeaderOtherPages(props) {
   const [keyword, setKeyword] = useState(props.match.params.typejob);
   let [filteredData, setFilteredData] = useState([]);
@@ -113,45 +115,36 @@ export default function HomeHeaderOtherPages(props) {
   return (
     <div>
       <nav className={StyleHeader["navHeader"]}>
-        <label className="labelHeader">
-          <NavLink to="/">
-            <span className={StyleHeader["fiverChange"]}>fiverr</span>
-            <span className="docChange">.</span>
-          </NavLink>
-        </label>
-        <label className={StyleSearchbar["header"]}>
-          <div className={StyleSearchbar["search-bar"]}>
-            <form className={StyleSearchbar["formInput"]}>
+        <div className="row align-items-baseline justify-content-between">
+          <label className="labelHeader col-1">
+            <NavLink to="/">
+              <span className={StyleHeader["fiverChange"]}>fiverr</span>
+              <span className="docChange">.</span>
+            </NavLink>
+          </label>
+          <div className="col-7 p-0 m-0" style={{ height: 50 }}>
+            <form className="formSearch">
               <input
-                type="text"
-                className="searchInput"
+                type="search"
+                autofocus
+                required
                 placeholder={placeHolder}
                 onChange={handleChangeInput}
                 value={wordEntered}
+                size={20}
               />
-              {wordEntered !== "" ? (
-                <button
-                  type="button"
-                  style={{
-                    border: "none",
-                    outline: "none",
-                    background: "none",
-                  }}
-                  onClick={clearInput}
-                >
-                  <i className="fas fa-backspace"></i>
-                </button>
+              {/* {wordEntered !== "" ? (
+                <i onClick={clearInput} className="fas fa-window-close"></i>
               ) : (
                 ""
-              )}
+              )} */}
               <button
                 type="submit"
                 onClick={() => {
                   props.history.push("/danhsachcongviec/" + wordEntered);
                 }}
-                className={StyleSearchbar["buttonInput"]}
               >
-                Search
+                Go
               </button>
             </form>
             <ul
@@ -165,25 +158,26 @@ export default function HomeHeaderOtherPages(props) {
               {renderCongViec()}
             </ul>
           </div>
-        </label>
-        <ul className="ulHeader">
-          <li className="liHeader">
-            <NavLink className={StyleHeader["aChange"]} to="/">
-              Become a Seller
-            </NavLink>
-          </li>
-          <li className="liHeader">
-            <NavLink className={StyleHeader["aChange"]} to="/">
-              Sign in
-            </NavLink>
-          </li>
-          <li className="liHeader">
-            <NavLink className={StyleHeader["joinStyle"]} to="/">
-              Join
-            </NavLink>
-          </li>
-        </ul>
+          <ul className="ulHeader col-4 d-flex justify-content-between">
+            <li className="liHeader">
+              <NavLink className={StyleHeader["aChange"]} to="/">
+                Become a Seller
+              </NavLink>
+            </li>
+            <li className="liHeader">
+              <NavLink className={StyleHeader["aChange"]} to="/">
+                Sign in
+              </NavLink>
+            </li>
+            <li className="liHeader">
+              <NavLink className={StyleHeader["joinStyle"]} to="/">
+                Join
+              </NavLink>
+            </li>
+          </ul>
+        </div>
       </nav>
+
       <div style={{ padding: "5px 50px" }}>
         <div style={{ padding: 0, width: "100%" }}>
           <ul
