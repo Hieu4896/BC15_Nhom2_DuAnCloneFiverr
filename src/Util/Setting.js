@@ -8,7 +8,7 @@ export const tokenByClass =
 // Cấu hình interceptor cho axios ( tất cả request gọi = axios đều được cấu hình) ( 1 dự án làm một lần duy nhất)
 export const http = axios.create({
   baseURL: DOMAIN,
-  timeout: 30000,
+  timeout: 5000,
 });
 
 http.interceptors.request.use(

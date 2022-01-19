@@ -15,22 +15,18 @@
   z-index: 9999;
 }
 .labelHeader {
-  margin: 0 !important;
   font-size: 35px;
   line-height: 50px;
 }
 
 .ulHeader {
   list-style: none;
-  float: right;
-  margin: 0 !important;
 }
 
 .ulHeader .liHeader {
   font-size: 17px;
   font-weight: 600;
   display: inline-block;
-  margin: 0 20px;
   line-height: 50px;
 }
 

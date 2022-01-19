@@ -7,29 +7,36 @@ import { getApiDanhSachCongViecTheoTen } from "../../Redux/Actions/HomeActions/H
 import StyleSearchbar from "./otherPageSearchbar.module.css";
 import StyleHeader from "./otherPagesHeader.module.css";
 import Style from "../../_Pages/DanhSachCongViec/DanhSachCongViecDesktop.module.css";
-import {
-  getApiDanhSachCongViec,
-  getApiTypeJob,
-} from "../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
+import { getApiTypeJob } from "../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
 import _ from "lodash";
+import "./searchForm.scss";
+import DanhSachCongViecDesktop from "../../_Pages/DanhSachCongViec/DanhSachCongViecDesktop";
+import HomeFooter from "../homeFooter/HomeFooter";
+
 export default function HomeHeaderOtherPages(props) {
+  const [keyword, setKeyword] = useState(props.match.params.typejob);
   let [filteredData, setFilteredData] = useState([]);
   let [wordEntered, setWordEntered] = useState("");
-  let [wordSearch, setwordSearch] = useState(props.match.params.typejob);
+  let [placeHolder, setplaceHolder] = useState(props.match.params.typejob);
   let { congViecTheoTen } = useSelector(
     (rootReducer) => rootReducer.HomeReducer
   );
   let { typeJob } = useSelector(
     (rootReducer) => rootReducer.DanhSachCongViecReducer
   );
+
   let dispatch = useDispatch();
   useEffect(() => {
     const action = getApiDanhSachCongViecTheoTen();
-    const actionTypeJob = getApiTypeJob();
-    dispatch(actionTypeJob);
     dispatch(action);
   }, []);
+  useEffect(() => {
+    const actionTypeJob = getApiTypeJob();
+    dispatch(actionTypeJob);
+  }, []);
+
   const handleChangeInput = (event) => {
+    event.preventDefault();
     const searchWord = event.target.value;
     setWordEntered(searchWord);
     const newFilter = congViecTheoTen.filter((value) => {
@@ -41,24 +48,27 @@ export default function HomeHeaderOtherPages(props) {
     } else {
       setFilteredData(newFilter);
     }
+    console.log(searchWord);
   };
+
+  console.log(wordEntered);
   const clearInput = () => {
     setFilteredData([]);
     setWordEntered("");
-    setwordSearch("Find Services");
+    setplaceHolder("Find Services");
   };
   const renderCongViec = () => {
     if (filteredData.length != 0) {
       return filteredData.slice(0, 10).map((prop, index) => {
         return (
-          <NavLink
+          <a
             className="aStyleSearchbar"
-            to={`/danhsachcongviec/${prop.name}`}
+            href={`/danhsachcongviec/${prop.name}`}
           >
             <li className={StyleSearchbar["liStyleSearchbar"]} key={index}>
               {prop.name}
             </li>
-          </NavLink>
+          </a>
         );
       });
     } else {
@@ -68,79 +78,73 @@ export default function HomeHeaderOtherPages(props) {
 
   const renderTypejob = () => {
     return _.uniqBy(typeJob, "name").map((typeJob, index) => {
-      return (
-        <li className={Style["typeJob"]}>
-          <NavLink to={`/loaicongviec/${typeJob._id}`} key={index}>
-            {typeJob.name}
-          </NavLink>
-          <div
-            className={
-              typeJob.name === "Lifestyle" ||
-              typeJob.name === "Business" ||
-              typeJob.name === "Data" ||
-              typeJob.name === "Programming & Tech"
-                ? Style["subTypeJobIf"]
-                : Style["subTypeJob"]
-            }
-          >
-            {typeJob.subTypeJobs.map((subTypeJobs, index) => {
-              return (
-                <li
-                  key={index}
-                  style={{ display: "inline-block", padding: "10px 30px" }}
-                >
-                  {subTypeJobs.name}
-                </li>
-              );
-            })}
-          </div>
-        </li>
-      );
+      if (typeJob.subTypeJobs.length > 0) {
+        return (
+          <li key={index} className={Style["typeJob"]}>
+            <NavLink to={`/loaicongviec/${typeJob._id}`}>
+              {typeJob.name}
+            </NavLink>
+
+            <li
+              className={
+                typeJob.name === "Data" ||
+                typeJob.name === "Business" ||
+                typeJob.name === "Programming & Tech" ||
+                typeJob.name === "Lifestyle"
+                  ? Style["subTypeJobIf"]
+                  : Style["subTypeJob"]
+              }
+            >
+              {typeJob.subTypeJobs.map((subTypeJobs, index) => {
+                return (
+                  <li
+                    key={index}
+                    style={{ display: "inline-block", padding: "20px" }}
+                  >
+                    {subTypeJobs.name}
+                  </li>
+                );
+              })}
+            </li>
+          </li>
+        );
+      }
     });
   };
 
   return (
     <div>
       <nav className={StyleHeader["navHeader"]}>
-        <label className="labelHeader">
-          <NavLink to="/">
-            <span className={StyleHeader["fiverChange"]}>fiverr</span>
-            <span className="docChange">.</span>
-          </NavLink>
-        </label>
-        <label className={StyleSearchbar["header"]}>
-          <div className={StyleSearchbar["search-bar"]}>
-            <form className={StyleSearchbar["formInput"]}>
+        <div className="row align-items-baseline justify-content-between">
+          <label className="labelHeader col-1">
+            <NavLink to="/">
+              <span className={StyleHeader["fiverChange"]}>fiverr</span>
+              <span className="docChange">.</span>
+            </NavLink>
+          </label>
+          <div className="col-7 p-0 m-0" style={{ height: 50 }}>
+            <form className="formSearch">
               <input
-                type="text"
-                className="searchInput"
-                placeholder={props.match.params.typejob}
+                type="search"
+                autofocus
+                required
+                placeholder={placeHolder}
                 onChange={handleChangeInput}
                 value={wordEntered}
+                size={20}
               />
-              {wordEntered !== "" ? (
-                <button
-                  type="button"
-                  style={{
-                    border: "none",
-                    outline: "none",
-                    background: "none",
-                  }}
-                  onClick={clearInput}
-                >
-                  <i class="fas fa-backspace"></i>
-                </button>
+              {/* {wordEntered !== "" ? (
+                <i onClick={clearInput} className="fas fa-window-close"></i>
               ) : (
                 ""
-              )}
+              )} */}
               <button
                 type="submit"
                 onClick={() => {
                   props.history.push("/danhsachcongviec/" + wordEntered);
                 }}
-                className={StyleSearchbar["buttonInput"]}
               >
-                Search
+                Go
               </button>
             </form>
             <ul
@@ -154,25 +158,26 @@ export default function HomeHeaderOtherPages(props) {
               {renderCongViec()}
             </ul>
           </div>
-        </label>
-        <ul className="ulHeader">
-          <li className="liHeader">
-            <NavLink className={StyleHeader["aChange"]} to="/">
-              Become a Seller
-            </NavLink>
-          </li>
-          <li className="liHeader">
-            <NavLink className={StyleHeader["aChange"]} to="/">
-              Sign in
-            </NavLink>
-          </li>
-          <li className="liHeader">
-            <NavLink className={StyleHeader["joinStyle"]} to="/">
-              Join
-            </NavLink>
-          </li>
-        </ul>
+          <ul className="ulHeader col-4 d-flex justify-content-between">
+            <li className="liHeader">
+              <NavLink className={StyleHeader["aChange"]} to="/">
+                Become a Seller
+              </NavLink>
+            </li>
+            <li className="liHeader">
+              <NavLink className={StyleHeader["aChange"]} to="/">
+                Sign in
+              </NavLink>
+            </li>
+            <li className="liHeader">
+              <NavLink className={StyleHeader["joinStyle"]} to="/">
+                Join
+              </NavLink>
+            </li>
+          </ul>
+        </div>
       </nav>
+
       <div style={{ padding: "5px 50px" }}>
         <div style={{ padding: 0, width: "100%" }}>
           <ul
@@ -197,6 +202,8 @@ export default function HomeHeaderOtherPages(props) {
           </ul>
         </div>
       </div>
+      <DanhSachCongViecDesktop keyWord={keyword} wordParams={wordEntered} />
+      <HomeFooter />
     </div>
   );
 }

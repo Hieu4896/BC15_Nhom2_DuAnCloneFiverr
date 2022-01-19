@@ -1,8 +1,11 @@
 .footer {
-  padding-top: 200px;
+  margin-top: 100px;
+  padding: 0 50px;
+  width: 100%;
 }
 .ulHomeFooter {
   list-style: none;
+  padding: 0;
 }
 .h3HomeFooter {
   font-size: 16px;
@@ -14,51 +17,34 @@
   font-size: 16px;
   padding-bottom: 16px;
 }
+.liHomeFooter a:hover {
+  color: rgb(44, 219, 38);
+}
 
 .aHomeFooter {
   color: #7a7d85;
 }
-.bottom {
+.social-Platform {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
-  max-height: 70px;
-  padding: 0;
+  list-style: none;
+  flex-direction: row;
 }
-
-.left {
-  padding: 16px 50px;
+.social-Platform i {
+  color: rgb(44, 219, 38);
+  font-size: 20px;
+  font-weight: bold;
+}
+.fiverr-logo-footer {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: baseline;
+  justify-content: flex-start;
 }
-.left svg {
-  width: 77px;
-  height: 23px;
-}
-.right {
-  padding: 0 50px;
-}
-.right ul {
-  list-style: none;
-  padding-top: 16px;
-}
-
-.right ul li {
-  display: inline-block;
-  padding: 0 20px;
-  height: 100%;
-}
-.text-body-2 {
-  color: #b5b6ba;
-  font-size: 14px;
-  margin-left: 20px;
-  padding-top: 16px;
-}
-.right ul li i {
-  font-size: 20px;
-  color: rgb(55, 161, 55);
-  font-weight: bold;
+.footer-Categories {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  padding: auto;
 }

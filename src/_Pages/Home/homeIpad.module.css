@@ -5,10 +5,10 @@
 }
 
 /* .fadeAni {
-  -webkit-animation: fade 3s ease 0s infinite;
-  animation: fade 3s ease 0s infinite;
-  transition: all 3s;
-} */
+    -webkit-animation: fade 3s ease 0s infinite;
+    animation: fade 3s ease 0s infinite;
+    transition: all 3s;
+  } */
 
 @-webkit-keyframes fade {
   from {
@@ -148,4 +148,104 @@
   border: 1px solid white;
   padding: 5px 10px;
   border-radius: 10px;
+}
+
+.trusted-hero {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.trusted-hero p {
+  padding-right: 20px;
+  color: #b5b6ba;
+  font-weight: 600;
+}
+.trusted-hero ul {
+  list-style: none;
+}
+
+.trusted-hero ul li {
+  display: inline-block;
+  padding: 0 30px;
+}
+.subcategory {
+  padding: 50px 50px;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  color: green !important;
+  background-color: lightgreen !important;
+  padding: 30px !important;
+  border-radius: 50% !important;
+}
+
+.subImg:hover {
+  box-shadow: rgba(20, 190, 62, 0.16) 0px 1px 4px,
+    rgb(28, 197, 79) 0px 0px 0px 3px;
+}
+
+.sellingProposition {
+  padding: 0 50px;
+  margin-top: 50px;
+}
+
+.sellingProposition ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.mainCategories {
+  padding: 0 50px;
+  margin-top: 50px;
+}
+.mainCategories ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0;
+  /* justify-content: space-evenly; */
+}
+.mainCategories li {
+  display: inline-block;
+  text-align: center;
+  padding: 20px 50px;
+  width: 20%;
+}
+.mainCategories li a {
+  color: black;
+  position: relative;
+}
+.mainCategories li a::after {
+  content: "";
+  position: absolute;
+  top: 28px;
+  right: 50%;
+  -webkit-transform: translateX(50%);
+  transform: translateX(50%);
+  padding: 0 0 8px;
+  width: 50px;
+  border-bottom: 2px solid #c5c6c9;
+}
+.mainCategories li a:hover::after {
+  content: "";
+  position: absolute;
+  top: 28px;
+  right: 50%;
+  -webkit-transform: translateX(50%);
+  transform: translateX(50%);
+  padding: 0 0 8px;
+  width: 100px;
+  border-bottom: 2px solid #37b94d;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.mainCategories li a p {
+  font-size: 16px;
+}
+.mainCategories img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 30px;
 }

@@ -10,37 +10,36 @@ import HomeHeaderOtherPages from "./Components/homeHeader/HomeHeaderOtherPages";
 import { OtherPagesTemplate } from "./_Templates/OtherPagesTemplate/OtherPagesTemplate";
 import LoaiCongViecDesktop from "./_Pages/LoaiCongViec/LoaiCongViecDesktop";
 import { DanhSachCongViecTemPlate } from "./_Templates/DanhSachCongViecTemplate/DanhSachCongViecTemplate";
+import HomeIpad from "./_Pages/Home/HomeIpad";
 
 export const history = createBrowserHistory();
 function App() {
   return (
     <Router history={history}>
-      {/* <HomeHeader /> */}
       <Switch>
-        <HomeTemplate exact path="/home" Component={HomeDesktop} />
+        <HomeTemplate
+          exact
+          path="/home"
+          Component={HomeDesktop}
+          IpadComponent={HomeIpad}
+        />
         <Route exact path="/homeheader" component={HomeHeader} />
         <Route
           exact
-          path="/otherpagesheader"
-          component={HomeHeaderOtherPages}
-        />
-        <OtherPagesTemplate
-          exact
           path="/danhsachcongviec/:typejob"
-          Component={DanhSachCongViecDesktop}
+          component={HomeHeaderOtherPages}
         />
         <DanhSachCongViecTemPlate
           exact
           path="/loaicongviec/:subtypejob"
           Component={LoaiCongViecDesktop}
         />
-
-        {/* <Route
+        <HomeTemplate
           exact
-          path="/danhsachcongviec"
-          component={DanhSachCongViecDesktop}
-        /> */}
-        <HomeTemplate exact path="/" Component={HomeDesktop} />
+          path="/"
+          Component={HomeDesktop}
+          IpadComponent={HomeIpad}
+        />
       </Switch>
     </Router>
   );

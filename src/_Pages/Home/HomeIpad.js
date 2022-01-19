@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "./homeCarousel.css";
+import Style from "./homeIpad.module.css";
 import { NavLink } from "react-router-dom";
 import { getApiDanhSachCongViecTheoTen } from "../../Redux/Actions/HomeActions/HomeAction";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,9 +9,9 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-cards";
 
-import { Navigation, Pagination, Autoplay } from "swiper";
+import { Navigation, Autoplay } from "swiper";
 
-export default function HomeDesktop(props) {
+export default function HomeIpad(props) {
   let carousel1 =
     "https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/bb5958e41c91bb37f4afe2a318b71599-1599344049961/bg-hero-1-900-x1.png";
   let carousel2 =
@@ -86,10 +86,10 @@ export default function HomeDesktop(props) {
         return (
           <div>
             <NavLink
-              className="aStyleSearchbar"
+              className={Style["aStyleSearchbar"]}
               to={`/danhsachcongviec/${prop.name}`}
             >
-              <li className="liStyleSearchbar" key={index}>
+              <li className={Style["liStyleSearchbar"]} key={index}>
                 {prop.name}
               </li>
             </NavLink>
@@ -103,7 +103,7 @@ export default function HomeDesktop(props) {
 
   return (
     <Fragment>
-      <div className="hero-background">
+      <div className={Style["hero-background"]}>
         <Swiper
           modules={[Autoplay]}
           autoplay={{
@@ -137,15 +137,15 @@ export default function HomeDesktop(props) {
           })}
         </Swiper>
 
-        <div className="header">
+        <div className={Style["header"]}>
           <h1>
             <span>Find the perfect freelance services for your business</span>
           </h1>
-          <div className="search-bar">
-            <form className="formInput">
+          <div className={Style["search-bar"]}>
+            <form className={Style["formInput"]}>
               <input
                 type="text"
-                className="searchInput"
+                className={Style["searchInput"]}
                 placeholder="Find Services"
                 onChange={handleChangeInput}
                 value={wordEntered}
@@ -170,7 +170,7 @@ export default function HomeDesktop(props) {
                 onClick={() => {
                   props.history.push("/danhsachcongviec/" + wordEntered);
                 }}
-                className="btn btn-success text-white buttonInput"
+                className={`${Style.buttonInput} btn btn-success`}
                 type="submit"
               >
                 Search
@@ -244,16 +244,15 @@ export default function HomeDesktop(props) {
         <h2 style={{ fontWeight: "bolder" }}>Popular professional services</h2>
 
         <Swiper
-          className="contaier-fluid"
           style={{ height: "100%", width: "100%" }}
           modules={[Navigation]}
           navigation={true}
-          slidesPerView={5}
+          slidesPerView={4}
           spaceBetween={30}
         >
           {arrSub.map((prop, index) => {
             return (
-              <SwiperSlide key={index}>
+              <SwiperSlide key={index} className="swiperSlide">
                 {" "}
                 <p
                   style={{
@@ -293,7 +292,7 @@ export default function HomeDesktop(props) {
         </Swiper>
       </div>
       <div className="sellingProposition">
-        <div className="row">
+        <div className="row align-items-center">
           <div className="col-5">
             <h2 style={{ fontWeight: "bolder" }}>
               A whole world of freelance talent at your fingertips

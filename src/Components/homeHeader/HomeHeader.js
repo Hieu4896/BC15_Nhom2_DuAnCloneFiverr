@@ -40,33 +40,35 @@ export default function HomeHeader(props) {
   window.addEventListener("scroll", changeJoinColor);
   return (
     <nav className={Navbar ? "navHeader active" : "navHeader"}>
-      <label className="labelHeader">
-        <NavLink to="/">
-          <span className={Fiverr ? "fiverChange active" : "fiverChange"}>
-            fiverr
-          </span>
-          <span className="docChange">.</span>
-        </NavLink>
-      </label>
-      <ul className="ulHeader">
-        <li className="liHeader">
-          <NavLink className={LiHeader ? "change" : ""} to="/">
-            Become a Seller
-          </NavLink>
-        </li>
-        <li className="liHeader">
-          <NavLink className={LiHeader ? "change" : ""} to="/">
-            Sign in
-          </NavLink>
-        </li>
-        <li className="liHeader">
+      <div className="row align-items-baseline justify-content-between">
+        <label className="labelHeader col-6">
           <NavLink to="/">
-            <span className={JoinStyle ? "joinStyle change " : "joinStyle"}>
-              Join
+            <span className={Fiverr ? "fiverChange active" : "fiverChange"}>
+              fiverr
             </span>
+            <span className="docChange">.</span>
           </NavLink>
-        </li>
-      </ul>
+        </label>
+        <ul className="ulHeader col-6 d-flex justify-content-between">
+          <li className="liHeader">
+            <NavLink className={LiHeader ? "change" : ""} to="/">
+              Become a Seller
+            </NavLink>
+          </li>
+          <li className="liHeader">
+            <NavLink className={LiHeader ? "change" : ""} to="/">
+              Sign in
+            </NavLink>
+          </li>
+          <li className="liHeader">
+            <NavLink to="/">
+              <span className={JoinStyle ? "joinStyle change " : "joinStyle"}>
+                Join
+              </span>
+            </NavLink>
+          </li>
+        </ul>
+      </div>
     </nav>
   );
 }

@@ -13,7 +13,7 @@ import _, { debounce } from "lodash";
 import { useState } from "react";
 
 export default function DanhSachCongViecDesktop(props) {
-  let keyWord = props.match.params.typejob;
+  const [keyWord, setKeyword] = useState(props.keyWord);
   let { danhSachCongViec } = useSelector(
     (rootReducer) => rootReducer.DanhSachCongViecReducer
   );
@@ -32,22 +32,7 @@ export default function DanhSachCongViecDesktop(props) {
   let [onlineSellers, setonlineSellers] = useState(false);
   let [data, setdata] = useState("default");
   let [backToTop, setbackToTop] = useState(false);
-  const toggleBackToTop = () => {
-    if (window.pageYOffset > 300) {
-      setbackToTop(true);
-    } else {
-      setbackToTop(false);
-    }
-  };
-  let dispatch = useDispatch();
-  useEffect(() => {
-    const actionDanhSachCongViec = getApiDanhSachCongViec();
-    dispatch(actionDanhSachCongViec);
-    window.addEventListener("scroll", toggleBackToTop);
-    return () => {
-      window.removeEventListener("scroll", toggleBackToTop);
-    };
-  }, []);
+  const [loading, setLoading] = useState(false);
   const handleDataChange = (newData) => {
     if (newData === "proServices") {
       setproServices(true);
@@ -92,7 +77,6 @@ export default function DanhSachCongViecDesktop(props) {
   });
   let currentItem = newFilter.slice(indexOfFirstItem, indexOfLastItem);
   console.log(currentItem);
-  console.log(newFilter);
 
   const handleClick = (event) => {
     window.scrollTo({
@@ -125,7 +109,7 @@ export default function DanhSachCongViecDesktop(props) {
               {job.name}
             </p>
             <i
-              class="fas fa-star"
+              className="fas fa-star"
               style={{ color: "orange", marginRight: 5, padding: "0 10px" }}
             ></i>
             <span style={{ color: "orange" }}>{job.rating}</span>
@@ -147,7 +131,7 @@ export default function DanhSachCongViecDesktop(props) {
                   padding: "0 10px",
                   color: "#00000047",
                 }}
-                class="fas fa-heart"
+                className="fas fa-heart"
               ></i>
               <span
                 style={{
@@ -171,7 +155,6 @@ export default function DanhSachCongViecDesktop(props) {
   for (let i = 1; i <= Math.ceil(newFilter.length / itemPerPage); i++) {
     Pages.push(i);
   }
-  console.log(Pages);
   const renderPagesNumber = () => {
     return Pages.map((number, index) => {
       if (number < maxpageNumberLimit + 1 && number > minpageNumberLimit) {
@@ -213,73 +196,101 @@ export default function DanhSachCongViecDesktop(props) {
       setminpageNumberLimit(minpageNumberLimit - pageNumberLimit);
     }
   };
-
+  const toggleBackToTop = () => {
+    if (window.pageYOffset > 300) {
+      setbackToTop(true);
+    } else {
+      setbackToTop(false);
+    }
+  };
+  let dispatch = useDispatch();
+  useEffect(() => {
+    let timeOut = setTimeout(() => {
+      const actionDanhSachCongViec = getApiDanhSachCongViec();
+      dispatch(actionDanhSachCongViec);
+      setLoading(true);
+      window.addEventListener("scroll", toggleBackToTop);
+    }, 1000);
+    return () => {
+      clearTimeout(timeOut);
+      window.removeEventListener("scroll", toggleBackToTop);
+    };
+  }, []);
   return (
-    <div style={{ padding: "5px 50px", maxWidth: 1381.09 }}>
-      <h1 style={{ fontSize: 30 }}>Results for "{keyWord}"</h1>
-      <div
-        style={{
-          // display: "flex",
-          // alignItems: "center",
-          // justifyContent: "space-between",
-          padding: "0  15px",
-        }}
-      >
-        {" "}
-        <span style={{ color: "teal", fontSize: 20 }}>
-          {newFilter.length} services available
-        </span>
-        <form style={{ width: "20%" }}>
-          <h4>Sort by :</h4>
-          <select
-            name="cars"
-            className="custom-select"
-            value={data}
-            onChange={(e) => {
-              handleDataChange(e.target.value);
+    <div style={{ position: "relative" }}>
+      {loading ? (
+        <div style={{ padding: "5px 50px" }}>
+          <h1 style={{ fontSize: 30 }}>Results for "{keyWord}"</h1>
+          <div
+            style={{
+              padding: "0  15px",
             }}
           >
-            <option id="default" value="default">
-              default
-            </option>
-            <option id="proServices" value="proServices">
-              proServices
-            </option>
-            <option id="localSellers" value="localSellers">
-              localSellers
-            </option>
-            <option id="onlineSellers" value="onlineSellers">
-              onlineSellers
-            </option>
-          </select>
-        </form>
-      </div>
+            {" "}
+            <span style={{ color: "teal", fontSize: 20 }}>
+              {newFilter.length} services available
+            </span>
+            <form style={{ width: "20%" }}>
+              <h4>Sort by :</h4>
+              <select
+                name="cars"
+                className="custom-select"
+                value={data}
+                onChange={(e) => {
+                  handleDataChange(e.target.value);
+                }}
+              >
+                <option id="default" value="default">
+                  default
+                </option>
+                <option id="proServices" value="proServices">
+                  proServices
+                </option>
+                <option id="localSellers" value="localSellers">
+                  localSellers
+                </option>
+                <option id="onlineSellers" value="onlineSellers">
+                  onlineSellers
+                </option>
+              </select>
+            </form>
+          </div>
 
-      <div
-        style={{
-          padding: "20px 0",
-        }}
-      >
-        <div className="row ml-0 mr-0">{renderDanhSachCongViec()}</div>
-
-        <ul className={Style["PageNumber"]}>
-          <button
-            disabled={currentPage == Pages[0] ? true : false}
-            onClick={handlePrevButton}
+          <div
+            style={{
+              padding: "20px 0",
+            }}
           >
-            Prev
-          </button>
+            <div className="row ml-0 mr-0">{renderDanhSachCongViec()}</div>
 
-          {renderPagesNumber()}
+            <ul className={Style["PageNumber"]}>
+              <button
+                disabled={currentPage == Pages[0] ? true : false}
+                onClick={handlePrevButton}
+              >
+                Prev
+              </button>
 
-          <button
-            disabled={currentPage == Pages[Pages.length - 1] ? true : false}
-            onClick={handleNextButton}
-          >
-            Next
-          </button>
-        </ul>
-      </div>
+              {renderPagesNumber()}
+
+              <button
+                disabled={currentPage == Pages[Pages.length - 1] ? true : false}
+                onClick={handleNextButton}
+              >
+                Next
+              </button>
+            </ul>
+          </div>
+        </div>
+      ) : (
+        <div
+          style={{ position: "absolute", right: "50%" }}
+          className="spinner-grow text-success"
+          role="status"
+        >
+          <span className="sr-only text-success">Loading...</span>
+        </div>
+      )}
     </div>
   );
 }

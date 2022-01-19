@@ -1,7 +1,5 @@
-.typeJob:not(:hover) .subTypeJob {
+.typeJob .subTypeJob {
   display: none;
-  margin: 20px 0 0 0;
-  padding: 0;
 }
 .typeJob:hover .subTypeJob {
   display: grid;
@@ -11,6 +9,8 @@
   width: fit-content;
   grid-template-columns: 200px 200px 200px;
   border: 2px solid grey;
+  left: 0;
+  padding: 10px 0;
 }
 .typeJob:hover .subTypeJobIf {
   display: grid;
@@ -20,7 +20,8 @@
   width: fit-content;
   grid-template-columns: 200px 200px 200px;
   border: 2px solid grey;
-  margin-left: -500px;
+  right: 0;
+  padding: 10px 0;
 }
 
 .subTypeJobIf {

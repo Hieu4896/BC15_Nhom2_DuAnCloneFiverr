@@ -4,8 +4,8 @@ import "./homeFooter.css";
 export default function HomeFooter(props) {
   return (
     <div className="footer">
-      <div className="row" style={{ margin: 0 }}>
-        <div className="col-3">
+      <div className="footer-Categories">
+        <div>
           <ul className="ulHomeFooter">
             <h3 className="h3HomeFooter">Categories</h3>
 
@@ -62,7 +62,7 @@ export default function HomeFooter(props) {
             </li>
           </ul>
         </div>
-        <div className="col-3">
+        <div>
           <ul className="ulHomeFooter">
             <h3 className="h3HomeFooter">About</h3>
 
@@ -103,7 +103,7 @@ export default function HomeFooter(props) {
             </li>
           </ul>
         </div>
-        <div className="col-3">
+        <div>
           <ul className="ulHomeFooter">
             <h3 className="h3HomeFooter">Support</h3>
 
@@ -129,7 +129,7 @@ export default function HomeFooter(props) {
             </li>
           </ul>
         </div>
-        <div className="col-3">
+        <div>
           <ul className="ulHomeFooter">
             <h3 className="h3HomeFooter">Community</h3>
             <li className="liHomeFooter">
@@ -180,9 +180,9 @@ export default function HomeFooter(props) {
           </ul>
         </div>
       </div>
-      <div className="bottom">
-        <div className="left">
-          <div class="fiverr-logo-footer">
+      <div className="row d-flex align-items-baseline justify-content-center mt-5 pb-3">
+        <div className="col-8 fiverr-logo-footer">
+          <div>
             <svg
               width="91"
               height="27"
@@ -198,24 +198,24 @@ export default function HomeFooter(props) {
               </g>
             </svg>
           </div>
-          <p class="text-body-2"> © Fiverr International Ltd. 2021</p>
+          <p className="text-body-2"> © Fiverr International Ltd. 2021</p>
         </div>
-        <div className="right">
-          <ul>
+        <div className="col-4">
+          <ul className="social-Platform">
             <li>
-              <i class="fab fa-twitter"></i>
+              <i className="fab fa-twitter"></i>
             </li>
             <li>
-              <i class="fab fa-facebook"></i>
+              <i className="fab fa-facebook"></i>
             </li>
             <li>
-              <i class="fab fa-linkedin"></i>
+              <i className="fab fa-linkedin"></i>
             </li>
             <li>
-              <i class="fab fa-pinterest"></i>
+              <i className="fab fa-pinterest"></i>
             </li>
             <li>
-              <i class="fab fa-instagram"></i>
+              <i className="fab fa-instagram"></i>
             </li>
           </ul>
         </div>
