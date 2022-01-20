@@ -8,6 +8,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-cards";
+import "./HomeCategoris.scss";
 
 import { Navigation, Autoplay } from "swiper";
 
@@ -46,16 +47,66 @@ export default function HomeIpad(props) {
     (rootReducer) => rootReducer.HomeReducer
   );
   let arrSub = [
-    { img: carousel6, brief: "Engage your audience", type: "Video Explainer" },
-    { img: carousel7, brief: "Color your dreams", type: "Illustration" },
-    { img: carousel8, brief: "Build your brand", type: "Logo Design" },
-    { img: carousel9, brief: "Unlock growth online", type: "SEO" },
-    { img: carousel10, brief: "Share your message", type: "Voice Over" },
-    { img: carousel11, brief: "Go global", type: "Translation" },
-    { img: carousel12, brief: "Showcase your story", type: "Book Covers" },
-    { img: carousel13, brief: "Reach more customers", type: "Social Media" },
-    { img: carousel14, brief: "Customize your site", type: "WordPress" },
-    { img: carousel15, brief: "learn yout business", type: "Data Entry" },
+    {
+      img: carousel6,
+      brief: "Engage your audience",
+      type: "Video Explainer",
+      keyWord: "video",
+    },
+    {
+      img: carousel7,
+      brief: "Color your dreams",
+      type: "Illustration",
+      keyWord: "illustration",
+    },
+    {
+      img: carousel8,
+      brief: "Build your brand",
+      type: "Logo Design",
+      keyWord: "design",
+    },
+    {
+      img: carousel9,
+      brief: "Unlock growth online",
+      type: "SEO",
+      keyWord: "seo",
+    },
+    {
+      img: carousel10,
+      brief: "Share your message",
+      type: "Voice Over",
+      keyWord: "voice",
+    },
+    {
+      img: carousel11,
+      brief: "Go global",
+      type: "Translation",
+      keyWord: "translation",
+    },
+    {
+      img: carousel12,
+      brief: "Showcase your story",
+      type: "Book Covers",
+      keyWord: "book",
+    },
+    {
+      img: carousel13,
+      brief: "Reach more customers",
+      type: "Social Media",
+      keyWord: "social",
+    },
+    {
+      img: carousel14,
+      brief: "Customize your site",
+      type: "WordPress",
+      keyWord: "wordpress",
+    },
+    {
+      img: carousel15,
+      brief: "learn yout business",
+      type: "Data Entry",
+      keyWord: "data",
+    },
   ];
   let dispatch = useDispatch();
   useEffect(() => {
@@ -152,6 +203,7 @@ export default function HomeIpad(props) {
               />
               {wordEntered !== "" ? (
                 <button
+                  className="buttonBackspace"
                   type="button"
                   style={{
                     border: "none",
@@ -244,48 +296,45 @@ export default function HomeIpad(props) {
         <h2 style={{ fontWeight: "bolder" }}>Popular professional services</h2>
 
         <Swiper
-          style={{ height: "100%", width: "100%" }}
+          style={{ height: "100%", width: "100%", padding: "20px 0" }}
           modules={[Navigation]}
           navigation={true}
           slidesPerView={4}
-          spaceBetween={30}
+          spaceBetween={20}
         >
           {arrSub.map((prop, index) => {
             return (
-              <SwiperSlide key={index} className="swiperSlide">
-                {" "}
-                <p
+              <SwiperSlide key={index} className="rainbow">
+                <div
                   style={{
-                    position: "absolute",
-                    zIndex: 1,
-                    color: "white",
-                    fontSize: 16,
-                    top: 10,
-                    padding: "0 20px",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
                   }}
                 >
-                  {prop.brief}
-                </p>
-                <h4
-                  style={{
-                    position: "absolute",
-                    zIndex: 1,
-                    color: "white",
-                    top: 45,
-                    padding: "0 20px",
-                    fontSize: 25,
-                    fontWeight: "bolder",
-                  }}
-                >
-                  {prop.type}
-                </h4>
-                <img
-                  className="subImg"
-                  style={{ position: "relative" }}
-                  src={prop.img}
-                  alt=""
-                  width="100%"
-                />
+                  {" "}
+                  <p
+                    style={{
+                      color: "white",
+                      fontSize: 14,
+                    }}
+                  >
+                    {prop.brief}
+                  </p>
+                  <h4
+                    style={{
+                      color: "white",
+                      fontSize: 20,
+                      fontWeight: "bolder",
+                    }}
+                  >
+                    {prop.type}
+                  </h4>
+                </div>
+                <a href={`/danhsachcongviec/${prop.keyWord}`}>
+                  <img className="subImg" src={prop.img} alt="" />
+                </a>
               </SwiperSlide>
             );
           })}

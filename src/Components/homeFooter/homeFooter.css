@@ -16,6 +16,7 @@
 .liHomeFooter {
   font-size: 16px;
   padding-bottom: 16px;
+  font-weight: 500;
 }
 .liHomeFooter a:hover {
   color: rgb(44, 219, 38);

@@ -221,11 +221,7 @@ export default function DanhSachCongViecDesktop(props) {
       {loading ? (
         <div style={{ padding: "5px 50px" }}>
           <h1 style={{ fontSize: 30 }}>Results for "{keyWord}"</h1>
-          <div
-            style={{
-              padding: "0  15px",
-            }}
-          >
+          <div>
             {" "}
             <span style={{ color: "teal", fontSize: 20 }}>
               {newFilter.length} services available
@@ -261,7 +257,7 @@ export default function DanhSachCongViecDesktop(props) {
               padding: "20px 0",
             }}
           >
-            <div className="row ml-0 mr-0">{renderDanhSachCongViec()}</div>
+            <div className="row">{renderDanhSachCongViec()}</div>
 
             <ul className={Style["PageNumber"]}>
               <button

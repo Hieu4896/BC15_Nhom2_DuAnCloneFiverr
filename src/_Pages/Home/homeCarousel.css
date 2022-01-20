@@ -4,28 +4,6 @@
   position: relative;
 }
 
-/* .fadeAni {
-  -webkit-animation: fade 3s ease 0s infinite;
-  animation: fade 3s ease 0s infinite;
-  transition: all 3s;
-} */
-
-@-webkit-keyframes fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@keyframes fade {
-  from {
-    opacity: 0.1;
-  }
-  to {
-    opacity: 1;
-  }
-}
 .header {
   padding: 170px 0 50px 0;
   max-width: 650px;
@@ -44,37 +22,50 @@
   position: relative;
   display: flex;
   flex-direction: row;
-  width: 600px;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
   margin: 0;
-  border-radius: 2px;
-  padding: 0 20px;
   background-color: white;
-  border-radius: 5px;
-  border: none;
-  outline: none;
+  border-radius: 10px;
 }
 .searchInput {
   font-size: 16px;
   line-height: 50px;
   border: none !important;
   outline: none;
-  width: 500px;
+  width: 70%;
   padding-left: 20px;
+  height: 52px;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
 }
 
-.buttonInput {
+.buttonBackspace {
+  width: 10%;
+  margin-right: 100px;
+  border: none;
+  outline: none;
+  background: transparent;
   font-size: 24px;
   line-height: 50px;
+  height: 52px;
+}
+.buttonBackspace:focus {
+  outline: none;
+}
+.buttonInput {
+  font-size: 24px;
   border: none;
-  border-radius: 0;
-  padding: 0;
   outline: none;
   position: absolute;
   right: 0;
-  max-width: 100px;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  height: 100%;
+  text-align: center;
+  border-radius: 0 !important;
+  border-bottom-right-radius: 10px !important;
+  border-top-right-radius: 10px !important;
+  height: 52px;
+  padding-left: 20px;
 }
 
 .search-bar-panel {
@@ -142,6 +133,7 @@
 
 .popular ul li {
   display: inline-block;
+  margin-right: 20px;
 }
 .popular ul li a {
   color: white;
@@ -179,11 +171,15 @@
   padding: 30px !important;
   border-radius: 50% !important;
 }
-
+.subImg {
+  width: 100%;
+  border-radius: 10px;
+}
+/* 
 .subImg:hover {
   box-shadow: rgba(20, 190, 62, 0.16) 0px 1px 4px,
     rgb(28, 197, 79) 0px 0px 0px 3px;
-}
+} */
 
 .sellingProposition {
   padding: 0 50px;

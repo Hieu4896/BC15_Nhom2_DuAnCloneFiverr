@@ -1,8 +1,11 @@
 .liLoaiCongViec {
   margin-bottom: 20px;
+  color: #7a7d85;
+  font-weight: 500;
 }
 .liLoaiCongViec a {
-  color: black;
+  color: #7a7d85 !important;
+  font-weight: 500;
 }
 .liLoaiCongViec a:hover {
   color: rgb(59, 206, 59) !important;
