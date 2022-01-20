@@ -9,6 +9,7 @@
 .fiverChange {
   color: black;
   font-weight: bolder;
+  font-family: fontFiverr;
 }
 
 .docChange {
@@ -52,4 +53,8 @@
   background-color: #28a745;
   border: 1px solid #28a745;
   color: white !important;
+}
+@font-face {
+  font-family: fontFiverr;
+  src: url(../../Fonts//BungeeShade//BungeeShade-Regular.ttf);
 }

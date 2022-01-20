@@ -34,7 +34,11 @@ export const HomeTemplate = (props) => {
   }, []);
   let { Component, path } = props;
   const renderComponent = (propsRoute) => {
-    if (widthHeight.width == 1024 && props.IpadComponent) {
+    if (
+      widthHeight.width >= 1024 &&
+      widthHeight.width <= 1200 &&
+      props.IpadComponent
+    ) {
       return <props.IpadComponent {...propsRoute} />;
     }
     return <Component {...propsRoute} />;

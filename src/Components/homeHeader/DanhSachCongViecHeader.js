@@ -106,13 +106,13 @@ export default function DanhSachCongViecHeader(props) {
     <div>
       <nav className={StyleHeader["navHeader"]}>
         <div className="row align-items-baseline justify-content-between">
-          <label className="labelHeader col-1">
+          <label className="labelHeader col-2">
             <NavLink to="/">
               <span className={StyleHeader["fiverChange"]}>fiverr</span>
               <span className="docChange">.</span>
             </NavLink>
           </label>
-          <div className="col-7 p-0 m-0">
+          <div className="col-6 p-0 m-0">
             <form className="formSearch">
               <input
                 type="search"
