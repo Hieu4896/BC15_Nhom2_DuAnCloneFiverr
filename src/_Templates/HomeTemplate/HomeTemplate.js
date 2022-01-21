@@ -37,8 +37,8 @@ export const HomeTemplate = (props) => {
   let { Component, path } = props;
   const renderComponent = (propsRoute) => {
     if (
-      widthHeight.width >= 1024 &&
-      widthHeight.width < 1496 &&
+      widthHeight.width == 1024 &&
+      widthHeight.height == 1366 &&
       props.IpadComponent
     ) {
       return (
@@ -60,7 +60,8 @@ export const HomeTemplate = (props) => {
       return (
         <div>
           <HomeHeader {...propsRoute} />
-          <Component {...propsRoute} />;{/* <HomeFooter {...propsRoute} /> */}
+          <Component {...propsRoute} />;
+          <HomeFooter {...propsRoute} />
         </div>
       );
     }
