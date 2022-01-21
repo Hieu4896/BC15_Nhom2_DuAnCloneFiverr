@@ -11,7 +11,7 @@ import { OtherPagesTemplate } from "./_Templates/OtherPagesTemplate/OtherPagesTe
 import LoaiCongViecDesktop from "./_Pages/LoaiCongViec/LoaiCongViecDesktop";
 import { DanhSachCongViecTemPlate } from "./_Templates/DanhSachCongViecTemplate/DanhSachCongViecTemplate";
 import HomeIpad from "./_Pages/Home/HomeIpad";
-
+import HomeIphonePlus from "./_Pages/Home/HomeIphonePlus";
 export const history = createBrowserHistory();
 function App() {
   return (
@@ -22,7 +22,9 @@ function App() {
           path="/home"
           Component={HomeDesktop}
           IpadComponent={HomeIpad}
+          IphonePlusComponent={HomeIphonePlus}
         />
+
         <Route exact path="/homeheader" component={HomeHeader} />
         <Route
           exact

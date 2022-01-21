@@ -4,6 +4,8 @@ import { useState } from "react";
 import { Route } from "react-router-dom";
 import HomeFooter from "../../Components/homeFooter/HomeFooter";
 import HomeHeader from "../../Components/homeHeader/HomeHeader";
+import HomeHeaderIphonePlus from "../../Components/homeHeader/HomeHeaderIphonePlus";
+import HomeFooterIphonePlus from "../../Components/homeFooter/HomeFooterIphonePlus";
 export const HomeTemplate = (props) => {
   const [widthHeight, setwidthHeight] = useState({
     // độ phân giải màn hình mặc định
@@ -36,25 +38,39 @@ export const HomeTemplate = (props) => {
   const renderComponent = (propsRoute) => {
     if (
       widthHeight.width >= 1024 &&
-      widthHeight.width <= 1200 &&
+      widthHeight.width < 1496 &&
       props.IpadComponent
     ) {
-      return <props.IpadComponent {...propsRoute} />;
+      return (
+        <div>
+          <HomeHeader {...propsRoute} />
+          <props.IpadComponent {...propsRoute} />
+          <HomeFooter {...propsRoute} />
+        </div>
+      );
+    } else if ((widthHeight.width = 414 && props.IphonePlusComponent)) {
+      return (
+        <div>
+          <HomeHeaderIphonePlus {...propsRoute} />
+          <props.IphonePlusComponent {...propsRoute} />
+          <HomeFooterIphonePlus {...propsRoute} />
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <HomeHeader {...propsRoute} />
+          <Component {...propsRoute} />;{/* <HomeFooter {...propsRoute} /> */}
+        </div>
+      );
     }
-    return <Component {...propsRoute} />;
   };
   return (
     <Route
       exact
       path={path}
       render={(propsRoute) => {
-        return (
-          <div>
-            <HomeHeader {...propsRoute} />
-            {renderComponent(propsRoute)}
-            <HomeFooter {...propsRoute} />
-          </div>
-        );
+        return <div>{renderComponent(propsRoute)}</div>;
       }}
     />
   );
