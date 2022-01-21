@@ -1,0 +1,51 @@
+.footer {
+  margin-top: 100px;
+  padding: 0 50px;
+  width: 100%;
+}
+.ulHomeFooter {
+  list-style: none;
+  padding: 0;
+}
+.h3HomeFooter {
+  font-size: 16px;
+  font-weight: bolder;
+  padding-bottom: 16px;
+}
+
+.liHomeFooter {
+  font-size: 16px;
+  padding-bottom: 16px;
+  font-weight: 500;
+}
+.liHomeFooter a:hover {
+  color: rgb(44, 219, 38);
+}
+
+.aHomeFooter {
+  color: #7a7d85;
+}
+.social-Platform {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  flex-direction: row;
+}
+.social-Platform i {
+  color: rgb(44, 219, 38);
+  font-size: 20px;
+  font-weight: bold;
+}
+.fiverr-logo-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: flex-start;
+}
+.footer-Categories {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  padding: auto;
+}

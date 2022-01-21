@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Style from "./homeIpad.module.css";
+import Style from "./homeIphonePlus.module.css";
 import { NavLink } from "react-router-dom";
 import { getApiDanhSachCongViecTheoTen } from "../../Redux/Actions/HomeActions/HomeAction";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,10 +8,10 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-cards";
-import "./HomeCategoryIphonePlus.scss";
+
 import { Navigation, Autoplay } from "swiper";
 
-export default function HomeIpad(props) {
+export default function HomeIphonePlus(props) {
   let carousel1 =
     "https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/bb5958e41c91bb37f4afe2a318b71599-1599344049961/bg-hero-1-900-x1.png";
   let carousel2 =
@@ -157,7 +157,7 @@ export default function HomeIpad(props) {
         <Swiper
           modules={[Autoplay]}
           autoplay={{
-            delay: 4000,
+            delay: 2500,
             disableOnInteraction: false,
           }}
           style={{
@@ -230,27 +230,26 @@ export default function HomeIpad(props) {
             <ul
               className={
                 filteredData != 0
-                  ? Style["search-bar-panel-active"]
-                  : Style["search-bar-panel"]
+                  ? "search-bar-panel active"
+                  : "search-bar-panel"
               }
             >
               {renderCongViec()}
             </ul>
-            <div className={Style["popular"]}>
-              <p> Popular:</p>
-
+            <div className="popular">
+              Popular:{" "}
               <ul>
                 <li>
-                  <a>Website Design</a>
+                  <a className="text-body-2">Website Design</a>
                 </li>
                 <li>
-                  <a>WordPress</a>
+                  <a className="text-body-2">WordPress</a>
                 </li>
                 <li>
-                  <a>Logo Design</a>
+                  <a className="text-body-2">Logo Design</a>
                 </li>
                 <li>
-                  <a>NFT Art</a>
+                  <a className="text-body-2">NFT Art</a>
                 </li>
               </ul>
             </div>
@@ -292,10 +291,8 @@ export default function HomeIpad(props) {
           </li>
         </ul>
       </div>
-      <div className={Style["subcategory"]}>
-        <h2 className={Style["title-Subcategory"]}>
-          Popular professional services
-        </h2>
+      <div className="subcategory">
+        <h2 style={{ fontWeight: "bolder" }}>Popular professional services</h2>
 
         <Swiper
           style={{ height: "100%", width: "100%", padding: "20px 0" }}
@@ -306,7 +303,7 @@ export default function HomeIpad(props) {
         >
           {arrSub.map((prop, index) => {
             return (
-              <SwiperSlide key={index} className="category_iphoneplus">
+              <SwiperSlide key={index} className="rainbow">
                 <div
                   style={{
                     display: "flex",
@@ -319,7 +316,7 @@ export default function HomeIpad(props) {
                   <p
                     style={{
                       color: "white",
-                      fontSize: 13,
+                      fontSize: 16,
                     }}
                   >
                     {prop.brief}
@@ -327,7 +324,7 @@ export default function HomeIpad(props) {
                   <h4
                     style={{
                       color: "white",
-                      fontSize: 15,
+                      fontSize: 20,
                       fontWeight: "bolder",
                     }}
                   >
@@ -342,82 +339,78 @@ export default function HomeIpad(props) {
           })}
         </Swiper>
       </div>
-      <div className={Style["sellingProposition"]}>
-        <h2 className={Style["sellingPropositionTitle"]}>
-          A whole world of freelance talent at your fingertips
-        </h2>
-        <div>
-          <ul className="d-flex ">
-            <li>
-              <h6 className=" d-flex align-items-center">
-                <span className="mr-2">
-                  <i
-                    style={{ color: "lightgreen" }}
-                    class="fas fa-check-circle"
-                  ></i>
-                </span>
-                <span className={Style["span-Content"]}>
-                  The best for every budget
-                </span>
-              </h6>
-              <p className={Style["p-Content"]}>
-                Find high-quality services at every price point. No hourly
-                rates, just project-based pricing.
-              </p>
-            </li>
-            <li>
-              <h6 className="d-flex align-items-center">
-                <span className="mr-2">
-                  <i
-                    style={{ color: "lightgreen" }}
-                    class="fas fa-check-circle"
-                  ></i>
-                </span>
-                <span className={Style["span-Content"]}>
-                  Quality work done quickly
-                </span>
-              </h6>
-              <p className={Style["p-Content"]}>
-                Find the right freelancer to begin working on your project
-                within minutes.
-              </p>
-            </li>
-            <li>
-              <h6 className="d-flex align-items-center">
-                <span className="mr-2">
-                  <i
-                    style={{ color: "lightgreen" }}
-                    class="fas fa-check-circle"
-                  ></i>
-                </span>
-                <span className={Style["span-Content"]}>
-                  Protected payments, every time
-                </span>
-              </h6>
-              <p className={Style["p-Content"]}>
-                Always know what you'll pay upfront. Your payment isn't released
-                until you approve the work.
-              </p>
-            </li>
-            <li>
-              <h6 className="d-flex align-items-center">
-                <span className="mr-2">
-                  <i
-                    style={{ color: "lightgreen" }}
-                    class="fas fa-check-circle"
-                  ></i>
-                </span>
-                <span className={Style["span-Content"]}>24/7 support</span>
-              </h6>
-              <p className={Style["p-Content"]}>
-                Questions? Our round-the-clock support team is available to help
-                anytime, anywhere.
-              </p>
-            </li>
-          </ul>
-          <div style={{ height: 300 }}>
+      <div className="sellingProposition">
+        <div className="row align-items-center">
+          <div className="col-5">
+            <h2 style={{ fontWeight: "bolder" }}>
+              A whole world of freelance talent at your fingertips
+            </h2>
+            <ul>
+              <li>
+                <h6 className="d-flex align-items-center">
+                  <span className="mr-2">
+                    <i
+                      style={{ color: "lightgreen" }}
+                      class="fas fa-check-circle"
+                    ></i>
+                  </span>
+                  <span>The best for every budget</span>
+                </h6>
+                <p style={{ color: "#62646a", fontSize: 20 }}>
+                  Find high-quality services at every price point. No hourly
+                  rates, just project-based pricing.
+                </p>
+              </li>
+              <li>
+                <h6 className="d-flex align-items-center">
+                  <span className="mr-2">
+                    <i
+                      style={{ color: "lightgreen" }}
+                      class="fas fa-check-circle"
+                    ></i>
+                  </span>
+                  <span>Quality work done quickly</span>
+                </h6>
+                <p style={{ color: "#62646a", fontSize: 20 }}>
+                  Find the right freelancer to begin working on your project
+                  within minutes.
+                </p>
+              </li>
+              <li>
+                <h6 className="d-flex align-items-center">
+                  <span className="mr-2">
+                    <i
+                      style={{ color: "lightgreen" }}
+                      class="fas fa-check-circle"
+                    ></i>
+                  </span>
+                  <span>Protected payments, every time</span>
+                </h6>
+                <p style={{ color: "#62646a", fontSize: 20 }}>
+                  Always know what you'll pay upfront. Your payment isn't
+                  released until you approve the work.
+                </p>
+              </li>
+              <li>
+                <h6 className="d-flex align-items-center">
+                  <span className="mr-2">
+                    <i
+                      style={{ color: "lightgreen" }}
+                      class="fas fa-check-circle"
+                    ></i>
+                  </span>
+                  <span>24/7 support</span>
+                </h6>
+                <p style={{ color: "#62646a", fontSize: 20 }}>
+                  Questions? Our round-the-clock support team is available to
+                  help anytime, anywhere.
+                </p>
+              </li>
+            </ul>
+          </div>
+          <div className="col-7">
             <video
-              className={Style["videoIntro"]}
+              className="w-100"
               controls
               poster="./image/homeImg/selling-proposition-still-1400-x1.png"
             >
@@ -429,11 +422,9 @@ export default function HomeIpad(props) {
           </div>
         </div>
       </div>
-      <div className={Style["mainCategories"]}>
-        <h2 className={Style["mainCategories-Title"]}>
-          Explore the marketplace
-        </h2>
-        <div>
+      <div className="mainCategories">
+        <h2 style={{ fontWeight: "bolder" }}>Explore the marketplace</h2>
+        <div className="container">
           <ul>
             <li>
               <a href="">

@@ -1,0 +1,105 @@
+body {
+  font-family: fontDuAn !important;
+}
+.navHeader {
+  background-color: transparent;
+  width: 100%;
+  height: 150px;
+  position: fixed;
+  z-index: 9999;
+  margin: 0;
+  padding: 20px 50px;
+}
+.navHeader.active {
+  background-color: white;
+  width: 100%;
+  height: 150px;
+  position: fixed;
+  z-index: 9999;
+}
+.labelHeader {
+  font-size: 35px;
+  line-height: 50px;
+}
+
+.ulHeader {
+  list-style: none;
+}
+.freelanceItalic {
+  font-family: fontFreelance !important;
+}
+.ulHeader .liHeader {
+  font-size: 17px;
+  font-weight: 600;
+  display: inline-block;
+  line-height: 50px;
+}
+
+.fiverChange {
+  color: white;
+  font-weight: bolder;
+  font-family: fontFiverr;
+}
+
+.docChange {
+  color: green;
+  font-weight: bolder;
+}
+
+.fiverChange.active {
+  color: green;
+  font-weight: bolder;
+  font-family: fontFiverr;
+}
+
+.liHeader a {
+  color: white;
+}
+
+.liHeader a:hover {
+  color: #28a745;
+}
+
+.liHeader a.change {
+  color: black !important;
+}
+
+.joinStyle {
+  border: 1px solid white;
+  padding: 5px 20px;
+  border-radius: 5px;
+  background-color: transparent;
+}
+.joinStyle:hover {
+  background-color: #28a745;
+  border: 1px solid #28a745;
+  color: white;
+}
+
+.joinStyle.change {
+  color: #28a745;
+  border: 1px solid #7bce8f;
+  padding: 5px 20px;
+  border-radius: 5px;
+  background-color: transparent;
+}
+
+.joinStyle.change:hover {
+  color: black;
+  border: 1px solid #28a745;
+  padding: 5px 20px;
+  border-radius: 5px;
+  background-color: #28a745;
+}
+@font-face {
+  font-family: fontFiverr;
+  src: url(../../Fonts//BungeeShade//BungeeShade-Regular.ttf);
+}
+@font-face {
+  font-family: fontDuAn;
+  src: url(../../Fonts//Merriweather//Merriweather-Bold.ttf);
+}
+@font-face {
+  font-family: fontFreelance;
+  src: url(../../Fonts//Merriweather/Merriweather-LightItalic.ttf);
+}

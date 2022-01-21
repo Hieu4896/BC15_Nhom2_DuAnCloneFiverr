@@ -1,11 +1,11 @@
 .hero-background {
   width: 100%;
-  height: 800px;
+  height: 500px;
   position: relative;
 }
 
 .header {
-  padding: 170px 0 50px 0;
+  padding: 100px 0 50px 0;
   max-width: 600px;
   position: absolute;
   z-index: 1;
@@ -13,7 +13,7 @@
 }
 
 .header h1 span {
-  font-size: 48px;
+  font-size: 35px;
   color: white;
   font-weight: bold;
 }
@@ -72,18 +72,18 @@
   width: 600px;
   background: white;
   height: auto;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 0 20px;
   margin-top: 5px;
   overflow: hidden;
   overflow-y: auto;
   list-style: none;
 }
-.search-bar-panel.active {
+.search-bar-panel-active {
   width: 600px;
   background: white;
-  height: 200px;
-  border-radius: 5px;
+  height: 180px;
+  border-radius: 10px;
   padding: 0 20px;
   margin-top: 5px;
   overflow: hidden;
@@ -125,6 +125,7 @@
   color: #fff;
   padding-top: 24px;
   flex-direction: row;
+  align-items: center;
 }
 
 .popular ul {
@@ -133,6 +134,7 @@
 
 .popular ul li {
   display: inline-block;
+  padding: 10px;
 }
 .popular ul li a {
   color: white;
@@ -161,7 +163,11 @@
   padding: 0 30px;
 }
 .subcategory {
-  padding: 50px 50px;
+  padding: 10px 50px;
+}
+.title-Subcategory {
+  font-size: 30px;
+  font-weight: bolder;
 }
 .swiper-button-next,
 .swiper-button-prev {
@@ -178,13 +184,32 @@
 
 .sellingProposition {
   padding: 0 50px;
-  margin-top: 50px;
+  margin-top: 10px;
 }
-
+.sellingPropositionTitle {
+  font-weight: bolder;
+  font-size: 30px;
+}
 .sellingProposition ul {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+.span-Content {
+  font-size: 12px;
+  font-weight: bolder;
+}
+.p-Content {
+  color: #62646a;
+  font-size: 15px;
+}
+.videoIntro {
+  width: 100%;
+  height: 100%;
+}
+.mainCategories-Title {
+  font-weight: bolder;
+  font-size: 30px;
 }
 .mainCategories {
   padding: 0 50px;
@@ -194,19 +219,22 @@
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  justify-content: space-between;
   padding: 0;
+  margin: 0;
   /* justify-content: space-evenly; */
 }
 .mainCategories li {
   display: inline-block;
   text-align: center;
-  padding: 20px 50px;
-  width: 20%;
+  width: 10%;
 }
 .mainCategories li a {
   color: black;
   position: relative;
+}
+.mainCategories li a p {
+  font-size: 13px !important;
 }
 .mainCategories li a::after {
   content: "";
