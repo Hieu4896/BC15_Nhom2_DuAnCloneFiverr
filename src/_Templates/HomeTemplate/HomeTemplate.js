@@ -6,6 +6,8 @@ import HomeFooter from "../../Components/homeFooter/HomeFooter";
 import HomeHeader from "../../Components/homeHeader/HomeHeader";
 import HomeHeaderIphonePlus from "../../Components/homeHeader/HomeHeaderIphonePlus";
 import HomeFooterIphonePlus from "../../Components/homeFooter/HomeFooterIphonePlus";
+import HomeHeaderIpad from "../../Components/homeHeader/HomeHeaderIpad";
+import HomeFooterIpad from "../../Components/homeFooter/HomeFooterIpad";
 export const HomeTemplate = (props) => {
   const [widthHeight, setwidthHeight] = useState({
     // độ phân giải màn hình mặc định
@@ -37,18 +39,10 @@ export const HomeTemplate = (props) => {
   let { Component, path } = props;
   const renderComponent = (propsRoute) => {
     if (
-      widthHeight.width == 1024 &&
-      widthHeight.height == 1366 &&
-      props.IpadComponent
+      widthHeight.width == 414 &&
+      widthHeight.height == 736 &&
+      props.IphonePlusComponent
     ) {
-      return (
-        <div>
-          <HomeHeader {...propsRoute} />
-          <props.IpadComponent {...propsRoute} />
-          <HomeFooter {...propsRoute} />
-        </div>
-      );
-    } else if ((widthHeight.width = 414 && props.IphonePlusComponent)) {
       return (
         <div>
           <HomeHeaderIphonePlus {...propsRoute} />
@@ -56,7 +50,19 @@ export const HomeTemplate = (props) => {
           <HomeFooterIphonePlus {...propsRoute} />
         </div>
       );
-    } else {
+    } else if (
+      widthHeight.width == 768 &&
+      widthHeight.height == 1024 &&
+      props.IpadComponent
+    ) {
+      return (
+        <div>
+          <HomeHeaderIpad {...propsRoute} />
+          <props.IpadComponent {...propsRoute} />
+          <HomeFooterIpad {...propsRoute} />
+        </div>
+      );
+    } else if (widthHeight.width > 1200) {
       return (
         <div>
           <HomeHeader {...propsRoute} />

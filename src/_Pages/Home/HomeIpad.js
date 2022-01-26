@@ -154,7 +154,7 @@ export default function HomeIpad(props) {
   return (
     <Fragment>
       <div className={Style["hero-background"]}>
-        <Swiper
+        {/* <Swiper
           modules={[Autoplay]}
           autoplay={{
             delay: 4000,
@@ -179,17 +179,21 @@ export default function HomeIpad(props) {
                     width: "100%",
                     height: "100%",
                     objectFit: "cover",
-                    objectPosition: "top",
+                    objectPosition: "center",
                   }}
                 />
               </SwiperSlide>
             );
           })}
-        </Swiper>
-
+        </Swiper> */}
+        <div className={Style["lower-background"]}></div>
         <div className={Style["header"]}>
           <h1>
-            <span>Find the perfect freelance services for your business</span>
+            <span>
+              Find the perfect{" "}
+              <span className="freelanceItalic">freelance</span> services for
+              your business
+            </span>
           </h1>
           <div className={Style["search-bar"]}>
             <form className={Style["formInput"]}>
@@ -257,7 +261,7 @@ export default function HomeIpad(props) {
           </div>
         </div>
       </div>
-      <div className="trusted-hero">
+      <div className={Style["trusted-hero"]}>
         <p>Trusted by :</p>
         <ul>
           <li>
@@ -301,7 +305,7 @@ export default function HomeIpad(props) {
           style={{ height: "100%", width: "100%", padding: "20px 0" }}
           modules={[Navigation]}
           navigation={true}
-          slidesPerView={4}
+          slidesPerView={3}
           spaceBetween={20}
         >
           {arrSub.map((prop, index) => {
@@ -347,7 +351,7 @@ export default function HomeIpad(props) {
           A whole world of freelance talent at your fingertips
         </h2>
         <div>
-          <ul className="d-flex ">
+          <ul className="row">
             <li>
               <h6 className=" d-flex align-items-center">
                 <span className="mr-2">

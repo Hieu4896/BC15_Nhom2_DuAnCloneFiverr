@@ -41,6 +41,7 @@ function App() {
           path="/"
           Component={HomeDesktop}
           IpadComponent={HomeIpad}
+          IphonePlusComponent={HomeIphonePlus}
         />
       </Switch>
     </Router>

@@ -1,76 +1,45 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import HeaderIPlus from "./homeHeaderIphonePlus.module.css";
+import Style from "./homeHeaderIphonePlus.module.css";
 export default function HomeHeaderIphonePlus(props) {
-  let [Navbar, setNavbar] = useState(false);
-  let [Fiverr, setFiverr] = useState(false);
-  let [LiHeader, setLiHeader] = useState(false);
-  let [JoinStyle, setJoinStyle] = useState(false);
-  const changeNavbarColor = () => {
-    if (window.scrollY >= 150) {
-      setNavbar(true);
-    } else {
-      setNavbar(false);
-    }
-  };
-  window.addEventListener("scroll", changeNavbarColor);
-  const changeFiverrColor = () => {
-    if (window.scrollY >= 150) {
-      setFiverr(true);
-    } else {
-      setFiverr(false);
-    }
-  };
-  window.addEventListener("scroll", changeFiverrColor);
-  const changeLiHeaderColor = () => {
-    if (window.scrollY >= 150) {
-      setLiHeader(true);
-    } else {
-      setLiHeader(false);
-    }
-  };
-  window.addEventListener("scroll", changeLiHeaderColor);
-  const changeJoinColor = () => {
-    if (window.scrollY >= 150) {
-      setJoinStyle(true);
-    } else {
-      setJoinStyle(false);
-    }
-  };
-  window.addEventListener("scroll", changeJoinColor);
+  let [dropMenu, setDropMenu] = useState(false);
   return (
-    <nav className={Navbar ? "navHeader active" : "navHeader"}>
-      <div className="row align-items-baseline justify-content-between">
-        <label className={HeaderIPlus["labelHeader"]}>
+    <nav className={Style["navHeader"]}>
+      <div className="row align-items-center justify-content-between">
+        <label className={Style["labelHeader"]}>
           <NavLink to="/">
-            <span
-              className={
-                Fiverr
-                  ? HeaderIPlus["fiverChange active"]
-                  : HeaderIPlus["fiverChange"]
-              }
-            >
-              fiverr
-            </span>
-            <span className="docChange">.</span>
+            <span className={Style["fiverChange"]}>fiverr</span>
+            <span className={Style["docChange"]}>.</span>
           </NavLink>
         </label>
-        <ul className="ulHeader col-6 d-flex justify-content-between">
-          <li className={HeaderIPlus["liHeader"]}>
-            <NavLink className={LiHeader ? "change" : ""} to="/">
-              Become a Seller
-            </NavLink>
+
+        <i
+          style={{
+            fontSize: 20,
+            lineHeight: "30px",
+            color: "#144d7e",
+          }}
+          className="fas fa-plus-circle"
+          onClick={() => {
+            setDropMenu(!dropMenu);
+          }}
+        ></i>
+      </div>
+      <div
+        className={
+          dropMenu ? Style["dropMenu-bar-active"] : Style["dropMenu-bar"]
+        }
+      >
+        <ul className={dropMenu ? Style["ulHeader-active"] : Style["ulHeader"]}>
+          <li className={Style["liHeader"]}>
+            <NavLink to="/">Become a Seller</NavLink>
           </li>
-          <li className="liHeader">
-            <NavLink className={LiHeader ? "change" : ""} to="/">
-              Sign in
-            </NavLink>
+          <li className={Style["liHeader"]}>
+            <NavLink to="/">Sign in</NavLink>
           </li>
-          <li className="liHeader">
+          <li className={Style["liHeader"]}>
             <NavLink to="/">
-              <span className={JoinStyle ? "joinStyle change " : "joinStyle"}>
-                Join
-              </span>
+              <span className={Style["joinStyle"]}>Join</span>
             </NavLink>
           </li>
         </ul>
