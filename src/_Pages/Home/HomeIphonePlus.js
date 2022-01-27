@@ -139,7 +139,7 @@ export default function HomeIphonePlus(props) {
       <div className={Style["hero-background"]}>
         <div className={Style["lower-background"]}></div>
         <div className={Style["header"]}>
-          <div style={{ marginBottom: 20 }} className="text-center">
+          <div style={{ marginBottom: 20, padding: "0 50px" }}>
             <span>Find the perfect freelance services for your business</span>
           </div>
           <div className={Style["search-bar"]}>
@@ -174,6 +174,15 @@ export default function HomeIphonePlus(props) {
             >
               Search
             </button>
+          </div>
+          <div
+            style={{
+              width: "100%",
+              padding: "0 50px",
+              position: "absolute",
+              zIndex: "3",
+            }}
+          >
             <ul
               className={
                 filteredData != 0
@@ -183,23 +192,23 @@ export default function HomeIphonePlus(props) {
             >
               {renderCongViec()}
             </ul>
-            <div className={Style["popular"]}>
-              <p>Popular :</p>
-              <ul>
-                <li>
-                  <a className="text-body-2">Website Design</a>
-                </li>
-                <li>
-                  <a className="text-body-2">WordPress</a>
-                </li>
-                <li>
-                  <a className="text-body-2">Logo Design</a>
-                </li>
-                <li>
-                  <a className="text-body-2">NFT Art</a>
-                </li>
-              </ul>
-            </div>
+          </div>
+          <div className={Style["popular"]}>
+            <p>Popular :</p>
+            <ul>
+              <li>
+                <a className="text-body-2">Website Design</a>
+              </li>
+              <li>
+                <a className="text-body-2">WordPress</a>
+              </li>
+              <li>
+                <a className="text-body-2">Logo Design</a>
+              </li>
+              <li>
+                <a className="text-body-2">NFT Art</a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

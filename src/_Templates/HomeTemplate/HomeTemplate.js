@@ -40,8 +40,8 @@ export const HomeTemplate = (props) => {
   let { Component, path } = props;
   const renderComponent = (propsRoute) => {
     if (
-      widthHeight.width == 414 &&
-      widthHeight.height == 736 &&
+      widthHeight.width >= 414 &&
+      widthHeight.width < 768 &&
       props.IphonePlusComponent
     ) {
       return (
@@ -52,8 +52,8 @@ export const HomeTemplate = (props) => {
         </div>
       );
     } else if (
-      widthHeight.width == 375 &&
-      widthHeight.height == 667 &&
+      widthHeight.width >= 375 &&
+      widthHeight.width < 414 &&
       props.IphoneComponent
     ) {
       return (
@@ -64,8 +64,8 @@ export const HomeTemplate = (props) => {
         </div>
       );
     } else if (
-      widthHeight.width == 768 &&
-      widthHeight.height == 1024 &&
+      widthHeight.width >= 768 &&
+      widthHeight.width < 1200 &&
       props.IpadComponent
     ) {
       return (
@@ -75,7 +75,7 @@ export const HomeTemplate = (props) => {
           <HomeFooterIpad {...propsRoute} />
         </div>
       );
-    } else if (widthHeight.width > 1200) {
+    } else if (widthHeight.width >= 1200) {
       return (
         <div>
           <HomeHeader {...propsRoute} />

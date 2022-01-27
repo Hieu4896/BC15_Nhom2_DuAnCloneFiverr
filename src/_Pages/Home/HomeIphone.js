@@ -139,10 +139,7 @@ export default function HomeIphone(props) {
       <div className={Style["hero-background"]}>
         <div className={Style["lower-background"]}></div>
         <div className={Style["header"]}>
-          <div
-            style={{ padding: "0 50px", marginBottom: 20 }}
-            className="text-center"
-          >
+          <div style={{ marginBottom: 20, padding: "0 50px" }}>
             <span>Find the perfect freelance services for your business</span>
           </div>
           <div className={Style["search-bar"]}>
@@ -177,6 +174,15 @@ export default function HomeIphone(props) {
             >
               Search
             </button>
+          </div>
+          <div
+            style={{
+              width: "100%",
+              padding: "0 50px",
+              position: "absolute",
+              zIndex: "3",
+            }}
+          >
             <ul
               className={
                 filteredData != 0
@@ -186,23 +192,23 @@ export default function HomeIphone(props) {
             >
               {renderCongViec()}
             </ul>
-            <div className={Style["popular"]}>
-              <p>Popular :</p>
-              <ul>
-                <li>
-                  <a className="text-body-2">Website Design</a>
-                </li>
-                <li>
-                  <a className="text-body-2">WordPress</a>
-                </li>
-                <li>
-                  <a className="text-body-2">Logo Design</a>
-                </li>
-                <li>
-                  <a className="text-body-2">NFT Art</a>
-                </li>
-              </ul>
-            </div>
+          </div>
+          <div className={Style["popular"]}>
+            <p>Popular :</p>
+            <ul>
+              <li>
+                <a className="text-body-2">Website Design</a>
+              </li>
+              <li>
+                <a className="text-body-2">WordPress</a>
+              </li>
+              <li>
+                <a className="text-body-2">Logo Design</a>
+              </li>
+              <li>
+                <a className="text-body-2">NFT Art</a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -241,7 +247,7 @@ export default function HomeIphone(props) {
           </li>
         </ul>
       </div>
-      <div className="subcategory">
+      <div className={Style["subcategory"]}>
         <h2 className={Style["title-Subcategory"]}>
           Popular professional services
         </h2>
@@ -305,11 +311,9 @@ export default function HomeIphone(props) {
                       class="fas fa-check-circle"
                     ></i>
                   </span>
-                  <span style={{ fontSize: 15 }}>
-                    The best for every budget
-                  </span>
+                  <span>The best for every budget</span>
                 </h6>
-                <p style={{ color: "#62646a", fontSize: 17 }}>
+                <p style={{ color: "#62646a", fontSize: 20 }}>
                   Find high-quality services at every price point. No hourly
                   rates, just project-based pricing.
                 </p>
@@ -322,11 +326,9 @@ export default function HomeIphone(props) {
                       class="fas fa-check-circle"
                     ></i>
                   </span>
-                  <span style={{ fontSize: 15 }}>
-                    Quality work done quickly
-                  </span>
+                  <span>Quality work done quickly</span>
                 </h6>
-                <p style={{ color: "#62646a", fontSize: 17 }}>
+                <p style={{ color: "#62646a", fontSize: 20 }}>
                   Find the right freelancer to begin working on your project
                   within minutes.
                 </p>
@@ -339,11 +341,9 @@ export default function HomeIphone(props) {
                       class="fas fa-check-circle"
                     ></i>
                   </span>
-                  <span style={{ fontSize: 15 }}>
-                    Protected payments, every time
-                  </span>
+                  <span>Protected payments, every time</span>
                 </h6>
-                <p style={{ color: "#62646a", fontSize: 17 }}>
+                <p style={{ color: "#62646a", fontSize: 20 }}>
                   Always know what you'll pay upfront. Your payment isn't
                   released until you approve the work.
                 </p>
@@ -356,9 +356,9 @@ export default function HomeIphone(props) {
                       class="fas fa-check-circle"
                     ></i>
                   </span>
-                  <span style={{ fontSize: 15 }}>24/7 support</span>
+                  <span>24/7 support</span>
                 </h6>
-                <p style={{ color: "#62646a", fontSize: 17 }}>
+                <p style={{ color: "#62646a", fontSize: 20 }}>
                   Questions? Our round-the-clock support team is available to
                   help anytime, anywhere.
                 </p>
