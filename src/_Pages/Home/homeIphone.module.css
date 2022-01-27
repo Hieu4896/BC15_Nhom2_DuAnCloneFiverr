@@ -7,7 +7,7 @@
   width: 100%;
   height: 100%;
   position: absolute;
-  z-index: 0;
+  z-index: 1;
   background-image: url("../../Assets/Image/AdobeStock_302399784.jpeg");
   background-position: center;
   background-repeat: no-repeat;
@@ -17,13 +17,13 @@
   margin-top: 20px;
   width: 100%;
   position: absolute;
-  z-index: 1;
+  z-index: 2;
 }
 
 .header span {
-  font-size: 21px;
+  font-size: 25px;
   color: white;
-  font-weight: bolder;
+  font-weight: bold;
 }
 .search-bar {
   width: 100%;
@@ -78,7 +78,7 @@
 }
 
 .search-bar-panel {
-  width: 314.4px;
+  width: 100%;
   background: white;
   height: auto;
   margin-top: 5px;
@@ -89,7 +89,7 @@
   margin-top: 10px;
 }
 .search-bar-panel-active {
-  width: 314.4px;
+  width: 100%;
   background: white;
   height: 130px;
   border-radius: 10px;
@@ -98,8 +98,6 @@
   overflow: hidden;
   overflow-y: auto;
   list-style: none;
-  position: absolute;
-  z-index: 10;
 }
 
 .search-bar-panel::-webkit-scrollbar {
@@ -125,13 +123,13 @@
 }
 
 .popular {
-  position: absolute;
-  z-index: 1;
   font-size: 14px;
   line-height: 27px;
   font-weight: 600;
   color: #fff;
-  width: 275.2px;
+  width: 100%;
+  padding: 0 50px;
+  margin-top: 20px;
 }
 .popular p {
   font-size: 20px;
@@ -139,14 +137,14 @@
 }
 .popular ul {
   list-style: none;
-  width: 100%;
   margin: 0;
   padding: 0;
+  text-align: center;
 }
 
 .popular ul li {
   display: inline-block;
-  padding: 10px;
+  padding: 5px 10px;
 }
 .popular ul li a {
   color: white;
@@ -158,7 +156,8 @@
 
 .trusted-hero {
   width: 100%;
-  padding: 20px 50px;
+  padding: 0 50px;
+  margin-top: 20px;
 }
 .trusted-hero p {
   text-align: center;
@@ -182,10 +181,10 @@
   margin-right: 10px;
 }
 .subcategory {
-  padding: 0 50px 20px 50px;
+  padding: 20px 50px !important;
 }
 .title-Subcategory {
-  font-size: 21px;
+  font-size: 25px;
   font-weight: bolder;
   width: 100%;
 }
@@ -208,7 +207,7 @@
 }
 .sellingPropositionTitle {
   font-weight: bolder;
-  font-size: 21px;
+  font-size: 25px;
 }
 .sellingProposition ul {
   list-style: none;
@@ -229,11 +228,11 @@
 }
 .mainCategories-Title {
   font-weight: bolder;
-  font-size: 21px !important;
+  font-size: 30px;
 }
 .mainCategories {
   width: 100%;
-  padding: 20px 50px;
+  padding: 50px 50px;
 }
 .mainCategories-Title {
   font-size: 25px;
@@ -249,7 +248,7 @@
 .mainCategories li {
   display: inline-block;
   text-align: center;
-  width: 28%;
+  width: 30%;
   margin-right: 10px;
 }
 .mainCategories li a {
