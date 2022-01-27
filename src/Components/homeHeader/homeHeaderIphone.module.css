@@ -1,0 +1,93 @@
+body {
+  font-family: fontDuAn !important;
+}
+.navHeader {
+  background-color: #041120;
+  width: 100%;
+  height: 50px;
+  position: sticky;
+  z-index: 9999;
+  margin: 0;
+  padding: 20px 50px;
+}
+.labelHeader {
+  font-size: 30px;
+  line-height: 30px;
+}
+.dropMenu-bar-active {
+  position: relative;
+  width: 100%;
+  background: #144d7e;
+  padding-left: 20px;
+  display: block;
+  height: 150px;
+  transition: ease-in-out 0.5s;
+}
+.ulHeader {
+  display: none;
+  list-style: none;
+  margin: 0;
+}
+.ulHeader-active {
+  list-style: none;
+  display: block;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+}
+.freelanceItalic {
+  font-family: fontFreelance !important;
+}
+.liHeader {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 50px;
+}
+
+.docChange {
+  color: #144d7e;
+  font-weight: bolder;
+}
+
+.fiverChange {
+  color: #144d7e;
+  font-weight: bolder;
+  font-family: fontFiverr;
+}
+
+.liHeader a {
+  color: white;
+}
+
+.liHeader a:hover {
+  color: #28a745;
+}
+
+.liHeader a.change {
+  color: black !important;
+}
+
+.joinStyle {
+  border: 1px solid white;
+  padding: 5px 20px;
+  border-radius: 5px;
+  background-color: transparent;
+}
+.joinStyle:hover {
+  background-color: #28a745;
+  border: 1px solid #28a745;
+  color: white;
+}
+
+@font-face {
+  font-family: fontFiverr;
+  src: url(../../Fonts//BungeeShade//BungeeShade-Regular.ttf);
+}
+@font-face {
+  font-family: fontDuAn;
+  src: url(../../Fonts//Merriweather//Merriweather-Bold.ttf);
+}
+@font-face {
+  font-family: fontFreelance;
+  src: url(../../Fonts//Merriweather/Merriweather-LightItalic.ttf);
+}

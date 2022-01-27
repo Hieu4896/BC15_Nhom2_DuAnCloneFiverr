@@ -21,9 +21,9 @@
 }
 
 .header span {
-  font-size: 25px;
+  font-size: 21px;
   color: white;
-  font-weight: bold;
+  font-weight: bolder;
 }
 .search-bar {
   width: 100%;
@@ -131,8 +131,7 @@
   line-height: 27px;
   font-weight: 600;
   color: #fff;
-  width: 314.4px;
-  text-align: center;
+  width: 275.2px;
 }
 .popular p {
   font-size: 20px;
@@ -140,6 +139,7 @@
 }
 .popular ul {
   list-style: none;
+  width: 100%;
   margin: 0;
   padding: 0;
 }
@@ -158,8 +158,7 @@
 
 .trusted-hero {
   width: 100%;
-  padding: 0 50px;
-  margin-top: 20px;
+  padding: 20px 50px;
 }
 .trusted-hero p {
   text-align: center;
@@ -183,10 +182,10 @@
   margin-right: 10px;
 }
 .subcategory {
-  padding: 20px 50px !important;
+  padding: 0 50px 20px 50px;
 }
 .title-Subcategory {
-  font-size: 25px;
+  font-size: 21px;
   font-weight: bolder;
   width: 100%;
 }
@@ -209,7 +208,7 @@
 }
 .sellingPropositionTitle {
   font-weight: bolder;
-  font-size: 25px;
+  font-size: 21px;
 }
 .sellingProposition ul {
   list-style: none;
@@ -230,11 +229,11 @@
 }
 .mainCategories-Title {
   font-weight: bolder;
-  font-size: 30px;
+  font-size: 21px !important;
 }
 .mainCategories {
   width: 100%;
-  padding: 50px 50px;
+  padding: 20px 50px;
 }
 .mainCategories-Title {
   font-size: 25px;
@@ -250,7 +249,7 @@
 .mainCategories li {
   display: inline-block;
   text-align: center;
-  width: 30%;
+  width: 28%;
   margin-right: 10px;
 }
 .mainCategories li a {

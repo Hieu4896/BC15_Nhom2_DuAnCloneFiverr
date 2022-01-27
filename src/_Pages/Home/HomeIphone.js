@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "./homeCarousel.css";
+import Style from "./homeIphone.module.css";
 import { NavLink } from "react-router-dom";
 import { getApiDanhSachCongViecTheoTen } from "../../Redux/Actions/HomeActions/HomeAction";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,28 +8,10 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-cards";
-import "./HomeCategoryDesktop.scss";
 
-import { Navigation, Pagination, Autoplay } from "swiper";
+import { Navigation, Autoplay } from "swiper";
 
-export default function HomeDesktop(props) {
-  let carousel1 =
-    "https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/bb5958e41c91bb37f4afe2a318b71599-1599344049961/bg-hero-1-900-x1.png";
-  let carousel2 =
-    "https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/2413b8415dda9dbd7756d02cb87cd4b1-1599595203043/bg-hero-2-900-x1.png";
-  let carousel3 =
-    "https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/d14871e2d118f46db2c18ad882619ea8-1599835783973/bg-hero-3-900-x1.png";
-  let carousel4 =
-    "https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/bb5958e41c91bb37f4afe2a318b71599-1599344049964/bg-hero-4-900-x1.png";
-  let carousel5 =
-    "https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/bb5958e41c91bb37f4afe2a318b71599-1599344049961/bg-hero-5-900-x1.png";
-  const arrHeroCarousel = [
-    carousel1,
-    carousel2,
-    carousel3,
-    carousel4,
-    carousel5,
-  ];
+export default function HomeIphone(props) {
   let carousel6 = "./image/homeImg/animated-explainer-2x.jpg";
   let carousel7 = "./image/homeImg/illustration-2x.jpg";
   let carousel8 = "./image/homeImg/logo-design-2x.jpg";
@@ -137,10 +119,10 @@ export default function HomeDesktop(props) {
         return (
           <div>
             <NavLink
-              className="aStyleSearchbar"
+              className={Style["aStyleSearchbar"]}
               to={`/danhsachcongviec/${prop.name}`}
             >
-              <li className="liStyleSearchbar" key={index}>
+              <li className={Style["liStyleSearchbar"]} key={index}>
                 {prop.name}
               </li>
             </NavLink>
@@ -154,60 +136,29 @@ export default function HomeDesktop(props) {
 
   return (
     <Fragment>
-      <div className="hero-background">
-        <Swiper
-          modules={[Autoplay]}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
-          style={{
-            width: "100%",
-            height: "100%",
-            position: "absolute",
-            zIndex: 0,
-          }}
-        >
-          {arrHeroCarousel.map((i, index) => {
-            return (
-              <SwiperSlide
-                key={index}
-                style={{ width: "100%", height: "100%" }}
-              >
-                <img
-                  src={i}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    objectPosition: "top",
-                  }}
-                />
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
-
-        <div className="header">
-          <h1>
-            <span>
-              Find the perfect{" "}
-              <span className="freelanceItalic">freelance</span> services for
-              your business
-            </span>
-          </h1>
-          <div className="search-bar">
-            <form className="formInput">
+      <div className={Style["hero-background"]}>
+        <div className={Style["lower-background"]}></div>
+        <div className={Style["header"]}>
+          <div
+            style={{ padding: "0 50px", marginBottom: 20 }}
+            className="text-center"
+          >
+            <span>Find the perfect freelance services for your business</span>
+          </div>
+          <div className={Style["search-bar"]}>
+            <form className={Style["formInput"]}>
               <input
                 type="text"
-                className="searchInput"
+                className={Style["searchInput"]}
                 placeholder="Find Services"
                 onChange={handleChangeInput}
                 value={wordEntered}
+                maxLength={20}
+                required
               />
               {wordEntered !== "" ? (
                 <button
-                  className="buttonBackspace"
+                  className={Style["buttonBackspace"]}
                   type="button"
                   onClick={clearInput}
                 >
@@ -216,28 +167,27 @@ export default function HomeDesktop(props) {
               ) : (
                 ""
               )}
-
-              <button
-                onClick={() => {
-                  props.history.push("/danhsachcongviec/" + wordEntered);
-                }}
-                className="btn btn-success text-white buttonInput"
-                type="submit"
-              >
-                Search
-              </button>
             </form>
+            <button
+              onClick={() => {
+                props.history.push("/danhsachcongviec/" + wordEntered);
+              }}
+              className={`${Style.buttonInput} btn btn-success`}
+              type="submit"
+            >
+              Search
+            </button>
             <ul
               className={
                 filteredData != 0
-                  ? "search-bar-panel active"
-                  : "search-bar-panel"
+                  ? Style["search-bar-panel-active"]
+                  : Style["search-bar-panel"]
               }
             >
               {renderCongViec()}
             </ul>
-            <div className="popular">
-              Popular:{" "}
+            <div className={Style["popular"]}>
+              <p>Popular :</p>
               <ul>
                 <li>
                   <a className="text-body-2">Website Design</a>
@@ -256,7 +206,7 @@ export default function HomeDesktop(props) {
           </div>
         </div>
       </div>
-      <div className="trusted-hero">
+      <div className={Style["trusted-hero"]}>
         <p>Trusted by :</p>
         <ul>
           <li>
@@ -292,19 +242,19 @@ export default function HomeDesktop(props) {
         </ul>
       </div>
       <div className="subcategory">
-        <h2 style={{ fontWeight: "bolder" }}>Popular professional services</h2>
+        <h2 className={Style["title-Subcategory"]}>
+          Popular professional services
+        </h2>
 
         <Swiper
           style={{ height: "100%", width: "100%", padding: "20px 0" }}
           modules={[Navigation]}
           navigation={true}
-          slidesPerView={4}
-          spaceBetween={30}
+          slidesPerView={1}
         >
           {arrSub.map((prop, index) => {
             return (
               <SwiperSlide key={index} className="rainbow">
-                {" "}
                 <div
                   style={{
                     display: "flex",
@@ -313,6 +263,7 @@ export default function HomeDesktop(props) {
                     alignItems: "center",
                   }}
                 >
+                  {" "}
                   <p
                     style={{
                       color: "white",
@@ -324,7 +275,7 @@ export default function HomeDesktop(props) {
                   <h4
                     style={{
                       color: "white",
-                      fontSize: 25,
+                      fontSize: 20,
                       fontWeight: "bolder",
                     }}
                   >
@@ -339,10 +290,10 @@ export default function HomeDesktop(props) {
           })}
         </Swiper>
       </div>
-      <div className="sellingProposition">
-        <div className="row">
-          <div className="col-5">
-            <h2 style={{ fontWeight: "bolder" }}>
+      <div className={Style["sellingProposition"]}>
+        <div className="row align-items-center">
+          <div className="col-12  ">
+            <h2 className={Style["sellingPropositionTitle"]}>
               A whole world of freelance talent at your fingertips
             </h2>
             <ul>
@@ -354,9 +305,11 @@ export default function HomeDesktop(props) {
                       class="fas fa-check-circle"
                     ></i>
                   </span>
-                  <span>The best for every budget</span>
+                  <span style={{ fontSize: 15 }}>
+                    The best for every budget
+                  </span>
                 </h6>
-                <p style={{ color: "#62646a", fontSize: 20 }}>
+                <p style={{ color: "#62646a", fontSize: 17 }}>
                   Find high-quality services at every price point. No hourly
                   rates, just project-based pricing.
                 </p>
@@ -369,9 +322,11 @@ export default function HomeDesktop(props) {
                       class="fas fa-check-circle"
                     ></i>
                   </span>
-                  <span>Quality work done quickly</span>
+                  <span style={{ fontSize: 15 }}>
+                    Quality work done quickly
+                  </span>
                 </h6>
-                <p style={{ color: "#62646a", fontSize: 20 }}>
+                <p style={{ color: "#62646a", fontSize: 17 }}>
                   Find the right freelancer to begin working on your project
                   within minutes.
                 </p>
@@ -384,9 +339,11 @@ export default function HomeDesktop(props) {
                       class="fas fa-check-circle"
                     ></i>
                   </span>
-                  <span>Protected payments, every time</span>
+                  <span style={{ fontSize: 15 }}>
+                    Protected payments, every time
+                  </span>
                 </h6>
-                <p style={{ color: "#62646a", fontSize: 20 }}>
+                <p style={{ color: "#62646a", fontSize: 17 }}>
                   Always know what you'll pay upfront. Your payment isn't
                   released until you approve the work.
                 </p>
@@ -399,18 +356,18 @@ export default function HomeDesktop(props) {
                       class="fas fa-check-circle"
                     ></i>
                   </span>
-                  <span>24/7 support</span>
+                  <span style={{ fontSize: 15 }}>24/7 support</span>
                 </h6>
-                <p style={{ color: "#62646a", fontSize: 20 }}>
+                <p style={{ color: "#62646a", fontSize: 17 }}>
                   Questions? Our round-the-clock support team is available to
                   help anytime, anywhere.
                 </p>
               </li>
             </ul>
           </div>
-          <div className="col-7">
+          <div className="col-12">
             <video
-              className="w-100"
+              className={Style["videoIntro"]}
               controls
               poster="./image/homeImg/selling-proposition-still-1400-x1.png"
             >
@@ -422,9 +379,11 @@ export default function HomeDesktop(props) {
           </div>
         </div>
       </div>
-      <div className="mainCategories">
-        <h2 style={{ fontWeight: "bolder" }}>Explore the marketplace</h2>
-        <div className="container">
+      <div className={Style["mainCategories"]}>
+        <h2 className={Style["mainCategories-Title"]}>
+          Explore the marketplace
+        </h2>
+        <div>
           <ul>
             <li>
               <a href="">

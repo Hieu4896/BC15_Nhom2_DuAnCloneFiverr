@@ -1,0 +1,21 @@
+.footer {
+  padding: 0 50px 0 50px;
+  width: 100%;
+}
+.footer a {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.social-Platform {
+  list-style: none;
+}
+
+.social-Platform li {
+  display: inline-block;
+  margin-right: 20px;
+}
+.social-Platform li i {
+  font-size: 20px;
+  color: green;
+}

@@ -139,7 +139,7 @@ export default function HomeIphonePlus(props) {
       <div className={Style["hero-background"]}>
         <div className={Style["lower-background"]}></div>
         <div className={Style["header"]}>
-          <div className="text-center">
+          <div style={{ marginBottom: 20 }} className="text-center">
             <span>Find the perfect freelance services for your business</span>
           </div>
           <div className={Style["search-bar"]}>
@@ -150,6 +150,8 @@ export default function HomeIphonePlus(props) {
                 placeholder="Find Services"
                 onChange={handleChangeInput}
                 value={wordEntered}
+                maxLength={20}
+                required
               />
               {wordEntered !== "" ? (
                 <button
@@ -236,7 +238,7 @@ export default function HomeIphonePlus(props) {
           </li>
         </ul>
       </div>
-      <div className="subcategory">
+      <div className={Style["subcategory"]}>
         <h2 className={Style["title-Subcategory"]}>
           Popular professional services
         </h2>

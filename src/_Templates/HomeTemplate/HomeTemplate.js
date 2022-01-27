@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-
 import { Route } from "react-router-dom";
 import HomeFooter from "../../Components/homeFooter/HomeFooter";
 import HomeHeader from "../../Components/homeHeader/HomeHeader";
 import HomeHeaderIphonePlus from "../../Components/homeHeader/HomeHeaderIphonePlus";
 import HomeFooterIphonePlus from "../../Components/homeFooter/HomeFooterIphonePlus";
+import HomeHeaderIphone from "../../Components/homeHeader/HomeHeaderIphone";
+import HomeFooterIphone from "../../Components/homeFooter/HomeFooterIphone";
 import HomeHeaderIpad from "../../Components/homeHeader/HomeHeaderIpad";
 import HomeFooterIpad from "../../Components/homeFooter/HomeFooterIpad";
 export const HomeTemplate = (props) => {
@@ -48,6 +49,18 @@ export const HomeTemplate = (props) => {
           <HomeHeaderIphonePlus {...propsRoute} />
           <props.IphonePlusComponent {...propsRoute} />
           <HomeFooterIphonePlus {...propsRoute} />
+        </div>
+      );
+    } else if (
+      widthHeight.width == 375 &&
+      widthHeight.height == 667 &&
+      props.IphoneComponent
+    ) {
+      return (
+        <div>
+          <HomeHeaderIphone {...propsRoute} />
+          <props.IphoneComponent {...propsRoute} />
+          <HomeFooterIphone {...propsRoute} />
         </div>
       );
     } else if (
