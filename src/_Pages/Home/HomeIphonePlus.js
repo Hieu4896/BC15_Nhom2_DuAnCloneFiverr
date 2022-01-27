@@ -12,23 +12,6 @@ import "swiper/css/effect-cards";
 import { Navigation, Autoplay } from "swiper";
 
 export default function HomeIphonePlus(props) {
-  let carousel1 =
-    "https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/bb5958e41c91bb37f4afe2a318b71599-1599344049961/bg-hero-1-900-x1.png";
-  let carousel2 =
-    "https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/2413b8415dda9dbd7756d02cb87cd4b1-1599595203043/bg-hero-2-900-x1.png";
-  let carousel3 =
-    "https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/d14871e2d118f46db2c18ad882619ea8-1599835783973/bg-hero-3-900-x1.png";
-  let carousel4 =
-    "https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/bb5958e41c91bb37f4afe2a318b71599-1599344049964/bg-hero-4-900-x1.png";
-  let carousel5 =
-    "https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/bb5958e41c91bb37f4afe2a318b71599-1599344049961/bg-hero-5-900-x1.png";
-  const arrHeroCarousel = [
-    carousel1,
-    carousel2,
-    carousel3,
-    carousel4,
-    carousel5,
-  ];
   let carousel6 = "./image/homeImg/animated-explainer-2x.jpg";
   let carousel7 = "./image/homeImg/illustration-2x.jpg";
   let carousel8 = "./image/homeImg/logo-design-2x.jpg";
@@ -154,43 +137,11 @@ export default function HomeIphonePlus(props) {
   return (
     <Fragment>
       <div className={Style["hero-background"]}>
-        <Swiper
-          modules={[Autoplay]}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
-          style={{
-            width: "100%",
-            height: "100%",
-            position: "absolute",
-            zIndex: 0,
-          }}
-        >
-          {arrHeroCarousel.map((i, index) => {
-            return (
-              <SwiperSlide
-                key={index}
-                style={{ width: "100%", height: "100%" }}
-              >
-                <img
-                  src={i}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    objectPosition: "top",
-                  }}
-                />
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
-
+        <div className={Style["lower-background"]}></div>
         <div className={Style["header"]}>
-          <h1>
+          <div style={{ marginBottom: 20 }} className="text-center">
             <span>Find the perfect freelance services for your business</span>
-          </h1>
+          </div>
           <div className={Style["search-bar"]}>
             <form className={Style["formInput"]}>
               <input
@@ -199,16 +150,13 @@ export default function HomeIphonePlus(props) {
                 placeholder="Find Services"
                 onChange={handleChangeInput}
                 value={wordEntered}
+                maxLength={20}
+                required
               />
               {wordEntered !== "" ? (
                 <button
-                  className="buttonBackspace"
+                  className={Style["buttonBackspace"]}
                   type="button"
-                  style={{
-                    border: "none",
-                    outline: "none",
-                    background: "none",
-                  }}
                   onClick={clearInput}
                 >
                   <i className="fas fa-backspace"></i>
@@ -216,28 +164,27 @@ export default function HomeIphonePlus(props) {
               ) : (
                 ""
               )}
-
-              <button
-                onClick={() => {
-                  props.history.push("/danhsachcongviec/" + wordEntered);
-                }}
-                className={`${Style.buttonInput} btn btn-success`}
-                type="submit"
-              >
-                Search
-              </button>
             </form>
+            <button
+              onClick={() => {
+                props.history.push("/danhsachcongviec/" + wordEntered);
+              }}
+              className={`${Style.buttonInput} btn btn-success`}
+              type="submit"
+            >
+              Search
+            </button>
             <ul
               className={
                 filteredData != 0
-                  ? "search-bar-panel active"
-                  : "search-bar-panel"
+                  ? Style["search-bar-panel-active"]
+                  : Style["search-bar-panel"]
               }
             >
               {renderCongViec()}
             </ul>
-            <div className="popular">
-              Popular:{" "}
+            <div className={Style["popular"]}>
+              <p>Popular :</p>
               <ul>
                 <li>
                   <a className="text-body-2">Website Design</a>
@@ -256,7 +203,7 @@ export default function HomeIphonePlus(props) {
           </div>
         </div>
       </div>
-      <div className="trusted-hero">
+      <div className={Style["trusted-hero"]}>
         <p>Trusted by :</p>
         <ul>
           <li>
@@ -291,15 +238,16 @@ export default function HomeIphonePlus(props) {
           </li>
         </ul>
       </div>
-      <div className="subcategory">
-        <h2 style={{ fontWeight: "bolder" }}>Popular professional services</h2>
+      <div className={Style["subcategory"]}>
+        <h2 className={Style["title-Subcategory"]}>
+          Popular professional services
+        </h2>
 
         <Swiper
           style={{ height: "100%", width: "100%", padding: "20px 0" }}
           modules={[Navigation]}
           navigation={true}
-          slidesPerView={4}
-          spaceBetween={20}
+          slidesPerView={1}
         >
           {arrSub.map((prop, index) => {
             return (
@@ -339,10 +287,10 @@ export default function HomeIphonePlus(props) {
           })}
         </Swiper>
       </div>
-      <div className="sellingProposition">
+      <div className={Style["sellingProposition"]}>
         <div className="row align-items-center">
-          <div className="col-5">
-            <h2 style={{ fontWeight: "bolder" }}>
+          <div className="col-12  ">
+            <h2 className={Style["sellingPropositionTitle"]}>
               A whole world of freelance talent at your fingertips
             </h2>
             <ul>
@@ -408,9 +356,9 @@ export default function HomeIphonePlus(props) {
               </li>
             </ul>
           </div>
-          <div className="col-7">
+          <div className="col-12">
             <video
-              className="w-100"
+              className={Style["videoIntro"]}
               controls
               poster="./image/homeImg/selling-proposition-still-1400-x1.png"
             >
@@ -422,9 +370,11 @@ export default function HomeIphonePlus(props) {
           </div>
         </div>
       </div>
-      <div className="mainCategories">
-        <h2 style={{ fontWeight: "bolder" }}>Explore the marketplace</h2>
-        <div className="container">
+      <div className={Style["mainCategories"]}>
+        <h2 className={Style["mainCategories-Title"]}>
+          Explore the marketplace
+        </h2>
+        <div>
           <ul>
             <li>
               <a href="">

@@ -12,6 +12,7 @@ import LoaiCongViecDesktop from "./_Pages/LoaiCongViec/LoaiCongViecDesktop";
 import { DanhSachCongViecTemPlate } from "./_Templates/DanhSachCongViecTemplate/DanhSachCongViecTemplate";
 import HomeIpad from "./_Pages/Home/HomeIpad";
 import HomeIphonePlus from "./_Pages/Home/HomeIphonePlus";
+import HomeIphone from "./_Pages/Home/HomeIphone";
 export const history = createBrowserHistory();
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           Component={HomeDesktop}
           IpadComponent={HomeIpad}
           IphonePlusComponent={HomeIphonePlus}
+          IphoneComponent={HomeIphone}
         />
 
         <Route exact path="/homeheader" component={HomeHeader} />
@@ -41,6 +43,8 @@ function App() {
           path="/"
           Component={HomeDesktop}
           IpadComponent={HomeIpad}
+          IphonePlusComponent={HomeIphonePlus}
+          IphoneComponent={HomeIphone}
         />
       </Switch>
     </Router>

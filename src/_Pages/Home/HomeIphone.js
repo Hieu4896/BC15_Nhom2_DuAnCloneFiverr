@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Style from "./homeIpad.module.css";
+import Style from "./homeIphone.module.css";
 import { NavLink } from "react-router-dom";
 import { getApiDanhSachCongViecTheoTen } from "../../Redux/Actions/HomeActions/HomeAction";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,27 +8,10 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-cards";
-import "./HomeCategoryIphonePlus.scss";
+
 import { Navigation, Autoplay } from "swiper";
 
-export default function HomeIpad(props) {
-  let carousel1 =
-    "https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/bb5958e41c91bb37f4afe2a318b71599-1599344049961/bg-hero-1-900-x1.png";
-  let carousel2 =
-    "https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/2413b8415dda9dbd7756d02cb87cd4b1-1599595203043/bg-hero-2-900-x1.png";
-  let carousel3 =
-    "https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/d14871e2d118f46db2c18ad882619ea8-1599835783973/bg-hero-3-900-x1.png";
-  let carousel4 =
-    "https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/bb5958e41c91bb37f4afe2a318b71599-1599344049964/bg-hero-4-900-x1.png";
-  let carousel5 =
-    "https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/bb5958e41c91bb37f4afe2a318b71599-1599344049961/bg-hero-5-900-x1.png";
-  const arrHeroCarousel = [
-    carousel1,
-    carousel2,
-    carousel3,
-    carousel4,
-    carousel5,
-  ];
+export default function HomeIphone(props) {
   let carousel6 = "./image/homeImg/animated-explainer-2x.jpg";
   let carousel7 = "./image/homeImg/illustration-2x.jpg";
   let carousel8 = "./image/homeImg/logo-design-2x.jpg";
@@ -154,47 +137,14 @@ export default function HomeIpad(props) {
   return (
     <Fragment>
       <div className={Style["hero-background"]}>
-        {/* <Swiper
-          modules={[Autoplay]}
-          autoplay={{
-            delay: 4000,
-            disableOnInteraction: false,
-          }}
-          style={{
-            width: "100%",
-            height: "100%",
-            position: "absolute",
-            zIndex: 0,
-          }}
-        >
-          {arrHeroCarousel.map((i, index) => {
-            return (
-              <SwiperSlide
-                key={index}
-                style={{ width: "100%", height: "100%" }}
-              >
-                <img
-                  src={i}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    objectPosition: "center",
-                  }}
-                />
-              </SwiperSlide>
-            );
-          })}
-        </Swiper> */}
         <div className={Style["lower-background"]}></div>
         <div className={Style["header"]}>
-          <h1>
-            <span>
-              Find the perfect{" "}
-              <span className="freelanceItalic">freelance</span> services for
-              your business
-            </span>
-          </h1>
+          <div
+            style={{ padding: "0 50px", marginBottom: 20 }}
+            className="text-center"
+          >
+            <span>Find the perfect freelance services for your business</span>
+          </div>
           <div className={Style["search-bar"]}>
             <form className={Style["formInput"]}>
               <input
@@ -203,16 +153,13 @@ export default function HomeIpad(props) {
                 placeholder="Find Services"
                 onChange={handleChangeInput}
                 value={wordEntered}
+                maxLength={20}
+                required
               />
               {wordEntered !== "" ? (
                 <button
-                  className="buttonBackspace"
+                  className={Style["buttonBackspace"]}
                   type="button"
-                  style={{
-                    border: "none",
-                    outline: "none",
-                    background: "none",
-                  }}
                   onClick={clearInput}
                 >
                   <i className="fas fa-backspace"></i>
@@ -220,17 +167,16 @@ export default function HomeIpad(props) {
               ) : (
                 ""
               )}
-
-              <button
-                onClick={() => {
-                  props.history.push("/danhsachcongviec/" + wordEntered);
-                }}
-                className={`${Style.buttonInput} btn btn-success`}
-                type="submit"
-              >
-                Search
-              </button>
             </form>
+            <button
+              onClick={() => {
+                props.history.push("/danhsachcongviec/" + wordEntered);
+              }}
+              className={`${Style.buttonInput} btn btn-success`}
+              type="submit"
+            >
+              Search
+            </button>
             <ul
               className={
                 filteredData != 0
@@ -241,20 +187,19 @@ export default function HomeIpad(props) {
               {renderCongViec()}
             </ul>
             <div className={Style["popular"]}>
-              <p> Popular:</p>
-
+              <p>Popular :</p>
               <ul>
                 <li>
-                  <a>Website Design</a>
+                  <a className="text-body-2">Website Design</a>
                 </li>
                 <li>
-                  <a>WordPress</a>
+                  <a className="text-body-2">WordPress</a>
                 </li>
                 <li>
-                  <a>Logo Design</a>
+                  <a className="text-body-2">Logo Design</a>
                 </li>
                 <li>
-                  <a>NFT Art</a>
+                  <a className="text-body-2">NFT Art</a>
                 </li>
               </ul>
             </div>
@@ -296,7 +241,7 @@ export default function HomeIpad(props) {
           </li>
         </ul>
       </div>
-      <div className={Style["subcategory"]}>
+      <div className="subcategory">
         <h2 className={Style["title-Subcategory"]}>
           Popular professional services
         </h2>
@@ -305,12 +250,11 @@ export default function HomeIpad(props) {
           style={{ height: "100%", width: "100%", padding: "20px 0" }}
           modules={[Navigation]}
           navigation={true}
-          slidesPerView={3}
-          spaceBetween={20}
+          slidesPerView={1}
         >
           {arrSub.map((prop, index) => {
             return (
-              <SwiperSlide key={index} className="category_iphoneplus">
+              <SwiperSlide key={index} className="rainbow">
                 <div
                   style={{
                     display: "flex",
@@ -323,7 +267,7 @@ export default function HomeIpad(props) {
                   <p
                     style={{
                       color: "white",
-                      fontSize: 13,
+                      fontSize: 16,
                     }}
                   >
                     {prop.brief}
@@ -331,7 +275,7 @@ export default function HomeIpad(props) {
                   <h4
                     style={{
                       color: "white",
-                      fontSize: 15,
+                      fontSize: 20,
                       fontWeight: "bolder",
                     }}
                   >
@@ -347,79 +291,81 @@ export default function HomeIpad(props) {
         </Swiper>
       </div>
       <div className={Style["sellingProposition"]}>
-        <h2 className={Style["sellingPropositionTitle"]}>
-          A whole world of freelance talent at your fingertips
-        </h2>
-        <div>
-          <ul className="row">
-            <li>
-              <h6 className=" d-flex align-items-center">
-                <span className="mr-2">
-                  <i
-                    style={{ color: "lightgreen" }}
-                    class="fas fa-check-circle"
-                  ></i>
-                </span>
-                <span className={Style["span-Content"]}>
-                  The best for every budget
-                </span>
-              </h6>
-              <p className={Style["p-Content"]}>
-                Find high-quality services at every price point. No hourly
-                rates, just project-based pricing.
-              </p>
-            </li>
-            <li>
-              <h6 className="d-flex align-items-center">
-                <span className="mr-2">
-                  <i
-                    style={{ color: "lightgreen" }}
-                    class="fas fa-check-circle"
-                  ></i>
-                </span>
-                <span className={Style["span-Content"]}>
-                  Quality work done quickly
-                </span>
-              </h6>
-              <p className={Style["p-Content"]}>
-                Find the right freelancer to begin working on your project
-                within minutes.
-              </p>
-            </li>
-            <li>
-              <h6 className="d-flex align-items-center">
-                <span className="mr-2">
-                  <i
-                    style={{ color: "lightgreen" }}
-                    class="fas fa-check-circle"
-                  ></i>
-                </span>
-                <span className={Style["span-Content"]}>
-                  Protected payments, every time
-                </span>
-              </h6>
-              <p className={Style["p-Content"]}>
-                Always know what you'll pay upfront. Your payment isn't released
-                until you approve the work.
-              </p>
-            </li>
-            <li>
-              <h6 className="d-flex align-items-center">
-                <span className="mr-2">
-                  <i
-                    style={{ color: "lightgreen" }}
-                    class="fas fa-check-circle"
-                  ></i>
-                </span>
-                <span className={Style["span-Content"]}>24/7 support</span>
-              </h6>
-              <p className={Style["p-Content"]}>
-                Questions? Our round-the-clock support team is available to help
-                anytime, anywhere.
-              </p>
-            </li>
-          </ul>
-          <div style={{ height: 300 }}>
+        <div className="row align-items-center">
+          <div className="col-12  ">
+            <h2 className={Style["sellingPropositionTitle"]}>
+              A whole world of freelance talent at your fingertips
+            </h2>
+            <ul>
+              <li>
+                <h6 className="d-flex align-items-center">
+                  <span className="mr-2">
+                    <i
+                      style={{ color: "lightgreen" }}
+                      class="fas fa-check-circle"
+                    ></i>
+                  </span>
+                  <span style={{ fontSize: 15 }}>
+                    The best for every budget
+                  </span>
+                </h6>
+                <p style={{ color: "#62646a", fontSize: 17 }}>
+                  Find high-quality services at every price point. No hourly
+                  rates, just project-based pricing.
+                </p>
+              </li>
+              <li>
+                <h6 className="d-flex align-items-center">
+                  <span className="mr-2">
+                    <i
+                      style={{ color: "lightgreen" }}
+                      class="fas fa-check-circle"
+                    ></i>
+                  </span>
+                  <span style={{ fontSize: 15 }}>
+                    Quality work done quickly
+                  </span>
+                </h6>
+                <p style={{ color: "#62646a", fontSize: 17 }}>
+                  Find the right freelancer to begin working on your project
+                  within minutes.
+                </p>
+              </li>
+              <li>
+                <h6 className="d-flex align-items-center">
+                  <span className="mr-2">
+                    <i
+                      style={{ color: "lightgreen" }}
+                      class="fas fa-check-circle"
+                    ></i>
+                  </span>
+                  <span style={{ fontSize: 15 }}>
+                    Protected payments, every time
+                  </span>
+                </h6>
+                <p style={{ color: "#62646a", fontSize: 17 }}>
+                  Always know what you'll pay upfront. Your payment isn't
+                  released until you approve the work.
+                </p>
+              </li>
+              <li>
+                <h6 className="d-flex align-items-center">
+                  <span className="mr-2">
+                    <i
+                      style={{ color: "lightgreen" }}
+                      class="fas fa-check-circle"
+                    ></i>
+                  </span>
+                  <span style={{ fontSize: 15 }}>24/7 support</span>
+                </h6>
+                <p style={{ color: "#62646a", fontSize: 17 }}>
+                  Questions? Our round-the-clock support team is available to
+                  help anytime, anywhere.
+                </p>
+              </li>
+            </ul>
+          </div>
+          <div className="col-12">
             <video
               className={Style["videoIntro"]}
               controls

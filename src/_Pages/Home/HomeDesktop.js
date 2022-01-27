@@ -298,7 +298,7 @@ export default function HomeDesktop(props) {
           style={{ height: "100%", width: "100%", padding: "20px 0" }}
           modules={[Navigation]}
           navigation={true}
-          slidesPerView={5}
+          slidesPerView={4}
           spaceBetween={30}
         >
           {arrSub.map((prop, index) => {

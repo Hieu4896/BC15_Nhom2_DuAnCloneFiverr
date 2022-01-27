@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import Style from "./homeFooterIphonePlus.module.css";
-export default function HomeFooterIphonePlus(props) {
+import Style from "./homeFooterIphone.module.css";
+export default function HomeFooterIphone(props) {
   return (
     <div className={Style["footer"]}>
       <div className="dropdown">
@@ -157,7 +157,10 @@ export default function HomeFooterIphonePlus(props) {
         </div>
       </div>
 
-      <div className="d-flex align-items-center flex-column justify-content-center mt-5 w-100">
+      <div
+        style={{ paddingTop: 20 }}
+        className="d-flex align-items-center flex-column justify-content-center w-100"
+      >
         <div className="mb-2">
           <svg
             width="91"

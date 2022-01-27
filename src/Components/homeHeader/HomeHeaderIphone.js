@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import Style from "./homeHeaderIphonePlus.module.css";
-export default function HomeHeaderIphonePlus(props) {
+import Style from "./homeHeaderIphone.module.css";
+export default function HomeHeaderIphone(props) {
   let [dropMenu, setDropMenu] = useState(false);
   return (
     <nav className={Style["navHeader"]}>

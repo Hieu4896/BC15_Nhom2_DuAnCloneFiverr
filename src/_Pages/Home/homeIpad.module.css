@@ -1,9 +1,18 @@
 .hero-background {
   width: 100%;
-  height: 500px;
+  height: 400px;
   position: relative;
 }
-
+.lower-background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 0;
+  background-image: url("../../Assets/Image/AdobeStock_302399784.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .header {
   padding: 100px 0 50px 0;
   max-width: 600px;
@@ -66,6 +75,7 @@
   border-top-right-radius: 10px !important;
   height: 52px;
   padding-left: 20px;
+  background: #144d7e;
 }
 
 .search-bar-panel {
@@ -141,13 +151,15 @@
   border: 1px solid white;
   padding: 5px 10px;
   border-radius: 10px;
+  background: #144d7e;
 }
 
 .trusted-hero {
   margin-top: 20px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 0 50px;
 }
 .trusted-hero p {
   padding-right: 20px;
@@ -196,12 +208,12 @@
   padding: 0;
 }
 .span-Content {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: bolder;
 }
 .p-Content {
   color: #62646a;
-  font-size: 15px;
+  font-size: 16px;
 }
 .videoIntro {
   width: 100%;
@@ -212,29 +224,27 @@
   font-size: 30px;
 }
 .mainCategories {
-  padding: 0 50px;
-  margin-top: 50px;
+  padding: 50px 50px 0 50px;
 }
 .mainCategories ul {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   padding: 0;
   margin: 0;
-  /* justify-content: space-evenly; */
 }
 .mainCategories li {
   display: inline-block;
   text-align: center;
-  width: 10%;
+  width: 15%;
+  margin-right: 10px;
 }
 .mainCategories li a {
   color: black;
   position: relative;
 }
 .mainCategories li a p {
-  font-size: 13px !important;
+  font-size: 15px !important;
 }
 .mainCategories li a::after {
   content: "";
