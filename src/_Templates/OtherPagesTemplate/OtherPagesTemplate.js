@@ -2,7 +2,7 @@ import React from "react";
 
 import { Route } from "react-router-dom";
 import HomeFooter from "../../Components/homeFooter/HomeFooter";
-import HomeHeaderOtherPages from "../../Components/homeHeader/HomeHeaderOtherPages";
+import HomeHeaderOtherPages from "../../Components/otherPagesHeader/HomeHeaderOtherPages";
 
 export const OtherPagesTemplate = (props) => {
   let { Component, path } = props;

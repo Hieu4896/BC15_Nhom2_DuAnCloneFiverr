@@ -4,12 +4,12 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getApiDanhSachCongViecTheoTen } from "../../Redux/Actions/HomeActions/HomeAction";
-import StyleSearchbar from "./otherPageSearchbar.module.css";
-import StyleHeader from "./otherPagesHeader.module.css";
+import StyleSearchbar from "../otherPagesHeader/otherPageSearchbar.module.css";
+import StyleHeader from "../otherPagesHeader/otherPagesHeader.module.css";
 import Style from "../../_Pages/DanhSachCongViec/DanhSachCongViecDesktop.module.css";
 import { getApiTypeJob } from "../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
 import _ from "lodash";
-import "./searchForm.scss";
+import "../homeHeader/searchForm.scss";
 
 export default function DanhSachCongViecHeader(props) {
   let [filteredData, setFilteredData] = useState([]);

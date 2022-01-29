@@ -9,7 +9,7 @@ import StyleHeader from "./otherPagesHeader.module.css";
 import Style from "../../_Pages/DanhSachCongViec/DanhSachCongViecDesktop.module.css";
 import { getApiTypeJob } from "../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
 import _ from "lodash";
-import "./searchForm.scss";
+import "../homeHeader/searchForm.scss";
 import DanhSachCongViecDesktop from "../../_Pages/DanhSachCongViec/DanhSachCongViecDesktop";
 import HomeFooter from "../homeFooter/HomeFooter";
 
