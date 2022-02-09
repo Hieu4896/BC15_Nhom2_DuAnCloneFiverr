@@ -3,17 +3,17 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { getApiDanhSachCongViecTheoTen } from "../../Redux/Actions/HomeActions/HomeAction";
-import StyleSearchbar from "./otherPageSearchbar.module.css";
-import StyleHeader from "./otherPagesHeader.module.css";
-import Style from "../../_Pages/DanhSachCongViec/DanhSachCongViecDesktop.module.css";
-import { getApiTypeJob } from "../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
+import { getApiDanhSachCongViecTheoTen } from "../../../Redux/Actions/HomeActions/HomeAction";
+import StyleSearchbar from "./otherPageSeachbarIpad.module.css";
+import StyleHeader from "./otherPageHeaderIpad.module.css";
+import Style from "./danhSachCongViecIpad.module.css";
+import { getApiTypeJob } from "../../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
 import _ from "lodash";
-import "../homeHeader/searchForm.scss";
-import DanhSachCongViecDesktop from "../../_Pages/DanhSachCongViec/DanhSachCongViecDesktop";
-import HomeFooter from "../homeFooter/HomeFooter";
+import StyleSearchForm from "./searchFormIpad.module.scss";
+import HomeFooterIpad from "../../homeFooter/HomeFooterIpad";
+import DanhSachCongViecIpad from "./DanhSachCongViecIpad";
 
-export default function HomeHeaderOtherPages(props) {
+export default function OtherPageIpad(props) {
   const [keyword, setKeyword] = useState(props.match.params.typejob);
   let [filteredData, setFilteredData] = useState([]);
   let [wordEntered, setWordEntered] = useState("");
@@ -80,7 +80,7 @@ export default function HomeHeaderOtherPages(props) {
     return _.uniqBy(typeJob, "name").map((typeJob, index) => {
       if (typeJob.subTypeJobs.length > 0) {
         return (
-          <li key={index} className={Style["typeJob"]}>
+          <li key={index} className={`${Style.typeJob} col-4 p-0 mb-2`}>
             <NavLink to={`/loaicongviec/${typeJob._id}`}>
               {typeJob.name}
             </NavLink>
@@ -116,14 +116,14 @@ export default function HomeHeaderOtherPages(props) {
     <div>
       <nav className={StyleHeader["navHeader"]}>
         <div className="row align-items-baseline justify-content-between">
-          <label className="labelHeader col-2">
+          <label className="labelHeader col-3">
             <NavLink to="/">
               <span className={StyleHeader["fiverChange"]}>fiverr</span>
               <span className="docChange">.</span>
             </NavLink>
           </label>
           <div className="col-6 p-0 m-0" style={{ height: 50 }}>
-            <form className="formSearch">
+            <form className={StyleSearchForm["formSearch"]}>
               <input
                 type="search"
                 autofocus
@@ -133,11 +133,7 @@ export default function HomeHeaderOtherPages(props) {
                 value={wordEntered}
                 size={20}
               />
-              {/* {wordEntered !== "" ? (
-                <i onClick={clearInput} className="fas fa-window-close"></i>
-              ) : (
-                ""
-              )} */}
+
               <button
                 type="submit"
                 onClick={() => {
@@ -158,17 +154,7 @@ export default function HomeHeaderOtherPages(props) {
               {renderCongViec()}
             </ul>
           </div>
-          <ul className="ulHeader col-4 d-flex justify-content-between">
-            <li className="liHeader">
-              <NavLink className={StyleHeader["aChange"]} to="/">
-                Become a Seller
-              </NavLink>
-            </li>
-            <li className="liHeader">
-              <NavLink className={StyleHeader["aChange"]} to="/">
-                Sign in
-              </NavLink>
-            </li>
+          <ul className="ulHeader col-2 d-flex justify-content-between">
             <li className="liHeader">
               <NavLink className={StyleHeader["joinStyle"]} to="/">
                 Join
@@ -188,22 +174,14 @@ export default function HomeHeaderOtherPages(props) {
               width: "100%",
             }}
           >
-            <NavLink
-              to="/"
-              style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "space-between",
-                color: "#62646a",
-              }}
-            >
+            <NavLink to="/" className="row m-0 w-100">
               {renderTypejob()}
             </NavLink>
           </ul>
         </div>
       </div>
-      <DanhSachCongViecDesktop keyWord={keyword} wordParams={wordEntered} />
-      <HomeFooter />
+      <DanhSachCongViecIpad keyWord={keyword} wordParams={wordEntered} />
+      <HomeFooterIpad />
     </div>
   );
 }

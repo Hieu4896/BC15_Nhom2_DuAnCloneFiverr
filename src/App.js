@@ -5,12 +5,14 @@ import "./App.css";
 import HomeHeader from "./Components/homeHeader/HomeHeader";
 import { HomeTemplate } from "./_Templates/HomeTemplate/HomeTemplate";
 import HomeDesktop from "./_Pages/Home/HomeDesktop";
-import HomeHeaderOtherPages from "./Components/otherPagesHeader/HomeHeaderOtherPages";
 import LoaiCongViecDesktop from "./_Pages/LoaiCongViec/LoaiCongViecDesktop";
 import { DanhSachCongViecTemPlate } from "./_Templates/DanhSachCongViecTemplate/DanhSachCongViecTemplate";
 import HomeIpad from "./_Pages/Home/HomeIpad";
 import HomeIphonePlus from "./_Pages/Home/HomeIphonePlus";
 import HomeIphone from "./_Pages/Home/HomeIphone";
+import HomeHeaderOtherPages from "./Components/otherPagesHeader/otherPagesHeaderDesktop/HomeHeaderOtherPages";
+import { OtherPagesTemplate } from "./_Templates/OtherPagesTemplate/OtherPagesTemplate";
+import OtherPageIpad from "./Components/otherPagesHeader/otherPagesIpad/OtherPageIpad";
 export const history = createBrowserHistory();
 function App() {
   return (
@@ -26,10 +28,11 @@ function App() {
         />
 
         <Route exact path="/homeheader" component={HomeHeader} />
-        <Route
+        <OtherPagesTemplate
           exact
           path="/danhsachcongviec/:typejob"
-          component={HomeHeaderOtherPages}
+          Component={HomeHeaderOtherPages}
+          IpadComponent={OtherPageIpad}
         />
         <DanhSachCongViecTemPlate
           exact
