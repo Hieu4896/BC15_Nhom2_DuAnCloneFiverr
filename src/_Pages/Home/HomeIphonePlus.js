@@ -170,7 +170,7 @@ export default function HomeIphonePlus(props) {
                 props.history.push("/danhsachcongviec/" + wordEntered);
               }}
               className={`${Style.buttonInput} btn btn-success`}
-              type="submit"
+              type="button"
             >
               Search
             </button>

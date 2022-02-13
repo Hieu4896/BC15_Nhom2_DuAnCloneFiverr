@@ -14,6 +14,7 @@ import HomeHeaderOtherPages from "./Components/otherPagesHeader/otherPagesHeader
 import { OtherPagesTemplate } from "./_Templates/OtherPagesTemplate/OtherPagesTemplate";
 import OtherPageIpad from "./Components/otherPagesHeader/otherPagesIpad/OtherPageIpad";
 import OtherPageIphonePlus from "./Components/otherPagesHeader/otherPagesIphonePlus/OtherPageIphonePlus";
+import OtherPageIphone from "./Components/otherPagesHeader/otherPagesIphone/OtherPageIphone";
 export const history = createBrowserHistory();
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           Component={HomeHeaderOtherPages}
           IpadComponent={OtherPageIpad}
           IphonePlusComponent={OtherPageIphonePlus}
+          IphoneComponent={OtherPageIphone}
         />
         <DanhSachCongViecTemPlate
           exact

@@ -28,7 +28,7 @@
 
 .labelHeader {
   margin: 0 !important;
-  font-size: 25px;
+  font-size: 35px;
   line-height: 50px;
   margin-right: auto;
 }
@@ -40,11 +40,11 @@
 }
 
 .ulHeader .liHeader {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 600;
   line-height: 50px;
   display: inline-block;
-  margin-left: 20px;
+  margin-left: 15px;
 }
 .singinStyle {
   color: black;

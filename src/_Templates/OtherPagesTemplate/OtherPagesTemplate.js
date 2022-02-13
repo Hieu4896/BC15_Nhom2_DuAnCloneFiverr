@@ -56,10 +56,20 @@ export const OtherPagesTemplate = (props) => {
           <props.IphonePlusComponent {...propsRoute} />
         </div>
       );
+    } else if (
+      widthHeight.width >= 375 &&
+      widthHeight.width < 414 &&
+      props.IphoneComponent
+    ) {
+      return (
+        <div>
+          <props.IphoneComponent {...propsRoute} />
+        </div>
+      );
     } else {
       return (
         <div>
-          <HomeHeaderOtherPages {...propsRoute} />
+          <Component {...propsRoute} />
         </div>
       );
     }
