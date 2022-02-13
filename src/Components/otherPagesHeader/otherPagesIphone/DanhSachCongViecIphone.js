@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import Style from "./danhSachCongViecIphonePlus.module.css";
+import Style from "./danhSachCongViecIphone.module.css";
 import { getApiDanhSachCongViec } from "../../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
 import _ from "lodash";
 import { useState } from "react";
@@ -215,7 +215,7 @@ export default function DanhSachCongViecIphone(props) {
     <div style={{ position: "relative" }}>
       {loading ? (
         <div style={{ padding: "5px 50px" }}>
-          <h1 style={{ fontSize: 30 }}>Results for "{keyWord}"</h1>
+          <h1 style={{ fontSize: 26 }}>Results for "{keyWord}"</h1>
           <div>
             {" "}
             <span style={{ color: "teal", fontSize: 20 }}>

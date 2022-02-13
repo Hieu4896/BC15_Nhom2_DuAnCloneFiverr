@@ -10,8 +10,8 @@ import Style from "./danhSachCongViecIphone.module.css";
 import { getApiTypeJob } from "../../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
 import _ from "lodash";
 import StyleSearchForm from "./searchFormIphone.module.scss";
-import DanhSachCongViecIphone from "./danhSachCongViecIphone.module.css";
 import HomeFooterIphone from "../../homeFooter/HomeFooterIphone";
+import DanhSachCongViecIphone from "./DanhSachCongViecIphone";
 
 export default function OtherPageIphone(props) {
   const [keyword, setKeyword] = useState(props.match.params.typejob);

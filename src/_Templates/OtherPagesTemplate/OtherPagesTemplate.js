@@ -1,10 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { Route } from "react-router-dom";
-import HomeFooter from "../../Components/homeFooter/HomeFooter";
-import HomeFooterIpad from "../../Components/homeFooter/HomeFooterIpad";
-import HomeHeaderOtherPages from "../../Components/otherPagesHeader/otherPagesHeaderDesktop/HomeHeaderOtherPages";
-import OtherPageIpad from "../../Components/otherPagesHeader/otherPagesIpad/OtherPageIpad";
 
 export const OtherPagesTemplate = (props) => {
   const [widthHeight, setwidthHeight] = useState({
@@ -56,17 +52,13 @@ export const OtherPagesTemplate = (props) => {
           <props.IphonePlusComponent {...propsRoute} />
         </div>
       );
-    } else if (
-      widthHeight.width >= 375 &&
-      widthHeight.width < 414 &&
-      props.IphoneComponent
-    ) {
+    } else if (widthHeight.width < 414 && props.IphoneComponent) {
       return (
         <div>
           <props.IphoneComponent {...propsRoute} />
         </div>
       );
-    } else {
+    } else if (widthHeight.width >= 1200) {
       return (
         <div>
           <Component {...propsRoute} />
