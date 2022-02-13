@@ -2,12 +2,12 @@ import React from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import Style from "./danhSachCongViecIpad.module.css";
+import Style from "./danhSachCongViecIphonePlus.module.css";
 import { getApiDanhSachCongViec } from "../../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
 import _ from "lodash";
 import { useState } from "react";
 
-export default function DanhSachCongViecIpad(props) {
+export default function DanhSachCongViecIphonePlus(props) {
   const [keyWord, setKeyword] = useState(props.keyWord);
   let { danhSachCongViec } = useSelector(
     (rootReducer) => rootReducer.DanhSachCongViecReducer
@@ -15,9 +15,9 @@ export default function DanhSachCongViecIpad(props) {
   let Pages = [];
 
   let [currentPage, setcurrentPage] = useState(1);
-  let [itemPerPage, setitemPerPage] = useState(12);
-  let [pageNumberLimit, setpageNumberLimit] = useState(5);
-  let [maxpageNumberLimit, setmaxpageNumberLimit] = useState(5);
+  let [itemPerPage, setitemPerPage] = useState(6);
+  let [pageNumberLimit, setpageNumberLimit] = useState(3);
+  let [maxpageNumberLimit, setmaxpageNumberLimit] = useState(3);
   let [minpageNumberLimit, setminpageNumberLimit] = useState(0);
   let indexOfLastItem = currentPage * itemPerPage; //4
   let indexOfFirstItem = indexOfLastItem - itemPerPage; //0
@@ -34,28 +34,28 @@ export default function DanhSachCongViecIpad(props) {
       setlocalSellers(null);
       setonlineSellers(null);
       setcurrentPage(1);
-      setmaxpageNumberLimit(5);
+      setmaxpageNumberLimit(3);
       setminpageNumberLimit(0);
     } else if (newData === "localSellers") {
       setlocalSellers(true);
       setproServices(null);
       setonlineSellers(null);
       setcurrentPage(1);
-      setmaxpageNumberLimit(5);
+      setmaxpageNumberLimit(3);
       setminpageNumberLimit(0);
     } else if (newData === "onlineSellers") {
       setonlineSellers(true);
       setproServices(null);
       setlocalSellers(null);
       setcurrentPage(1);
-      setmaxpageNumberLimit(5);
+      setmaxpageNumberLimit(3);
       setminpageNumberLimit(0);
     } else {
       setonlineSellers(false);
       setproServices(false);
       setlocalSellers(false);
       setcurrentPage(1);
-      setmaxpageNumberLimit(5);
+      setmaxpageNumberLimit(3);
       setminpageNumberLimit(0);
     }
     setdata(newData);
@@ -83,7 +83,7 @@ export default function DanhSachCongViecIpad(props) {
   const renderDanhSachCongViec = () => {
     return currentItem.map((job, index) => {
       return (
-        <div className="col-4 mb-3 " key={index}>
+        <div className="col-12 mb-3 " key={index}>
           <img src={job.image} alt="" style={{ width: "100%" }} />
           <div
             className="text-left"
@@ -222,7 +222,7 @@ export default function DanhSachCongViecIpad(props) {
               {newFilter.length} services available
             </span>
             <form style={{ width: "100%" }}>
-              <h4>Sort by :</h4>
+              <h4 style={{ width: "100%" }}>Sort by :</h4>
               <select
                 name="cars"
                 className="custom-select"

@@ -115,47 +115,20 @@ export default function OtherPageIpad(props) {
   return (
     <div>
       <nav className={StyleHeader["navHeader"]}>
-        <div className="row align-items-baseline justify-content-between">
-          <label className="labelHeader col-3">
+        <div className="d-flex align-items-baseline justify-content-between">
+          <label className="labelHeader">
             <NavLink to="/">
               <span className={StyleHeader["fiverChange"]}>fiverr</span>
               <span className="docChange">.</span>
             </NavLink>
           </label>
-          <div className="col-6 p-0 m-0" style={{ height: 50 }}>
-            <form className={StyleSearchForm["formSearch"]}>
-              <input
-                type="search"
-                autofocus
-                required
-                placeholder={placeHolder}
-                onChange={handleChangeInput}
-                value={wordEntered}
-                size={20}
-              />
-
-              <button
-                type="submit"
-                onClick={() => {
-                  props.history.push("/danhsachcongviec/" + wordEntered);
-                }}
-              >
-                Go
-              </button>
-            </form>
-            <ul
-              style={{ listStyle: "none" }}
-              className={
-                filteredData != 0
-                  ? StyleSearchbar["search-bar-panel-active"]
-                  : StyleSearchbar["search-bar-panel"]
-              }
-            >
-              {renderCongViec()}
-            </ul>
-          </div>
-          <ul className="ulHeader col-2 d-flex justify-content-between">
-            <li className="liHeader">
+          <ul className={`${StyleHeader.ulHeader}`}>
+            <li className={`${StyleHeader.liHeader}`}>
+              <NavLink className={StyleHeader["singinStyle"]} to="/">
+                Sign in
+              </NavLink>
+            </li>
+            <li className={`${StyleHeader.liHeader}`}>
               <NavLink className={StyleHeader["joinStyle"]} to="/">
                 Join
               </NavLink>
@@ -163,7 +136,54 @@ export default function OtherPageIpad(props) {
           </ul>
         </div>
       </nav>
+      <div
+        style={{
+          height: 50,
+          padding: "0 50px",
+          margin: "20px 0",
+          width: "100%",
+        }}
+      >
+        <form className={StyleSearchForm["formSearch"]}>
+          <input
+            type="search"
+            autofocus
+            required
+            placeholder={placeHolder}
+            onChange={handleChangeInput}
+            value={wordEntered}
+            size={20}
+          />
 
+          <button
+            type="submit"
+            onClick={() => {
+              props.history.push("/danhsachcongviec/" + wordEntered);
+            }}
+          >
+            Go
+          </button>
+        </form>
+      </div>
+      <div
+        style={{
+          width: "100%",
+          padding: "0 50px",
+          position: "absolute",
+          zIndex: "3",
+        }}
+      >
+        {" "}
+        <ul
+          className={
+            filteredData != 0
+              ? StyleSearchbar["search-bar-panel-active"]
+              : StyleSearchbar["search-bar-panel"]
+          }
+        >
+          {renderCongViec()}
+        </ul>
+      </div>
       <div style={{ padding: "5px 50px" }}>
         <div style={{ padding: 0, width: "100%" }}>
           <ul

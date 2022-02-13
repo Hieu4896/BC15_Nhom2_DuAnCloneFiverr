@@ -43,7 +43,17 @@ export const OtherPagesTemplate = (props) => {
     ) {
       return (
         <div>
-          <OtherPageIpad {...propsRoute} />
+          <props.IpadComponent {...propsRoute} />
+        </div>
+      );
+    } else if (
+      widthHeight.width >= 414 &&
+      widthHeight.width < 768 &&
+      props.IphonePlusComponent
+    ) {
+      return (
+        <div>
+          <props.IphonePlusComponent {...propsRoute} />
         </div>
       );
     } else {
