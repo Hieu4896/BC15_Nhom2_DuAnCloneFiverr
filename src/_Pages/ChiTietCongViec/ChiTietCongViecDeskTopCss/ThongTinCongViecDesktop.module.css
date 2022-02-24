@@ -1,0 +1,21 @@
+/* .inforJob_Div {
+  border: 3px solid teal;
+} */
+.inforImage {
+  width: 100%;
+  height: 70%;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+.services_available {
+  color: teal;
+  opacity: 1;
+  font-style: italic;
+  background: black;
+  padding: 0 10px;
+}
+
+.services_unavailable {
+  opacity: 0.3;
+  color: grey;
+}

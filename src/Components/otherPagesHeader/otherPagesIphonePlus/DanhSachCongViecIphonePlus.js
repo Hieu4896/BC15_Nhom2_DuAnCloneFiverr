@@ -254,23 +254,29 @@ export default function DanhSachCongViecIphonePlus(props) {
           >
             <div className="row">{renderDanhSachCongViec()}</div>
 
-            <ul className={Style["PageNumber"]}>
-              <button
-                disabled={currentPage == Pages[0] ? true : false}
-                onClick={handlePrevButton}
-              >
-                Prev
-              </button>
+            {currentItem.length >= 1 ? (
+              <ul className={Style["PageNumber"]}>
+                <button
+                  disabled={currentPage == Pages[0] ? true : false}
+                  onClick={handlePrevButton}
+                >
+                  Prev
+                </button>
 
-              {renderPagesNumber()}
+                {renderPagesNumber()}
 
-              <button
-                disabled={currentPage == Pages[Pages.length - 1] ? true : false}
-                onClick={handleNextButton}
-              >
-                Next
-              </button>
-            </ul>
+                <button
+                  disabled={
+                    currentPage == Pages[Pages.length - 1] ? true : false
+                  }
+                  onClick={handleNextButton}
+                >
+                  Next
+                </button>
+              </ul>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       ) : (

@@ -75,7 +75,7 @@ export const HomeTemplate = (props) => {
           <HomeFooterIpad {...propsRoute} />
         </div>
       );
-    } else if (widthHeight.width >= 1200) {
+    } else {
       return (
         <div>
           <HomeHeader {...propsRoute} />

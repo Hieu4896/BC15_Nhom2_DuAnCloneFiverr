@@ -28,8 +28,7 @@
 
 .labelHeader {
   margin: 0 !important;
-  font-size: 25px;
-  line-height: 50px;
+  font-size: 30px;
   margin-right: auto;
 }
 
@@ -44,7 +43,7 @@
   font-weight: 600;
   line-height: 50px;
   display: inline-block;
-  margin-left: 20px;
+  margin-left: 10px;
 }
 .singinStyle {
   color: black;

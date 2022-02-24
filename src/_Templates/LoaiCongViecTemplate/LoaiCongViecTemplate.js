@@ -1,9 +1,18 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React from "react";
+
 import { Route } from "react-router-dom";
 import HomeFooter from "../../Components/homeFooter/HomeFooter";
 import DanhSachCongViecHeader from "../../_Pages/LoaiCongViec/DanhSachCongViecHeader";
-export const OtherPagesTemplate = (props) => {
+import { useEffect } from "react";
+import { useState } from "react";
+import HomeFooterIpad from "../../Components/homeFooter/HomeFooterIpad";
+import HomeFooterIphonePlus from "../../Components/homeFooter/HomeFooterIphonePlus";
+import LoaiCongViecHeaderIpad from "../../Components/loaiCongViecIpad/loaiCongViecHeaderIpad/LoaiCongViecHeaderIpad";
+import LoaiCongViecHeaderIphonePlus from "../../Components/loaiCongViecIphonePlus/LoaiCongViecHeaderIphonePlus";
+import HomeFooterIphone from "../../Components/homeFooter/HomeFooterIphone";
+import LoaiCongViecHeaderIphone from "../../Components/loaiCongViecIphone/LoaiCongViecHeaderIphone";
+
+export const LoaiCongViecTemplate = (props) => {
   const [widthHeight, setwidthHeight] = useState({
     // độ phân giải màn hình mặc định
     width: window.innerWidth,
@@ -40,7 +49,9 @@ export const OtherPagesTemplate = (props) => {
     ) {
       return (
         <div>
+          <LoaiCongViecHeaderIpad {...propsRoute} />
           <props.IpadComponent {...propsRoute} />
+          <HomeFooterIpad {...propsRoute} />
         </div>
       );
     } else if (
@@ -50,13 +61,17 @@ export const OtherPagesTemplate = (props) => {
     ) {
       return (
         <div>
+          <LoaiCongViecHeaderIphonePlus {...propsRoute} />
           <props.IphonePlusComponent {...propsRoute} />
+          <HomeFooterIphonePlus {...propsRoute} />
         </div>
       );
     } else if (widthHeight.width < 414 && props.IphoneComponent) {
       return (
         <div>
+          <LoaiCongViecHeaderIphone {...propsRoute} />
           <props.IphoneComponent {...propsRoute} />
+          <HomeFooterIphone {...propsRoute} />
         </div>
       );
     } else {
@@ -64,7 +79,7 @@ export const OtherPagesTemplate = (props) => {
         <div>
           <DanhSachCongViecHeader {...propsRoute} />
           <Component {...propsRoute} />
-          <HomeFooter {...propsRoute} />
+          <HomeFooter />
         </div>
       );
     }

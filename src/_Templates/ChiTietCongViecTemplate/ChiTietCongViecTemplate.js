@@ -3,7 +3,8 @@ import { useState } from "react";
 import { Route } from "react-router-dom";
 import HomeFooter from "../../Components/homeFooter/HomeFooter";
 import DanhSachCongViecHeader from "../../_Pages/LoaiCongViec/DanhSachCongViecHeader";
-export const OtherPagesTemplate = (props) => {
+
+export const ChiTietCongViecTemplate = (props) => {
   const [widthHeight, setwidthHeight] = useState({
     // độ phân giải màn hình mặc định
     width: window.innerWidth,
@@ -33,33 +34,7 @@ export const OtherPagesTemplate = (props) => {
   }, []);
   let { Component, path } = props;
   const renderComponent = (propsRoute) => {
-    if (
-      widthHeight.width >= 768 &&
-      widthHeight.width <= 1200 &&
-      props.IpadComponent
-    ) {
-      return (
-        <div>
-          <props.IpadComponent {...propsRoute} />
-        </div>
-      );
-    } else if (
-      widthHeight.width >= 414 &&
-      widthHeight.width < 768 &&
-      props.IphonePlusComponent
-    ) {
-      return (
-        <div>
-          <props.IphonePlusComponent {...propsRoute} />
-        </div>
-      );
-    } else if (widthHeight.width < 414 && props.IphoneComponent) {
-      return (
-        <div>
-          <props.IphoneComponent {...propsRoute} />
-        </div>
-      );
-    } else {
+    if (widthHeight.width > 1200 && Component) {
       return (
         <div>
           <DanhSachCongViecHeader {...propsRoute} />
@@ -71,6 +46,7 @@ export const OtherPagesTemplate = (props) => {
   };
   return (
     <Route
+      exact
       path={path}
       render={(propsRoute) => {
         return <div>{renderComponent(propsRoute)}</div>;

@@ -6,7 +6,7 @@ import HomeHeader from "./Components/homeHeader/HomeHeader";
 import { HomeTemplate } from "./_Templates/HomeTemplate/HomeTemplate";
 import HomeDesktop from "./_Pages/Home/HomeDesktop";
 import LoaiCongViecDesktop from "./_Pages/LoaiCongViec/LoaiCongViecDesktop";
-import { DanhSachCongViecTemPlate } from "./_Templates/DanhSachCongViecTemplate/DanhSachCongViecTemplate";
+import { LoaiCongViecTemplate } from "./_Templates/LoaiCongViecTemplate/LoaiCongViecTemplate";
 import HomeIpad from "./_Pages/Home/HomeIpad";
 import HomeIphonePlus from "./_Pages/Home/HomeIphonePlus";
 import HomeIphone from "./_Pages/Home/HomeIphone";
@@ -15,6 +15,12 @@ import { OtherPagesTemplate } from "./_Templates/OtherPagesTemplate/OtherPagesTe
 import OtherPageIpad from "./Components/otherPagesHeader/otherPagesIpad/OtherPageIpad";
 import OtherPageIphonePlus from "./Components/otherPagesHeader/otherPagesIphonePlus/OtherPageIphonePlus";
 import OtherPageIphone from "./Components/otherPagesHeader/otherPagesIphone/OtherPageIphone";
+import ChiTietCongViecDesktop from "./_Pages/ChiTietCongViec/ChiTietCongViecDesktop/ChiTietCongViecDesktop";
+import { ChiTietCongViecTemplate } from "./_Templates/ChiTietCongViecTemplate/ChiTietCongViecTemplate";
+import LoaiCongViecIpad from "./Components/loaiCongViecIpad/loaiCongViecHeaderIpad/LoaiCongViecIpad";
+import LoaiCongViecIphonePlus from "./Components/loaiCongViecIphonePlus/LoaiCongViecIphonePlus";
+import LoaiCongViecIphone from "./Components/loaiCongViecIphone/LoaiCongViecIphone";
+import DanhSachCongViecDesktop from "./_Pages/DanhSachCongViec/DanhSachCongViecDesktop";
 export const history = createBrowserHistory();
 function App() {
   return (
@@ -33,15 +39,23 @@ function App() {
         <OtherPagesTemplate
           exact
           path="/danhsachcongviec/:typejob"
-          Component={HomeHeaderOtherPages}
+          Component={DanhSachCongViecDesktop}
           IpadComponent={OtherPageIpad}
           IphonePlusComponent={OtherPageIphonePlus}
           IphoneComponent={OtherPageIphone}
         />
-        <DanhSachCongViecTemPlate
+        <LoaiCongViecTemplate
           exact
           path="/loaicongviec/:subtypejob"
           Component={LoaiCongViecDesktop}
+          IpadComponent={LoaiCongViecIpad}
+          IphonePlusComponent={LoaiCongViecIphonePlus}
+          IphoneComponent={LoaiCongViecIphone}
+        />
+        <ChiTietCongViecTemplate
+          exact
+          path="/chitietcongviec/:idjob"
+          Component={ChiTietCongViecDesktop}
         />
         <HomeTemplate
           exact
