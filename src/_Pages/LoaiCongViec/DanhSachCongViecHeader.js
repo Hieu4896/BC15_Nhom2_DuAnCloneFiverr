@@ -24,11 +24,9 @@ export default function DanhSachCongViecHeader(props) {
   let dispatch = useDispatch();
   useEffect(() => {
     const action = getApiDanhSachCongViecTheoTen();
-    dispatch(action);
-  }, []);
-  useEffect(() => {
     const actionTypeJob = getApiTypeJob();
     dispatch(actionTypeJob);
+    dispatch(action);
   }, []);
 
   const handleChangeInput = (event) => {

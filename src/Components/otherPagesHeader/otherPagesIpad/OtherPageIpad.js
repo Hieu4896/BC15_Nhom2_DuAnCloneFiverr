@@ -201,7 +201,7 @@ export default function OtherPageIpad(props) {
         </div>
       </div>
       <DanhSachCongViecIpad keyWord={keyword} wordParams={wordEntered} />
-      <HomeFooterIpad />
+      {/* <HomeFooterIpad /> */}
     </div>
   );
 }

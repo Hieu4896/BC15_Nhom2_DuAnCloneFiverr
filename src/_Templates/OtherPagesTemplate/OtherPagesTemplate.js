@@ -64,7 +64,7 @@ export const OtherPagesTemplate = (props) => {
         <div>
           <DanhSachCongViecHeader {...propsRoute} />
           <Component {...propsRoute} />
-          <HomeFooter {...propsRoute} />
+          {/* <HomeFooter {...propsRoute} /> */}
         </div>
       );
     }

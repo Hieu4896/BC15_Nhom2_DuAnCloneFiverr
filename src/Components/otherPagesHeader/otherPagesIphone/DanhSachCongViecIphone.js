@@ -3,13 +3,17 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import Style from "./danhSachCongViecIphone.module.css";
-import { getApiDanhSachCongViec } from "../../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
+import {
+  getApiDanhSachCongViec,
+  setStateKeyWord,
+} from "../../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
 import _ from "lodash";
 import { useState } from "react";
+import HomeFooterIphone from "../../homeFooter/HomeFooterIphone";
 
 export default function DanhSachCongViecIphone(props) {
   const [keyWord, setKeyword] = useState(props.keyWord);
-  let { danhSachCongViec } = useSelector(
+  let { danhSachCongViec, stateKeyWord } = useSelector(
     (rootReducer) => rootReducer.DanhSachCongViecReducer
   );
   let Pages = [];
@@ -67,7 +71,7 @@ export default function DanhSachCongViecIphone(props) {
       value.localSellers === localSellers ||
       value.proServices === proServices
     ) {
-      return value.name.toLowerCase().includes(keyWord.toLowerCase());
+      return value.name.toLowerCase().includes(stateKeyWord.toLowerCase());
     }
   });
   let currentItem = newFilter.slice(indexOfFirstItem, indexOfLastItem);
@@ -201,6 +205,8 @@ export default function DanhSachCongViecIphone(props) {
   let dispatch = useDispatch();
   useEffect(() => {
     let timeOut = setTimeout(() => {
+      const setNewKeyWord = setStateKeyWord(keyWord);
+      dispatch(setNewKeyWord);
       const actionDanhSachCongViec = getApiDanhSachCongViec();
       dispatch(actionDanhSachCongViec);
       setLoading(true);
@@ -210,74 +216,157 @@ export default function DanhSachCongViecIphone(props) {
       clearTimeout(timeOut);
       window.removeEventListener("scroll", toggleBackToTop);
     };
-  }, []);
+  }, [keyWord]);
+  // return (
+  //   <div style={{ position: "relative" }}>
+  //     {loading ? (
+  //       <div style={{ padding: "5px 50px" }}>
+  //         <h1 style={{ fontSize: 26 }}>Results for "{stateKeyWord}"</h1>
+  //         <div>
+  //           {" "}
+  //           <span style={{ color: "teal", fontSize: 20 }}>
+  //             {newFilter.length} services available
+  //           </span>
+  //           <form style={{ width: "100%" }}>
+  //             <h4 style={{ width: "100%" }}>Sort by :</h4>
+  //             <select
+  //               name="cars"
+  //               className="custom-select"
+  //               value={data}
+  //               onChange={(e) => {
+  //                 handleDataChange(e.target.value);
+  //               }}
+  //             >
+  //               <option id="default" value="default">
+  //                 default
+  //               </option>
+  //               <option id="proServices" value="proServices">
+  //                 proServices
+  //               </option>
+  //               <option id="localSellers" value="localSellers">
+  //                 localSellers
+  //               </option>
+  //               <option id="onlineSellers" value="onlineSellers">
+  //                 onlineSellers
+  //               </option>
+  //             </select>
+  //           </form>
+  //         </div>
+
+  //         <div
+  //           style={{
+  //             padding: "20px 0",
+  //           }}
+  //         >
+  //           <div className="row">{renderDanhSachCongViec()}</div>
+
+  //           {currentItem.length >= 1 ? (
+  //             <ul className={Style["PageNumber"]}>
+  //               <button
+  //                 disabled={currentPage == Pages[0] ? true : false}
+  //                 onClick={handlePrevButton}
+  //               >
+  //                 Prev
+  //               </button>
+
+  //               {renderPagesNumber()}
+
+  //               <button
+  //                 disabled={
+  //                   currentPage == Pages[Pages.length - 1] ? true : false
+  //                 }
+  //                 onClick={handleNextButton}
+  //               >
+  //                 Next
+  //               </button>
+  //             </ul>
+  //           ) : (
+  //             ""
+  //           )}
+  //         </div>
+  //       </div>
+  //     ) : (
+  //       <div
+  //         style={{ position: "absolute", right: "50%" }}
+  //         className="spinner-grow text-success"
+  //         role="status"
+  //       >
+  //         <span className="sr-only text-success">Loading...</span>
+  //       </div>
+  //     )}
+  //   </div>
+  // );
   return (
-    <div style={{ position: "relative" }}>
-      {loading ? (
-        <div style={{ padding: "5px 50px" }}>
-          <h1 style={{ fontSize: 26 }}>Results for "{keyWord}"</h1>
-          <div>
-            {" "}
-            <span style={{ color: "teal", fontSize: 20 }}>
-              {newFilter.length} services available
-            </span>
-            <form style={{ width: "100%" }}>
-              <h4 style={{ width: "100%" }}>Sort by :</h4>
-              <select
-                name="cars"
-                className="custom-select"
-                value={data}
-                onChange={(e) => {
-                  handleDataChange(e.target.value);
+    <div>
+      {loading && keyWord == stateKeyWord ? (
+        <div>
+          <div style={{ position: "relative" }}>
+            <div style={{ padding: "5px 50px" }}>
+              <h1 style={{ fontSize: 26 }}>Results for "{stateKeyWord}"</h1>
+              <div>
+                {" "}
+                <span style={{ color: "teal", fontSize: 20 }}>
+                  {newFilter.length} services available
+                </span>
+                <form style={{ width: "100%" }}>
+                  <h4 style={{ width: "100%" }}>Sort by :</h4>
+                  <select
+                    name="cars"
+                    className="custom-select"
+                    value={data}
+                    onChange={(e) => {
+                      handleDataChange(e.target.value);
+                    }}
+                  >
+                    <option id="default" value="default">
+                      default
+                    </option>
+                    <option id="proServices" value="proServices">
+                      proServices
+                    </option>
+                    <option id="localSellers" value="localSellers">
+                      localSellers
+                    </option>
+                    <option id="onlineSellers" value="onlineSellers">
+                      onlineSellers
+                    </option>
+                  </select>
+                </form>
+              </div>
+
+              <div
+                style={{
+                  padding: "20px 0",
                 }}
               >
-                <option id="default" value="default">
-                  default
-                </option>
-                <option id="proServices" value="proServices">
-                  proServices
-                </option>
-                <option id="localSellers" value="localSellers">
-                  localSellers
-                </option>
-                <option id="onlineSellers" value="onlineSellers">
-                  onlineSellers
-                </option>
-              </select>
-            </form>
+                <div className="row">{renderDanhSachCongViec()}</div>
+                {currentItem.length >= 1 ? (
+                  <ul className={Style["PageNumber"]}>
+                    <button
+                      disabled={currentPage == Pages[0] ? true : false}
+                      onClick={handlePrevButton}
+                    >
+                      Prev
+                    </button>
+
+                    {renderPagesNumber()}
+
+                    <button
+                      disabled={
+                        currentPage == Pages[Pages.length - 1] ? true : false
+                      }
+                      onClick={handleNextButton}
+                    >
+                      Next
+                    </button>
+                  </ul>
+                ) : (
+                  ""
+                )}
+              </div>
+            </div>
           </div>
-
-          <div
-            style={{
-              padding: "20px 0",
-            }}
-          >
-            <div className="row">{renderDanhSachCongViec()}</div>
-
-            {currentItem.length >= 1 ? (
-              <ul className={Style["PageNumber"]}>
-                <button
-                  disabled={currentPage == Pages[0] ? true : false}
-                  onClick={handlePrevButton}
-                >
-                  Prev
-                </button>
-
-                {renderPagesNumber()}
-
-                <button
-                  disabled={
-                    currentPage == Pages[Pages.length - 1] ? true : false
-                  }
-                  onClick={handleNextButton}
-                >
-                  Next
-                </button>
-              </ul>
-            ) : (
-              ""
-            )}
-          </div>
+          <HomeFooterIphone />
         </div>
       ) : (
         <div

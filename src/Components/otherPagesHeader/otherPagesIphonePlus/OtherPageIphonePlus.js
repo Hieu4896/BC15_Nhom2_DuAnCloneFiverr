@@ -206,7 +206,7 @@ export default function OtherPageIphonePlus(props) {
         </div>
       </div>
       <DanhSachCongViecIphonePlus keyWord={keyword} wordParams={wordEntered} />
-      <HomeFooterIphonePlus />
+      {/* <HomeFooterIphonePlus /> */}
     </div>
   );
 }

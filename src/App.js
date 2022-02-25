@@ -21,6 +21,7 @@ import LoaiCongViecIpad from "./Components/loaiCongViecIpad/loaiCongViecHeaderIp
 import LoaiCongViecIphonePlus from "./Components/loaiCongViecIphonePlus/LoaiCongViecIphonePlus";
 import LoaiCongViecIphone from "./Components/loaiCongViecIphone/LoaiCongViecIphone";
 import DanhSachCongViecDesktop from "./_Pages/DanhSachCongViec/DanhSachCongViecDesktop";
+import Category from "./_Pages/Category/Category";
 export const history = createBrowserHistory();
 function App() {
   return (
@@ -35,7 +36,6 @@ function App() {
           IphoneComponent={HomeIphone}
         />
 
-        <Route exact path="/homeheader" component={HomeHeader} />
         <OtherPagesTemplate
           exact
           path="/danhsachcongviec/:typejob"

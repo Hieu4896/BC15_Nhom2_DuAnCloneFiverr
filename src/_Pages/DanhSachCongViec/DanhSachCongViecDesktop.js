@@ -8,15 +8,20 @@ import Style from "./DanhSachCongViecDesktop.module.css";
 import {
   getApiDanhSachCongViec,
   getApiTypeJob,
+  setStateKeyWord,
 } from "../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
 import _, { debounce } from "lodash";
 import { useState } from "react";
+import HomeFooter from "../../Components/homeFooter/HomeFooter";
 
 export default function DanhSachCongViecDesktop(props) {
   let keyWord = props.match.params.typejob;
-  let { danhSachCongViec } = useSelector(
+  // const [keyWord, setkeyWord] = useState(props.match.params.typejob);
+  console.log(keyWord);
+  let { danhSachCongViec, stateKeyWord } = useSelector(
     (rootReducer) => rootReducer.DanhSachCongViecReducer
   );
+  console.log(danhSachCongViec);
   let Pages = [];
 
   let [currentPage, setcurrentPage] = useState(1);
@@ -72,7 +77,7 @@ export default function DanhSachCongViecDesktop(props) {
       value.localSellers === localSellers ||
       value.proServices === proServices
     ) {
-      return value.name.toLowerCase().includes(keyWord.toLowerCase());
+      return value.name.toLowerCase().includes(stateKeyWord.toLowerCase());
     }
   });
   let currentItem = newFilter.slice(indexOfFirstItem, indexOfLastItem);
@@ -215,6 +220,8 @@ export default function DanhSachCongViecDesktop(props) {
   let dispatch = useDispatch();
   useEffect(() => {
     let timeOut = setTimeout(() => {
+      const setNewKeyWord = setStateKeyWord(keyWord);
+      dispatch(setNewKeyWord);
       const actionDanhSachCongViec = getApiDanhSachCongViec();
       dispatch(actionDanhSachCongViec);
       setLoading(true);
@@ -224,73 +231,79 @@ export default function DanhSachCongViecDesktop(props) {
       clearTimeout(timeOut);
       window.removeEventListener("scroll", toggleBackToTop);
     };
-  }, []);
+  }, [keyWord]);
+
   return (
-    <div style={{ position: "relative" }}>
-      {loading ? (
-        <div style={{ padding: "5px 50px" }}>
-          <h1 style={{ fontSize: 30 }}>Results for "{keyWord}"</h1>
-          <div>
-            {" "}
-            <span style={{ color: "teal", fontSize: 20 }}>
-              {newFilter.length} services available
-            </span>
-            <form style={{ width: "20%" }}>
-              <h4>Sort by :</h4>
-              <select
-                name="cars"
-                className="custom-select"
-                value={data}
-                onChange={(e) => {
-                  handleDataChange(e.target.value);
+    <div>
+      {loading && keyWord == stateKeyWord ? (
+        <div>
+          <div style={{ position: "relative" }}>
+            <div style={{ padding: "5px 50px" }}>
+              <h1 style={{ fontSize: 30 }}>Results for "{stateKeyWord}"</h1>
+              <div>
+                {" "}
+                <span style={{ color: "teal", fontSize: 20 }}>
+                  {newFilter.length} services available
+                </span>
+                <form style={{ width: "20%" }}>
+                  <h4>Sort by :</h4>
+                  <select
+                    name="cars"
+                    className="custom-select"
+                    value={data}
+                    onChange={(e) => {
+                      handleDataChange(e.target.value);
+                    }}
+                  >
+                    <option id="default" value="default">
+                      default
+                    </option>
+                    <option id="proServices" value="proServices">
+                      proServices
+                    </option>
+                    <option id="localSellers" value="localSellers">
+                      localSellers
+                    </option>
+                    <option id="onlineSellers" value="onlineSellers">
+                      onlineSellers
+                    </option>
+                  </select>
+                </form>
+              </div>
+
+              <div
+                style={{
+                  padding: "20px 0",
                 }}
               >
-                <option id="default" value="default">
-                  default
-                </option>
-                <option id="proServices" value="proServices">
-                  proServices
-                </option>
-                <option id="localSellers" value="localSellers">
-                  localSellers
-                </option>
-                <option id="onlineSellers" value="onlineSellers">
-                  onlineSellers
-                </option>
-              </select>
-            </form>
+                <div className="row">{renderDanhSachCongViec()}</div>
+                {currentItem.length >= 1 ? (
+                  <ul className={Style["PageNumber"]}>
+                    <button
+                      disabled={currentPage == Pages[0] ? true : false}
+                      onClick={handlePrevButton}
+                    >
+                      Prev
+                    </button>
+
+                    {renderPagesNumber()}
+
+                    <button
+                      disabled={
+                        currentPage == Pages[Pages.length - 1] ? true : false
+                      }
+                      onClick={handleNextButton}
+                    >
+                      Next
+                    </button>
+                  </ul>
+                ) : (
+                  ""
+                )}
+              </div>
+            </div>
           </div>
-
-          <div
-            style={{
-              padding: "20px 0",
-            }}
-          >
-            <div className="row">{renderDanhSachCongViec()}</div>
-            {currentItem.length >= 1 ? (
-              <ul className={Style["PageNumber"]}>
-                <button
-                  disabled={currentPage == Pages[0] ? true : false}
-                  onClick={handlePrevButton}
-                >
-                  Prev
-                </button>
-
-                {renderPagesNumber()}
-
-                <button
-                  disabled={
-                    currentPage == Pages[Pages.length - 1] ? true : false
-                  }
-                  onClick={handleNextButton}
-                >
-                  Next
-                </button>
-              </ul>
-            ) : (
-              ""
-            )}
-          </div>
+          <HomeFooter />
         </div>
       ) : (
         <div
