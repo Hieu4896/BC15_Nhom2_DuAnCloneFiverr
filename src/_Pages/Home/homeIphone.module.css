@@ -80,7 +80,7 @@
 .search-bar-panel {
   width: 100%;
   background: white;
-  height: auto;
+  height: 0;
   margin-top: 5px;
   overflow: hidden;
   overflow-y: auto;
@@ -103,7 +103,9 @@
 .search-bar-panel::-webkit-scrollbar {
   display: none;
 }
-
+.search-bar-panel-active::-webkit-scrollbar {
+  display: none;
+}
 .aStyleSearchbar {
   color: black !important;
   font-size: 16px;
@@ -258,7 +260,7 @@
 .mainCategories li a p {
   font-size: 15px !important;
 }
-.mainCategories li a::after {
+/* .mainCategories li a::after {
   content: "";
   position: absolute;
   top: 28px;
@@ -281,7 +283,7 @@
   border-bottom: 2px solid #37b94d;
   transition-duration: 0.5s;
   transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
-}
+} */
 .mainCategories li a p {
   font-size: 16px;
 }

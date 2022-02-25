@@ -13,6 +13,14 @@ export const getApiTypeJob = () => {
     console.log(promise);
   };
 };
+export const setStateKeyWord = (keyWord) => {
+  return (dispatch) => {
+    dispatch({
+      type: "SET_NEW_KEY_WORD",
+      data: keyWord,
+    });
+  };
+};
 export const getApiDanhSachCongViec = () => {
   return async (dispatch) => {
     try {

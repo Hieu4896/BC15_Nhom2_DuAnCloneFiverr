@@ -2,32 +2,26 @@ import React from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
-import { Pagination } from "antd";
-import Style from "./DanhSachCongViecDesktop.module.css";
+import Style from "./danhSachCongViecIphone.module.css";
 import {
   getApiDanhSachCongViec,
-  getApiTypeJob,
   setStateKeyWord,
-} from "../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
-import _, { debounce } from "lodash";
+} from "../../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
+import _ from "lodash";
 import { useState } from "react";
-import HomeFooter from "../../Components/homeFooter/HomeFooter";
+import HomeFooterIphone from "../../homeFooter/HomeFooterIphone";
 
-export default function DanhSachCongViecDesktop(props) {
-  let keyWord = props.match.params.typejob;
-  // const [keyWord, setkeyWord] = useState(props.match.params.typejob);
-  console.log(keyWord);
+export default function DanhSachCongViecIphone(props) {
+  const [keyWord, setKeyword] = useState(props.keyWord);
   let { danhSachCongViec, stateKeyWord } = useSelector(
     (rootReducer) => rootReducer.DanhSachCongViecReducer
   );
-  console.log(danhSachCongViec);
   let Pages = [];
 
   let [currentPage, setcurrentPage] = useState(1);
-  let [itemPerPage, setitemPerPage] = useState(12);
-  let [pageNumberLimit, setpageNumberLimit] = useState(5);
-  let [maxpageNumberLimit, setmaxpageNumberLimit] = useState(5);
+  let [itemPerPage, setitemPerPage] = useState(6);
+  let [pageNumberLimit, setpageNumberLimit] = useState(3);
+  let [maxpageNumberLimit, setmaxpageNumberLimit] = useState(3);
   let [minpageNumberLimit, setminpageNumberLimit] = useState(0);
   let indexOfLastItem = currentPage * itemPerPage; //4
   let indexOfFirstItem = indexOfLastItem - itemPerPage; //0
@@ -44,28 +38,28 @@ export default function DanhSachCongViecDesktop(props) {
       setlocalSellers(null);
       setonlineSellers(null);
       setcurrentPage(1);
-      setmaxpageNumberLimit(5);
+      setmaxpageNumberLimit(3);
       setminpageNumberLimit(0);
     } else if (newData === "localSellers") {
       setlocalSellers(true);
       setproServices(null);
       setonlineSellers(null);
       setcurrentPage(1);
-      setmaxpageNumberLimit(5);
+      setmaxpageNumberLimit(3);
       setminpageNumberLimit(0);
     } else if (newData === "onlineSellers") {
       setonlineSellers(true);
       setproServices(null);
       setlocalSellers(null);
       setcurrentPage(1);
-      setmaxpageNumberLimit(5);
+      setmaxpageNumberLimit(3);
       setminpageNumberLimit(0);
     } else {
       setonlineSellers(false);
       setproServices(false);
       setlocalSellers(false);
       setcurrentPage(1);
-      setmaxpageNumberLimit(5);
+      setmaxpageNumberLimit(3);
       setminpageNumberLimit(0);
     }
     setdata(newData);
@@ -93,73 +87,65 @@ export default function DanhSachCongViecDesktop(props) {
   const renderDanhSachCongViec = () => {
     return currentItem.map((job, index) => {
       return (
-        <div className="col-3 mb-3 " key={index}>
-          <NavLink
-            style={{ color: "black" }}
-            to={`/chitietcongviec/${job._id}`}
+        <div className="col-12 mb-3 " key={index}>
+          <img src={job.image} alt="" style={{ width: "100%" }} />
+          <div
+            className="text-left"
+            style={{
+              backgroundColor: "white",
+              height: "200px",
+              border: "1px solid #9e9e9e57",
+              position: "relative",
+            }}
           >
-            {" "}
-            <img src={job.image} alt="" style={{ width: "100%" }} />
+            <p style={{ padding: "0 10px" }}>
+              User{" "}
+              <span style={{ color: "black", fontWeight: "bolder" }}>
+                {job.userCreated}
+              </span>
+            </p>
+            <p style={{ color: "black", marginBottom: 10, padding: "0 10px" }}>
+              {job.name}
+            </p>
+            <i
+              className="fas fa-star"
+              style={{ color: "orange", marginRight: 5, padding: "0 10px" }}
+            ></i>
+            <span style={{ color: "orange" }}>{job.rating}</span>
             <div
-              className="text-left"
               style={{
-                backgroundColor: "white",
-                height: "200px",
                 border: "1px solid #9e9e9e57",
-                position: "relative",
+                position: "absolute",
+                width: "100%",
+                bottom: 0,
+
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
               }}
             >
-              <p style={{ padding: "0 10px" }}>
-                User{" "}
-                <span style={{ color: "black", fontWeight: "bolder" }}>
-                  {job.userCreated}
-                </span>
-              </p>
-              <p
-                style={{ color: "black", marginBottom: 10, padding: "0 10px" }}
-              >
-                {job.name}
-              </p>
               <i
-                className="fas fa-star"
-                style={{ color: "orange", marginRight: 5, padding: "0 10px" }}
-              ></i>
-              <span style={{ color: "orange" }}>{job.rating}</span>
-              <div
                 style={{
-                  border: "1px solid #9e9e9e57",
-                  position: "absolute",
-                  width: "100%",
-                  bottom: 0,
-
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
+                  lineHeight: "29px",
+                  padding: "0 10px",
+                  color: "#00000047",
+                }}
+                className="fas fa-heart"
+              ></i>
+              <span
+                style={{
+                  lineHeight: "29px",
+                  fontSize: 10,
+                  padding: "0 10px",
                 }}
               >
-                <i
-                  style={{
-                    lineHeight: "29px",
-                    padding: "0 10px",
-                    color: "#00000047",
-                  }}
-                  className="fas fa-heart"
-                ></i>
-                <span
-                  style={{
-                    lineHeight: "29px",
-                    fontSize: 10,
-                    padding: "0 10px",
-                  }}
-                >
-                  STARTING AT{" "}
-                  <span style={{ fontSize: 17, fontWeight: "bolder" }}>
-                    ${job.price}
-                  </span>
+                STARTING AT{" "}
+                <span style={{ fontSize: 17, fontWeight: "bolder" }}>
+                  ${job.price}
                 </span>
-              </div>
+              </span>
             </div>
-          </NavLink>
+          </div>
         </div>
       );
     });
@@ -168,7 +154,6 @@ export default function DanhSachCongViecDesktop(props) {
   for (let i = 1; i <= Math.ceil(newFilter.length / itemPerPage); i++) {
     Pages.push(i);
   }
-  console.log(Pages);
   const renderPagesNumber = () => {
     return Pages.map((number, index) => {
       if (number < maxpageNumberLimit + 1 && number > minpageNumberLimit) {
@@ -232,21 +217,99 @@ export default function DanhSachCongViecDesktop(props) {
       window.removeEventListener("scroll", toggleBackToTop);
     };
   }, [keyWord]);
+  // return (
+  //   <div style={{ position: "relative" }}>
+  //     {loading ? (
+  //       <div style={{ padding: "5px 50px" }}>
+  //         <h1 style={{ fontSize: 26 }}>Results for "{stateKeyWord}"</h1>
+  //         <div>
+  //           {" "}
+  //           <span style={{ color: "teal", fontSize: 20 }}>
+  //             {newFilter.length} services available
+  //           </span>
+  //           <form style={{ width: "100%" }}>
+  //             <h4 style={{ width: "100%" }}>Sort by :</h4>
+  //             <select
+  //               name="cars"
+  //               className="custom-select"
+  //               value={data}
+  //               onChange={(e) => {
+  //                 handleDataChange(e.target.value);
+  //               }}
+  //             >
+  //               <option id="default" value="default">
+  //                 default
+  //               </option>
+  //               <option id="proServices" value="proServices">
+  //                 proServices
+  //               </option>
+  //               <option id="localSellers" value="localSellers">
+  //                 localSellers
+  //               </option>
+  //               <option id="onlineSellers" value="onlineSellers">
+  //                 onlineSellers
+  //               </option>
+  //             </select>
+  //           </form>
+  //         </div>
 
+  //         <div
+  //           style={{
+  //             padding: "20px 0",
+  //           }}
+  //         >
+  //           <div className="row">{renderDanhSachCongViec()}</div>
+
+  //           {currentItem.length >= 1 ? (
+  //             <ul className={Style["PageNumber"]}>
+  //               <button
+  //                 disabled={currentPage == Pages[0] ? true : false}
+  //                 onClick={handlePrevButton}
+  //               >
+  //                 Prev
+  //               </button>
+
+  //               {renderPagesNumber()}
+
+  //               <button
+  //                 disabled={
+  //                   currentPage == Pages[Pages.length - 1] ? true : false
+  //                 }
+  //                 onClick={handleNextButton}
+  //               >
+  //                 Next
+  //               </button>
+  //             </ul>
+  //           ) : (
+  //             ""
+  //           )}
+  //         </div>
+  //       </div>
+  //     ) : (
+  //       <div
+  //         style={{ position: "absolute", right: "50%" }}
+  //         className="spinner-grow text-success"
+  //         role="status"
+  //       >
+  //         <span className="sr-only text-success">Loading...</span>
+  //       </div>
+  //     )}
+  //   </div>
+  // );
   return (
     <div>
       {loading && keyWord == stateKeyWord ? (
         <div>
           <div style={{ position: "relative" }}>
             <div style={{ padding: "5px 50px" }}>
-              <h1 style={{ fontSize: 30 }}>Results for "{stateKeyWord}"</h1>
+              <h1 style={{ fontSize: 26 }}>Results for "{stateKeyWord}"</h1>
               <div>
                 {" "}
                 <span style={{ color: "teal", fontSize: 20 }}>
                   {newFilter.length} services available
                 </span>
-                <form style={{ width: "20%" }}>
-                  <h4>Sort by :</h4>
+                <form style={{ width: "100%" }}>
+                  <h4 style={{ width: "100%" }}>Sort by :</h4>
                   <select
                     name="cars"
                     className="custom-select"
@@ -303,7 +366,7 @@ export default function DanhSachCongViecDesktop(props) {
               </div>
             </div>
           </div>
-          <HomeFooter />
+          <HomeFooterIphone />
         </div>
       ) : (
         <div

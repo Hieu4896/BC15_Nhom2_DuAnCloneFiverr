@@ -1,0 +1,121 @@
+.typeJob .subTypeJob {
+  display: none;
+}
+/* .typeJob:hover .subTypeJob {
+      display: grid;
+      position: absolute;
+      z-index: 999;
+      background-color: white;
+      width: fit-content;
+      grid-template-columns: 200px 200px 200px;
+      border: 2px solid grey;
+      left: 0;
+      padding: 10px 0;
+    }
+    .typeJob:hover .subTypeJobIf {
+      display: grid;
+      position: absolute;
+      z-index: 999;
+      background-color: white;
+      width: fit-content;
+      grid-template-columns: 200px 200px 200px;
+      border: 2px solid grey;
+      right: 0;
+      padding: 10px 0;
+    } */
+
+.subTypeJobIf {
+  display: none;
+}
+
+.typeJob {
+  position: relative;
+  display: inline-block;
+}
+
+.typeJob a {
+  color: #62646a;
+  font-size: larger;
+  font-weight: 500;
+}
+
+.typeJob a:hover {
+  color: #28a745;
+}
+
+.PageNumber {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.PageNumber li {
+  margin: 0 10px 10px 0;
+  padding: 10px;
+  font-weight: 500;
+  background-color: #009688;
+  cursor: pointer;
+  width: 40px;
+  text-align: center;
+}
+
+.PageNumber li.active {
+  background-color: black;
+  color: white;
+  font-weight: bolder;
+}
+.PageNumber button {
+  text-align: center;
+  margin: 0 10px 10px 0;
+  font-weight: 500;
+  border: 1px solid black;
+  background-color: transparent;
+  width: 50px;
+}
+
+.PageNumber button:hover {
+  font-weight: bolder;
+}
+.PageNumber button:disabled {
+  visibility: hidden;
+}
+.sortButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sortButton button {
+  margin-right: 20px;
+  width: 90px;
+}
+.ulCategory,
+.ulCategory_active {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.ulCategory {
+  display: none;
+}
+.ulCategory_active {
+  display: block;
+  background: black;
+}
+.iconCategory {
+  margin-left: 20px;
+  position: relative;
+  animation: movedown 0.5s linear 0.5s infinite;
+}
+@keyframes movedown {
+  0% {
+    right: 0px;
+  }
+  100% {
+    right: 20px;
+  }
+}

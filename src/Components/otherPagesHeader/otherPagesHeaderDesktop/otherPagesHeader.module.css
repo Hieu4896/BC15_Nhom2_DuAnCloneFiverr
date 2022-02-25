@@ -1,0 +1,60 @@
+.navHeader {
+  background-color: transparent;
+  width: 100%;
+  height: 100px;
+  margin: 0;
+  padding: 20px 50px;
+  border-bottom: 2px solid #e4e5e7;
+}
+.fiverChange {
+  color: black;
+  font-weight: bolder;
+  font-family: fontFiverr;
+}
+
+.docChange {
+  color: green;
+  font-weight: bolder;
+}
+.aChange {
+  color: #7a7d85 !important;
+  font-weight: 600;
+}
+
+.aChange:hover {
+  color: #28a745 !important;
+  font-weight: 600;
+}
+
+.labelHeader {
+  margin: 0 !important;
+  font-size: 35px;
+  line-height: 50px;
+}
+
+.ulHeader {
+  list-style: none;
+}
+
+.ulHeader .liHeader {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 50px;
+}
+
+.joinStyle {
+  border: 1px solid #28a745;
+  padding: 5px 20px;
+  border-radius: 5px;
+  background-color: transparent;
+  color: #28a745 !important;
+}
+.joinStyle:hover {
+  background-color: #28a745;
+  border: 1px solid #28a745;
+  color: white !important;
+}
+@font-face {
+  font-family: fontFiverr;
+  src: url(../../../Fonts//BungeeShade//BungeeShade-Regular.ttf);
+}

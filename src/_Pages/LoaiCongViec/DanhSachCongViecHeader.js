@@ -4,20 +4,16 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getApiDanhSachCongViecTheoTen } from "../../Redux/Actions/HomeActions/HomeAction";
-import StyleSearchbar from "./otherPageSearchbar.module.css";
-import StyleHeader from "./otherPagesHeader.module.css";
+import StyleSearchbar from "../../Components/otherPagesHeader/otherPagesHeaderDesktop/otherPageSearchbar.module.css";
+import StyleHeader from "../../Components/otherPagesHeader/otherPagesHeaderDesktop/otherPagesHeader.module.css";
 import Style from "../../_Pages/DanhSachCongViec/DanhSachCongViecDesktop.module.css";
 import { getApiTypeJob } from "../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
 import _ from "lodash";
-import "../homeHeader/searchForm.scss";
-import DanhSachCongViecDesktop from "../../_Pages/DanhSachCongViec/DanhSachCongViecDesktop";
-import HomeFooter from "../homeFooter/HomeFooter";
+import "../../Components/homeHeader/searchForm.scss";
 
-export default function HomeHeaderOtherPages(props) {
-  const [keyword, setKeyword] = useState(props.match.params.typejob);
+export default function DanhSachCongViecHeader(props) {
   let [filteredData, setFilteredData] = useState([]);
   let [wordEntered, setWordEntered] = useState("");
-  let [placeHolder, setplaceHolder] = useState(props.match.params.typejob);
   let { congViecTheoTen } = useSelector(
     (rootReducer) => rootReducer.HomeReducer
   );
@@ -28,11 +24,9 @@ export default function HomeHeaderOtherPages(props) {
   let dispatch = useDispatch();
   useEffect(() => {
     const action = getApiDanhSachCongViecTheoTen();
-    dispatch(action);
-  }, []);
-  useEffect(() => {
     const actionTypeJob = getApiTypeJob();
     dispatch(actionTypeJob);
+    dispatch(action);
   }, []);
 
   const handleChangeInput = (event) => {
@@ -51,12 +45,6 @@ export default function HomeHeaderOtherPages(props) {
     console.log(searchWord);
   };
 
-  console.log(wordEntered);
-  const clearInput = () => {
-    setFilteredData([]);
-    setWordEntered("");
-    setplaceHolder("Find Services");
-  };
   const renderCongViec = () => {
     if (filteredData.length != 0) {
       return filteredData.slice(0, 10).map((prop, index) => {
@@ -90,7 +78,9 @@ export default function HomeHeaderOtherPages(props) {
                 typeJob.name === "Data" ||
                 typeJob.name === "Business" ||
                 typeJob.name === "Programming & Tech" ||
-                typeJob.name === "Lifestyle"
+                typeJob.name === "Lifestyle" ||
+                typeJob.name === "Graphics & Design" ||
+                typeJob.name === "Internet"
                   ? Style["subTypeJobIf"]
                   : Style["subTypeJob"]
               }
@@ -101,7 +91,9 @@ export default function HomeHeaderOtherPages(props) {
                     key={index}
                     style={{ display: "inline-block", padding: "20px" }}
                   >
-                    {subTypeJobs.name}
+                    <NavLink to={`/danhsachcongviec/${subTypeJobs.name}`}>
+                      {subTypeJobs.name}
+                    </NavLink>
                   </li>
                 );
               })}
@@ -122,22 +114,18 @@ export default function HomeHeaderOtherPages(props) {
               <span className="docChange">.</span>
             </NavLink>
           </label>
-          <div className="col-6 p-0 m-0" style={{ height: 50 }}>
+          <div className="col-5 p-0 m-0">
             <form className="formSearch">
               <input
                 type="search"
                 autofocus
                 required
-                placeholder={placeHolder}
+                placeholder="Find Services"
                 onChange={handleChangeInput}
                 value={wordEntered}
                 size={20}
               />
-              {/* {wordEntered !== "" ? (
-                <i onClick={clearInput} className="fas fa-window-close"></i>
-              ) : (
-                ""
-              )} */}
+
               <button
                 type="submit"
                 onClick={() => {
@@ -202,8 +190,6 @@ export default function HomeHeaderOtherPages(props) {
           </ul>
         </div>
       </div>
-      <DanhSachCongViecDesktop keyWord={keyword} wordParams={wordEntered} />
-      <HomeFooter />
     </div>
   );
 }

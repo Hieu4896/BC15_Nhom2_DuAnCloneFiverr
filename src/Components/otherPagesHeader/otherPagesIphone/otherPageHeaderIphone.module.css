@@ -28,18 +28,29 @@
 
 .labelHeader {
   margin: 0 !important;
-  font-size: 35px;
+  font-size: 20px;
   line-height: 50px;
+  margin-right: auto;
 }
 
 .ulHeader {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .ulHeader .liHeader {
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 600;
   line-height: 50px;
+  display: inline-block;
+  margin-left: 10px;
+}
+.singinStyle {
+  color: black;
+}
+.singinStyle:hover {
+  color: #28a745;
 }
 
 .joinStyle {
@@ -56,5 +67,5 @@
 }
 @font-face {
   font-family: fontFiverr;
-  src: url(../../Fonts//BungeeShade//BungeeShade-Regular.ttf);
+  src: url(../../../Fonts//BungeeShade//BungeeShade-Regular.ttf);
 }

@@ -2,26 +2,22 @@ import React from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
-import { Pagination } from "antd";
-import Style from "./DanhSachCongViecDesktop.module.css";
+import Style from "./danhSachCongViecIpad.module.css";
 import {
   getApiDanhSachCongViec,
-  getApiTypeJob,
   setStateKeyWord,
-} from "../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
-import _, { debounce } from "lodash";
+} from "../../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
+import _ from "lodash";
 import { useState } from "react";
-import HomeFooter from "../../Components/homeFooter/HomeFooter";
+import HomeFooter from "../../homeFooter/HomeFooter";
+import HomeFooterIpad from "../../homeFooter/HomeFooterIpad";
 
-export default function DanhSachCongViecDesktop(props) {
-  let keyWord = props.match.params.typejob;
-  // const [keyWord, setkeyWord] = useState(props.match.params.typejob);
-  console.log(keyWord);
+export default function DanhSachCongViecIpad(props) {
+  const [keyWord, setKeyword] = useState(props.keyWord);
+
   let { danhSachCongViec, stateKeyWord } = useSelector(
     (rootReducer) => rootReducer.DanhSachCongViecReducer
   );
-  console.log(danhSachCongViec);
   let Pages = [];
 
   let [currentPage, setcurrentPage] = useState(1);
@@ -93,73 +89,65 @@ export default function DanhSachCongViecDesktop(props) {
   const renderDanhSachCongViec = () => {
     return currentItem.map((job, index) => {
       return (
-        <div className="col-3 mb-3 " key={index}>
-          <NavLink
-            style={{ color: "black" }}
-            to={`/chitietcongviec/${job._id}`}
+        <div className="col-4 mb-3 " key={index}>
+          <img src={job.image} alt="" style={{ width: "100%" }} />
+          <div
+            className="text-left"
+            style={{
+              backgroundColor: "white",
+              height: "200px",
+              border: "1px solid #9e9e9e57",
+              position: "relative",
+            }}
           >
-            {" "}
-            <img src={job.image} alt="" style={{ width: "100%" }} />
+            <p style={{ padding: "0 10px" }}>
+              User{" "}
+              <span style={{ color: "black", fontWeight: "bolder" }}>
+                {job.userCreated}
+              </span>
+            </p>
+            <p style={{ color: "black", marginBottom: 10, padding: "0 10px" }}>
+              {job.name}
+            </p>
+            <i
+              className="fas fa-star"
+              style={{ color: "orange", marginRight: 5, padding: "0 10px" }}
+            ></i>
+            <span style={{ color: "orange" }}>{job.rating}</span>
             <div
-              className="text-left"
               style={{
-                backgroundColor: "white",
-                height: "200px",
                 border: "1px solid #9e9e9e57",
-                position: "relative",
+                position: "absolute",
+                width: "100%",
+                bottom: 0,
+
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
               }}
             >
-              <p style={{ padding: "0 10px" }}>
-                User{" "}
-                <span style={{ color: "black", fontWeight: "bolder" }}>
-                  {job.userCreated}
-                </span>
-              </p>
-              <p
-                style={{ color: "black", marginBottom: 10, padding: "0 10px" }}
-              >
-                {job.name}
-              </p>
               <i
-                className="fas fa-star"
-                style={{ color: "orange", marginRight: 5, padding: "0 10px" }}
-              ></i>
-              <span style={{ color: "orange" }}>{job.rating}</span>
-              <div
                 style={{
-                  border: "1px solid #9e9e9e57",
-                  position: "absolute",
-                  width: "100%",
-                  bottom: 0,
-
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
+                  lineHeight: "29px",
+                  padding: "0 10px",
+                  color: "#00000047",
+                }}
+                className="fas fa-heart"
+              ></i>
+              <span
+                style={{
+                  lineHeight: "29px",
+                  fontSize: 10,
+                  padding: "0 10px",
                 }}
               >
-                <i
-                  style={{
-                    lineHeight: "29px",
-                    padding: "0 10px",
-                    color: "#00000047",
-                  }}
-                  className="fas fa-heart"
-                ></i>
-                <span
-                  style={{
-                    lineHeight: "29px",
-                    fontSize: 10,
-                    padding: "0 10px",
-                  }}
-                >
-                  STARTING AT{" "}
-                  <span style={{ fontSize: 17, fontWeight: "bolder" }}>
-                    ${job.price}
-                  </span>
+                STARTING AT{" "}
+                <span style={{ fontSize: 17, fontWeight: "bolder" }}>
+                  ${job.price}
                 </span>
-              </div>
+              </span>
             </div>
-          </NavLink>
+          </div>
         </div>
       );
     });
@@ -168,7 +156,6 @@ export default function DanhSachCongViecDesktop(props) {
   for (let i = 1; i <= Math.ceil(newFilter.length / itemPerPage); i++) {
     Pages.push(i);
   }
-  console.log(Pages);
   const renderPagesNumber = () => {
     return Pages.map((number, index) => {
       if (number < maxpageNumberLimit + 1 && number > minpageNumberLimit) {
@@ -232,7 +219,6 @@ export default function DanhSachCongViecDesktop(props) {
       window.removeEventListener("scroll", toggleBackToTop);
     };
   }, [keyWord]);
-
   return (
     <div>
       {loading && keyWord == stateKeyWord ? (
@@ -303,7 +289,7 @@ export default function DanhSachCongViecDesktop(props) {
               </div>
             </div>
           </div>
-          <HomeFooter />
+          <HomeFooterIpad />
         </div>
       ) : (
         <div
