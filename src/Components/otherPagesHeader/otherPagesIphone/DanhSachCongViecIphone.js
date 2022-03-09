@@ -10,6 +10,7 @@ import {
 import _ from "lodash";
 import { useState } from "react";
 import HomeFooterIphone from "../../homeFooter/HomeFooterIphone";
+import UserCreated from "../otherPagesHeaderDesktop/UserCreated";
 
 export default function DanhSachCongViecIphone(props) {
   const [keyWord, setKeyword] = useState(props.keyWord);
@@ -17,7 +18,7 @@ export default function DanhSachCongViecIphone(props) {
     (rootReducer) => rootReducer.DanhSachCongViecReducer
   );
   let Pages = [];
-
+  let [notFounding, setNotFounding] = useState(false);
   let [currentPage, setcurrentPage] = useState(1);
   let [itemPerPage, setitemPerPage] = useState(6);
   let [pageNumberLimit, setpageNumberLimit] = useState(3);
@@ -98,12 +99,7 @@ export default function DanhSachCongViecIphone(props) {
               position: "relative",
             }}
           >
-            <p style={{ padding: "0 10px" }}>
-              User{" "}
-              <span style={{ color: "black", fontWeight: "bolder" }}>
-                {job.userCreated}
-              </span>
-            </p>
+            <UserCreated userCreated={job.userCreated} />
             <p style={{ color: "black", marginBottom: 10, padding: "0 10px" }}>
               {job.name}
             </p>
@@ -217,88 +213,17 @@ export default function DanhSachCongViecIphone(props) {
       window.removeEventListener("scroll", toggleBackToTop);
     };
   }, [keyWord]);
-  // return (
-  //   <div style={{ position: "relative" }}>
-  //     {loading ? (
-  //       <div style={{ padding: "5px 50px" }}>
-  //         <h1 style={{ fontSize: 26 }}>Results for "{stateKeyWord}"</h1>
-  //         <div>
-  //           {" "}
-  //           <span style={{ color: "teal", fontSize: 20 }}>
-  //             {newFilter.length} services available
-  //           </span>
-  //           <form style={{ width: "100%" }}>
-  //             <h4 style={{ width: "100%" }}>Sort by :</h4>
-  //             <select
-  //               name="cars"
-  //               className="custom-select"
-  //               value={data}
-  //               onChange={(e) => {
-  //                 handleDataChange(e.target.value);
-  //               }}
-  //             >
-  //               <option id="default" value="default">
-  //                 default
-  //               </option>
-  //               <option id="proServices" value="proServices">
-  //                 proServices
-  //               </option>
-  //               <option id="localSellers" value="localSellers">
-  //                 localSellers
-  //               </option>
-  //               <option id="onlineSellers" value="onlineSellers">
-  //                 onlineSellers
-  //               </option>
-  //             </select>
-  //           </form>
-  //         </div>
-
-  //         <div
-  //           style={{
-  //             padding: "20px 0",
-  //           }}
-  //         >
-  //           <div className="row">{renderDanhSachCongViec()}</div>
-
-  //           {currentItem.length >= 1 ? (
-  //             <ul className={Style["PageNumber"]}>
-  //               <button
-  //                 disabled={currentPage == Pages[0] ? true : false}
-  //                 onClick={handlePrevButton}
-  //               >
-  //                 Prev
-  //               </button>
-
-  //               {renderPagesNumber()}
-
-  //               <button
-  //                 disabled={
-  //                   currentPage == Pages[Pages.length - 1] ? true : false
-  //                 }
-  //                 onClick={handleNextButton}
-  //               >
-  //                 Next
-  //               </button>
-  //             </ul>
-  //           ) : (
-  //             ""
-  //           )}
-  //         </div>
-  //       </div>
-  //     ) : (
-  //       <div
-  //         style={{ position: "absolute", right: "50%" }}
-  //         className="spinner-grow text-success"
-  //         role="status"
-  //       >
-  //         <span className="sr-only text-success">Loading...</span>
-  //       </div>
-  //     )}
-  //   </div>
-  // );
+  useEffect(() => {
+    let timeOut2 = setTimeout(() => {
+      setNotFounding(true);
+    }, 2000);
+    return () => {
+      clearTimeout(timeOut2);
+    };
+  }, [keyWord]);
   return (
-    <div>
-      {loading && keyWord == stateKeyWord ? (
+    <div style={{ paddingTop: 20 }}>
+      {loading && keyWord == stateKeyWord && newFilter.length >= 1 ? (
         <div>
           <div style={{ position: "relative" }}>
             <div style={{ padding: "5px 50px" }}>
@@ -340,41 +265,71 @@ export default function DanhSachCongViecIphone(props) {
                 }}
               >
                 <div className="row">{renderDanhSachCongViec()}</div>
-                {currentItem.length >= 1 ? (
-                  <ul className={Style["PageNumber"]}>
-                    <button
-                      disabled={currentPage == Pages[0] ? true : false}
-                      onClick={handlePrevButton}
-                    >
-                      Prev
-                    </button>
 
-                    {renderPagesNumber()}
+                <ul className={Style["PageNumber"]}>
+                  <button
+                    disabled={currentPage == Pages[0] ? true : false}
+                    onClick={handlePrevButton}
+                  >
+                    Prev
+                  </button>
 
-                    <button
-                      disabled={
-                        currentPage == Pages[Pages.length - 1] ? true : false
-                      }
-                      onClick={handleNextButton}
-                    >
-                      Next
-                    </button>
-                  </ul>
-                ) : (
-                  ""
-                )}
+                  {renderPagesNumber()}
+
+                  <button
+                    disabled={
+                      currentPage == Pages[Pages.length - 1] ? true : false
+                    }
+                    onClick={handleNextButton}
+                  >
+                    Next
+                  </button>
+                </ul>
               </div>
             </div>
           </div>
           <HomeFooterIphone />
         </div>
       ) : (
-        <div
-          style={{ position: "absolute", right: "50%" }}
-          className="spinner-grow text-success"
-          role="status"
-        >
-          <span className="sr-only text-success">Loading...</span>
+        <div>
+          <div
+            style={{
+              position: "absolute",
+              right: "50%",
+              animationIterationCount: 4,
+            }}
+            className="spinner-grow text-success"
+            role="status"
+          >
+            <span className="sr-only text-success">Loading...</span>
+          </div>
+          {notFounding && keyWord == stateKeyWord ? (
+            <div>
+              {" "}
+              <div
+                style={{ textAlign: "center" }}
+                className="d-flex justify-content-center flex-column align-items-center"
+              >
+                <img
+                  src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/search_perseus/apps/empty-search-results.229c0d3.png"
+                  alt="empty result image"
+                  style={{ width: "50%", objectFit: "cover" }}
+                />
+                <div style={{ padding: "0 50px" }}>
+                  <h2 style={{ fontSize: 23 }}>
+                    No Services Found For Your Search
+                  </h2>
+                  <p style={{ fontSize: 14, color: "#62646a" }}>
+                    Try a new search or get a free quote for your project <br />
+                    from our community of freelancers.
+                  </p>
+                </div>
+              </div>
+              <HomeFooterIphone />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       )}
     </div>

@@ -80,7 +80,7 @@ export default function OtherPageIpad(props) {
     return _.uniqBy(typeJob, "name").map((typeJob, index) => {
       if (typeJob.subTypeJobs.length > 0) {
         return (
-          <li key={index} className={`${Style.typeJob} col-4 p-0 mb-2`}>
+          <li key={index} className={`${Style.typeJob}`}>
             <NavLink to={`/loaicongviec/${typeJob._id}`}>
               {typeJob.name}
             </NavLink>
@@ -194,14 +194,16 @@ export default function OtherPageIpad(props) {
               width: "100%",
             }}
           >
-            <NavLink to="/" className="row m-0 w-100">
+            <NavLink
+              to="/"
+              className="d-flex flex-row justify-content-between align-items-center m-0 w-100"
+            >
               {renderTypejob()}
             </NavLink>
           </ul>
         </div>
       </div>
       <DanhSachCongViecIpad keyWord={keyword} wordParams={wordEntered} />
-      {/* <HomeFooterIpad /> */}
     </div>
   );
 }

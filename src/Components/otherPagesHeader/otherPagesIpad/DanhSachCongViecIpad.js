@@ -11,6 +11,7 @@ import _ from "lodash";
 import { useState } from "react";
 import HomeFooter from "../../homeFooter/HomeFooter";
 import HomeFooterIpad from "../../homeFooter/HomeFooterIpad";
+import UserCreated from "../otherPagesHeaderDesktop/UserCreated";
 
 export default function DanhSachCongViecIpad(props) {
   const [keyWord, setKeyword] = useState(props.keyWord);
@@ -19,7 +20,7 @@ export default function DanhSachCongViecIpad(props) {
     (rootReducer) => rootReducer.DanhSachCongViecReducer
   );
   let Pages = [];
-
+  let [notFounding, setNotFounding] = useState(false);
   let [currentPage, setcurrentPage] = useState(1);
   let [itemPerPage, setitemPerPage] = useState(12);
   let [pageNumberLimit, setpageNumberLimit] = useState(5);
@@ -100,12 +101,7 @@ export default function DanhSachCongViecIpad(props) {
               position: "relative",
             }}
           >
-            <p style={{ padding: "0 10px" }}>
-              User{" "}
-              <span style={{ color: "black", fontWeight: "bolder" }}>
-                {job.userCreated}
-              </span>
-            </p>
+            <UserCreated userCreated={job.userCreated} />
             <p style={{ color: "black", marginBottom: 10, padding: "0 10px" }}>
               {job.name}
             </p>
@@ -206,7 +202,7 @@ export default function DanhSachCongViecIpad(props) {
   };
   let dispatch = useDispatch();
   useEffect(() => {
-    let timeOut = setTimeout(() => {
+    let timeOut1 = setTimeout(() => {
       const setNewKeyWord = setStateKeyWord(keyWord);
       dispatch(setNewKeyWord);
       const actionDanhSachCongViec = getApiDanhSachCongViec();
@@ -214,14 +210,19 @@ export default function DanhSachCongViecIpad(props) {
       setLoading(true);
       window.addEventListener("scroll", toggleBackToTop);
     }, 1000);
+    let timeOut2 = setTimeout(() => {
+      setNotFounding(true);
+    }, 2000);
+
     return () => {
-      clearTimeout(timeOut);
+      clearTimeout(timeOut1);
+      clearTimeout(timeOut2);
       window.removeEventListener("scroll", toggleBackToTop);
     };
   }, [keyWord]);
   return (
     <div>
-      {loading && keyWord == stateKeyWord ? (
+      {loading && keyWord == stateKeyWord && newFilter.length >= 1 ? (
         <div>
           <div style={{ position: "relative" }}>
             <div style={{ padding: "5px 50px" }}>
@@ -263,41 +264,71 @@ export default function DanhSachCongViecIpad(props) {
                 }}
               >
                 <div className="row">{renderDanhSachCongViec()}</div>
-                {currentItem.length >= 1 ? (
-                  <ul className={Style["PageNumber"]}>
-                    <button
-                      disabled={currentPage == Pages[0] ? true : false}
-                      onClick={handlePrevButton}
-                    >
-                      Prev
-                    </button>
 
-                    {renderPagesNumber()}
+                <ul className={Style["PageNumber"]}>
+                  <button
+                    disabled={currentPage == Pages[0] ? true : false}
+                    onClick={handlePrevButton}
+                  >
+                    Prev
+                  </button>
 
-                    <button
-                      disabled={
-                        currentPage == Pages[Pages.length - 1] ? true : false
-                      }
-                      onClick={handleNextButton}
-                    >
-                      Next
-                    </button>
-                  </ul>
-                ) : (
-                  ""
-                )}
+                  {renderPagesNumber()}
+
+                  <button
+                    disabled={
+                      currentPage == Pages[Pages.length - 1] ? true : false
+                    }
+                    onClick={handleNextButton}
+                  >
+                    Next
+                  </button>
+                </ul>
               </div>
             </div>
           </div>
           <HomeFooterIpad />
         </div>
       ) : (
-        <div
-          style={{ position: "absolute", right: "50%" }}
-          className="spinner-grow text-success"
-          role="status"
-        >
-          <span className="sr-only text-success">Loading...</span>
+        <div>
+          <div
+            style={{
+              position: "absolute",
+              right: "50%",
+              animationIterationCount: 7,
+            }}
+            className="spinner-grow text-success"
+            role="status"
+          >
+            <span className="sr-only text-success">Loading...</span>
+          </div>
+          {notFounding ? (
+            <div>
+              {" "}
+              <div
+                style={{ textAlign: "center" }}
+                className="d-flex justify-content-center flex-column align-items-center"
+              >
+                <img
+                  src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/search_perseus/apps/empty-search-results.229c0d3.png"
+                  alt="empty result image"
+                  style={{ width: "30%", objectFit: "cover" }}
+                />
+                <div>
+                  <h2 style={{ fontSize: 30 }}>
+                    No Services Found For Your Search
+                  </h2>
+                  <p style={{ fontSize: 16, color: "#62646a" }}>
+                    Try a new search or get a free quote for your project <br />
+                    from our community of freelancers.
+                  </p>
+                </div>
+              </div>
+              <HomeFooter />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       )}
     </div>
