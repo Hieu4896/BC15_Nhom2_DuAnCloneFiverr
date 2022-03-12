@@ -11,10 +11,11 @@ export default function DanhSachCommentDesktop(props) {
   let { danhSachComment } = useSelector(
     (rootReducer) => rootReducer.ChiTietCongViecReducer
   );
+  console.log(danhSachComment);
   let { danhSachCommentMoi } = useSelector(
     (rootReducer) => rootReducer.ChiTietCongViecReducer
   );
-
+  console.log(danhSachCommentMoi);
   let [comment, setComment] = useState("");
   let dispatch = useDispatch();
   let newDanhSach = {
@@ -71,62 +72,68 @@ export default function DanhSachCommentDesktop(props) {
   };
   return (
     <div>
-      <h3>What people said about this seller</h3>
-      {commentPerPage > 5 ? (
-        <p
-          onClick={() => {
-            setCommentPerPage(commentPerPage - 5);
-          }}
-          style={{ color: "green", cursor: "pointer" }}
-        >
-          {" "}
-          - Close More{" "}
-        </p>
+      {danhSachComment.length >= 1 ? (
+        <div>
+          <h3>What people said about this seller</h3>
+          {commentPerPage > 5 ? (
+            <p
+              onClick={() => {
+                setCommentPerPage(commentPerPage - 5);
+              }}
+              style={{ color: "green", cursor: "pointer" }}
+            >
+              {" "}
+              - Close More{" "}
+            </p>
+          ) : (
+            ""
+          )}
+
+          {renderDanhSachComment()}
+          {commentPerPage <= danhSachComment.length ? (
+            <p
+              onClick={() => {
+                setCommentPerPage(commentPerPage + 5);
+              }}
+              style={{ color: "green", cursor: "pointer" }}
+            >
+              {" "}
+              + See More
+            </p>
+          ) : (
+            ""
+          )}
+
+          <form onSubmit={handleSubmit} className={Style["box-container"]}>
+            <div style={{ width: "100%", height: "100px", padding: 20 }}>
+              <textarea
+                placeholder="Hãy cho chúng tôi biết suy nghĩ của bạn ..."
+                type="text"
+                name={comment}
+                value={comment}
+                onChange={handleChange}
+              />
+            </div>
+            <div className={Style["buttonDiv"]}>
+              <button
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  border: "none",
+                  outline: "none",
+                  fontWeight: "bolder",
+                  fontSize: 20,
+                }}
+                type="submit"
+              >
+                SUBMIT
+              </button>
+            </div>
+          </form>
+        </div>
       ) : (
         ""
       )}
-
-      {renderDanhSachComment()}
-      {commentPerPage <= danhSachComment.length ? (
-        <p
-          onClick={() => {
-            setCommentPerPage(commentPerPage + 5);
-          }}
-          style={{ color: "green", cursor: "pointer" }}
-        >
-          {" "}
-          + See More
-        </p>
-      ) : (
-        ""
-      )}
-
-      <form onSubmit={handleSubmit} className={Style["box-container"]}>
-        <div style={{ width: "100%", height: "100px", padding: 20 }}>
-          <textarea
-            placeholder="Hãy cho chúng tôi biết suy nghĩ của bạn ..."
-            type="text"
-            name="content"
-            value={comment}
-            onChange={handleChange}
-          />
-        </div>
-        <div className={Style["buttonDiv"]}>
-          <button
-            style={{
-              width: "100%",
-              height: "100%",
-              border: "none",
-              outline: "none",
-              fontWeight: "bolder",
-              fontSize: 20,
-            }}
-            type="submit"
-          >
-            SUBMIT
-          </button>
-        </div>
-      </form>
     </div>
   );
 }

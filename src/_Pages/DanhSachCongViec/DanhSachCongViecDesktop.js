@@ -95,10 +95,7 @@ export default function DanhSachCongViecDesktop(props) {
     return currentItem.map((job, index) => {
       return (
         <div className="col-3 mb-3 " key={index}>
-          <NavLink
-            style={{ color: "black" }}
-            to={`/chitietcongviec/${job._id}`}
-          >
+          <a style={{ color: "black" }} href={`/chitietcongviec/${job._id}`}>
             {" "}
             <img src={job.image} alt="" style={{ width: "100%" }} />
             <div
@@ -155,7 +152,7 @@ export default function DanhSachCongViecDesktop(props) {
                 </span>
               </div>
             </div>
-          </NavLink>
+          </a>
         </div>
       );
     });

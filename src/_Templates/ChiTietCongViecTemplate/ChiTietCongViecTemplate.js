@@ -39,7 +39,6 @@ export const ChiTietCongViecTemplate = (props) => {
         <div>
           <DanhSachCongViecHeader {...propsRoute} />
           <Component {...propsRoute} />
-          <HomeFooter {...propsRoute} />
         </div>
       );
     }

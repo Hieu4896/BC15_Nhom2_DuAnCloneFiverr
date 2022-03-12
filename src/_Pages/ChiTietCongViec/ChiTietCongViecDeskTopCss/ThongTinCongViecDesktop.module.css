@@ -58,3 +58,28 @@
 .userName:hover {
   color: green;
 }
+.hire_box {
+  border: 1px solid #dadbdd;
+  position: sticky;
+  top: 0;
+}
+.button_hire {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #fafafa;
+  color: #74767e;
+  border-bottom: 1px solid #dadbdd;
+}
+.button_hire div {
+  cursor: pointer;
+}
+.button_hire div:nth-child(-n + 2) {
+  border-right: 1px solid #dadbdd !important;
+}
+.button_hire_change {
+  border-bottom: 2px solid green;
+  background-color: white;
+  color: green;
+  font-weight: bolder;
+}

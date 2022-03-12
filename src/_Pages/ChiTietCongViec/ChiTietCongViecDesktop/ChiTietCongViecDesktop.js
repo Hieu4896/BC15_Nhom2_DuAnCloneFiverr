@@ -3,38 +3,35 @@ import { useDispatch, useSelector } from "react-redux";
 import DanhSachCommentDesktop from "./DanhSachCommentDesktop";
 import DatCongViecDesktop from "./DatCongViecDesktop";
 import ThongTinCongViecDesktop from "./ThongTinCongViecDesktop";
-
+import HomeFooter from "../../../Components/homeFooter/HomeFooter";
 export default function ChiTietCongViecDesktop(props) {
   let idjob = props.match.params.idjob;
-  console.log(idjob);
-  let { idChiTietCongViec } = useSelector(
-    (rootReducer) => rootReducer.ChiTietCongViecReducer
-  );
-  console.log(idChiTietCongViec);
   let [loading, setLoading] = useState(false);
-  let dispatch = useDispatch();
   useEffect(() => {
     let timeout = setTimeout(() => {
-      const action = {
-        type: "GET_API_ID_DETAIL",
-        data: idjob,
-      };
-      dispatch(action);
       setLoading(true);
-    }, 1000);
+    }, 2500);
     return () => {
       clearTimeout(timeout);
     };
-  }, [idChiTietCongViec]);
+  }, [idjob]);
 
   return (
-    <div style={{ position: "relative", padding: "50px 50px" }}>
-      {loading && idjob == idChiTietCongViec ? (
-        <div className="row m-0 p-0">
-          <div className="col-8 p-0 m-0">
-            <ThongTinCongViecDesktop idjob={idjob} />
-            <DanhSachCommentDesktop idjob2={idjob} />
+    <div>
+      {loading ? (
+        <div>
+          <div style={{ position: "relative", padding: "50px 50px" }}>
+            <div className="row m-0 p-0 justify-content-between">
+              <div className="col-7 p-0 m-0">
+                <ThongTinCongViecDesktop idjob={idjob} />
+                <DanhSachCommentDesktop idjob2={idjob} />
+              </div>
+              <div className="col-4 p-0 m-0">
+                <DatCongViecDesktop idjob3={idjob} />
+              </div>
+            </div>
           </div>
+          <HomeFooter />
         </div>
       ) : (
         <div
