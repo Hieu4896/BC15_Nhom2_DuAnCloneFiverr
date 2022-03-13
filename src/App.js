@@ -8,6 +8,11 @@ import HomeDesktop from "./_Pages/Home/HomeDesktop";
 import DanhSachCongViecDesktop from "./_Pages/DanhSachCongViec/DanhSachCongViecDesktop";
 import HomeHeaderOtherPages from "./Components/homeHeader/HomeHeaderOtherPages";
 import { OtherPagesTemplate } from "./_Templates/OtherPagesTemplate/OtherPagesTemplate";
+import AdminTemplate from "./_Templates/AdminTemplate/AdminTemplate";
+import Dashboard from "./_Pages/Admin/Dashboard/Dashboard";
+import { UserTemplate } from "./_Templates/UserTemplate/UserTemplate";
+import Login from "./_Pages/Users/Login/Login";
+import Register from "./_Pages/Users/Register/Register";
 
 export const history = createBrowserHistory();
 function App() {
@@ -33,6 +38,9 @@ function App() {
           component={DanhSachCongViecDesktop}
         /> */}
         <HomeTemplate exact path="/" Component={HomeDesktop} />
+        <AdminTemplate exact path="/admin" Component={Dashboard} />
+        <UserTemplate exact path="/login" Component={Login} />
+        <UserTemplate exact path="/register" Component={Register} />
       </Switch>
     </Router>
   );
