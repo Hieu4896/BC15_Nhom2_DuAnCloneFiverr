@@ -9,7 +9,7 @@ export default function DatCongViecDesktop(props) {
   let [hireBasic, SethireBasic] = useState(true);
   let [hireStandard, SethireStandard] = useState(false);
   let [hirePremium, SethirePremium] = useState(false);
-  let { thongTinCongViec, datCongViec } = useSelector(
+  let { thongTinCongViec } = useSelector(
     (rootReducer) => rootReducer.ChiTietCongViecReducer
   );
   let idjob = props.idjob3;

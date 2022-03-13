@@ -22,7 +22,7 @@ export default function UserComment(props) {
         <img
           src={userComment.avatar}
           alt={userComment.avatar}
-          style={{ width: "5%" }}
+          style={{ width: "5%", borderRadius: "50%" }}
         />
       ) : (
         <img
