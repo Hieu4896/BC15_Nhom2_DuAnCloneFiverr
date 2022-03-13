@@ -22,13 +22,13 @@ export default function UserComment(props) {
         <img
           src={userComment.avatar}
           alt={userComment.avatar}
-          style={{ width: "5%", borderRadius: "50%" }}
+          style={{ width: "10%", borderRadius: "50%" }}
         />
       ) : (
         <img
           src="/image/homeImg/unknowavatar.jpg"
           alt="/image/homeImg/unknowavatar.jpg"
-          style={{ width: "5%" }}
+          style={{ width: "10%", borderRadius: "50%" }}
         />
       )}
     </Fragment>

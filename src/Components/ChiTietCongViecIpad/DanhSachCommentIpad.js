@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getApiDanhSachComment,
   getApiDanhSachCommentMoi,
-} from "../../../Redux/Actions/ChiTietCongViecActions/ChiTietCongViecActions";
-import Style from "../ChiTietCongViecDeskTopCss/ThongTinCongViecDesktop.module.css";
-import UserComment from "./UserComment";
-export default function DanhSachCommentDesktop(props) {
+} from "../../Redux/Actions/ChiTietCongViecActions/ChiTietCongViecActions";
+import Style from "./ThongTinCongViecIpad.module.css";
+import UserComment from "../../_Pages/ChiTietCongViec/ChiTietCongViecDesktop/UserComment";
+export default function DanhSachCommentIpad(props) {
   let [commentPerPage, setCommentPerPage] = useState(5);
   let { danhSachComment } = useSelector(
     (rootReducer) => rootReducer.ChiTietCongViecReducer

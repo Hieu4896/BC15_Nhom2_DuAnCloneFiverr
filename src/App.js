@@ -20,6 +20,9 @@ import LoaiCongViecIphonePlus from "./Components/loaiCongViecIphonePlus/LoaiCong
 import LoaiCongViecIphone from "./Components/loaiCongViecIphone/LoaiCongViecIphone";
 import DanhSachCongViecDesktop from "./_Pages/DanhSachCongViec/DanhSachCongViecDesktop";
 import ChiTietNguoiDungDeskTop from "./_Pages/ChiTietNguoiDung/ChiTietNguoiDungDesktop/ChiTietNguoiDungDeskTop";
+import ChiTietCongViecIpad from "./Components/ChiTietCongViecIpad/ChiTietCongViecIpad";
+import ChiTietCongViecIphonePlus from "./Components/ChiTietCongViecIphonePlus/ChiTietCongViecIphonePlus";
+import ChiTietCongViecIphone from "./Components/ChiTietCongViecIphone/ChiTietCongViecIphone";
 export const history = createBrowserHistory();
 function App() {
   return (
@@ -54,6 +57,9 @@ function App() {
           exact
           path="/chitietcongviec/:idjob"
           Component={ChiTietCongViecDesktop}
+          IpadComponent={ChiTietCongViecIpad}
+          IphonePlusComponent={ChiTietCongViecIphonePlus}
+          IphoneComponent={ChiTietCongViecIphone}
         />
         <ChiTietNguoiDungTemplate
           exact

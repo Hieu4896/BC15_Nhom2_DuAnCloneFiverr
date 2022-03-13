@@ -1,0 +1,84 @@
+/* .inforJob_Div {
+  border: 3px solid teal;
+} */
+.inforImage {
+  width: 100%;
+  height: 70%;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+.services_available {
+  color: teal;
+  opacity: 1;
+  font-style: italic;
+  background: black;
+  padding: 0 10px;
+}
+
+.services_unavailable {
+  opacity: 0.3;
+  color: grey;
+}
+.box-container {
+  background-color: green;
+  width: 100%;
+  height: 150px;
+  position: relative;
+  border-radius: 10px;
+  margin-top: 50px;
+}
+.buttonDiv {
+  width: 100%;
+  height: 50px;
+}
+.buttonDiv button:hover {
+  background: orange;
+  transition: 2s;
+}
+
+.box-container textarea {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  overflow-y: auto;
+  resize: none;
+  padding: 20px;
+}
+
+.box-container textarea::-webkit-scrollbar {
+  display: none;
+}
+.userName {
+  font-size: 12px;
+  color: black;
+  cursor: pointer;
+}
+.userName:hover {
+  color: green;
+}
+.hire_box {
+  border: 1px solid #dadbdd;
+  margin-bottom: 20px;
+}
+.button_hire {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #fafafa;
+  color: #74767e;
+  border-bottom: 1px solid #dadbdd;
+}
+.button_hire div {
+  cursor: pointer;
+}
+.button_hire div:nth-child(-n + 2) {
+  border-right: 1px solid #dadbdd !important;
+}
+.button_hire_change {
+  border-bottom: 2px solid green;
+  background-color: white;
+  color: green;
+  font-weight: bolder;
+}

@@ -88,59 +88,63 @@ export default function DanhSachCongViecIphonePlus(props) {
     return currentItem.map((job, index) => {
       return (
         <div className="col-12 mb-3 " key={index}>
-          <img src={job.image} alt="" style={{ width: "100%" }} />
-          <div
-            className="text-left"
-            style={{
-              backgroundColor: "white",
-              height: "200px",
-              border: "1px solid #9e9e9e57",
-              position: "relative",
-            }}
-          >
-            <UserCreated userCreated={job.userCreated} />
-            <p style={{ color: "black", marginBottom: 10, padding: "0 10px" }}>
-              {job.name}
-            </p>
-            <i
-              className="fas fa-star"
-              style={{ color: "orange", marginRight: 5, padding: "0 10px" }}
-            ></i>
-            <span style={{ color: "orange" }}>{job.rating}</span>
+          <a style={{ color: "black" }} href={`/chitietcongviec/${job._id}`}>
+            <img src={job.image} alt="" style={{ width: "100%" }} />
             <div
+              className="text-left"
               style={{
+                backgroundColor: "white",
+                height: "200px",
                 border: "1px solid #9e9e9e57",
-                position: "absolute",
-                width: "100%",
-                bottom: 0,
-
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
+                position: "relative",
               }}
             >
+              <UserCreated userCreated={job.userCreated} />
+              <p
+                style={{ color: "black", marginBottom: 10, padding: "0 10px" }}
+              >
+                {job.name}
+              </p>
               <i
-                style={{
-                  lineHeight: "29px",
-                  padding: "0 10px",
-                  color: "#00000047",
-                }}
-                className="fas fa-heart"
+                className="fas fa-star"
+                style={{ color: "orange", marginRight: 5, padding: "0 10px" }}
               ></i>
-              <span
+              <span style={{ color: "orange" }}>{job.rating}</span>
+              <div
                 style={{
-                  lineHeight: "29px",
-                  fontSize: 10,
-                  padding: "0 10px",
+                  border: "1px solid #9e9e9e57",
+                  position: "absolute",
+                  width: "100%",
+                  bottom: 0,
+
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
                 }}
               >
-                STARTING AT{" "}
-                <span style={{ fontSize: 17, fontWeight: "bolder" }}>
-                  ${job.price}
+                <i
+                  style={{
+                    lineHeight: "29px",
+                    padding: "0 10px",
+                    color: "#00000047",
+                  }}
+                  className="fas fa-heart"
+                ></i>
+                <span
+                  style={{
+                    lineHeight: "29px",
+                    fontSize: 10,
+                    padding: "0 10px",
+                  }}
+                >
+                  STARTING AT{" "}
+                  <span style={{ fontSize: 17, fontWeight: "bolder" }}>
+                    ${job.price}
+                  </span>
                 </span>
-              </span>
+              </div>
             </div>
-          </div>
+          </a>
         </div>
       );
     });

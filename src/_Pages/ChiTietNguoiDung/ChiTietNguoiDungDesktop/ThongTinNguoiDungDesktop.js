@@ -1,36 +1,24 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Style from "../ChiTietNguoiDungDeskTopCss/ChiTietNguoiDungDeskTop.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getApiChiTietThongTinNguoiDung } from "../../../Redux/Actions/ThongTinNguoiDungAction/ThongTinNguoiDungAction";
 import { getApiUserComment } from "../../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
 export default function ThongTinNguoiDungDesktop(props) {
+  let dispatch = useDispatch();
+
+  let [avatar, setAvatar] = useState("");
+  const avatarHandle = () => {
+    const formData = new FormData();
+    formData.append("avatar", avatar, avatar.name);
+    const action = getApiChiTietThongTinNguoiDung(formData);
+    dispatch(action);
+  };
+
   let { avatarState } = useSelector(
     (rootReducer) => rootReducer.ThongTinNguoiDungReducer
   );
-
-  let { userComment } = useSelector(
-    (rootReducer) => rootReducer.UserCommentReducer
-  );
-
-  let [avatar, setAvatar] = useState(userComment.name);
-  let dispatch = useDispatch();
-  const avatarHandle = (event) => {
-    event.preventDefault();
-    setAvatar(event.target.files[0]);
-  };
-  const avatarUpload = (event) => {
-    event.preventDefault();
-    const fd = new FormData();
-    fd.append("avatar", avatar, avatar.name);
-    const action = getApiChiTietThongTinNguoiDung(fd);
-    dispatch(action);
-  };
-
-  useEffect(() => {
-    const action = getApiUserComment("622ca2f3f85597001ca82fcb");
-    dispatch(action);
-  }, []);
+  console.log(avatar);
   return (
     <div className={Style["Infor_User_container"]}>
       <div className={Style["Avatar"]}>
@@ -45,13 +33,16 @@ export default function ThongTinNguoiDungDesktop(props) {
             fontWeight: "bolder",
             fontSize: 20,
           }}
-        >
-          {userComment.name}
-        </p>
+        ></p>
       </div>
       <div className={Style["buttonUpload"]}>
-        <input type="file" onChange={avatarHandle} />
-        <button onClick={avatarUpload}>Upload</button>
+        <input
+          type="file"
+          onChange={(event) => {
+            setAvatar(event.target.files[0]);
+          }}
+        />
+        <button onClick={avatarHandle}>Upload</button>
       </div>
     </div>
   );

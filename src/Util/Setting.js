@@ -5,7 +5,7 @@ export const tokenBC = "tokenByClass";
 export const tokenByClass =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCAxNSIsIkhldEhhblN0cmluZyI6IjIwLzA2LzIwMjIiLCJIZXRIYW5UaW1lIjoiMTY1NTY4MzIwMDAwMCIsIm5iZiI6MTYyNjI4MjAwMCwiZXhwIjoxNjU1ODMwODAwfQ.p47FFJpArherjwlM71xTzdulAQIW37pR6fRGD3t3Ji0";
 export const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjJjYTJmM2Y4NTU5NzAwMWNhODJmY2IiLCJlbWFpbCI6ImhpZXV0cmFueHh4QGdtYWlsLmNvbSIsInJvbGUiOiJDTElFTlQiLCJpYXQiOjE2NDcxNTIwMTN9.OjfOuKm0oge74mSxlwOwc9Q-mvDSpThuDj7NvB3rfLg";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjJjYTJmM2Y4NTU5NzAwMWNhODJmY2IiLCJlbWFpbCI6ImhpZXV0cmFueHh4QGdtYWlsLmNvbSIsInJvbGUiOiJDTElFTlQiLCJpYXQiOjE2NDcxNzYxMjB9.g5wTFlJcegMCyDGtCj8i8Hle3BMD8Qvt8Hb4YZyocgs";
 export const tokenUser = "token";
 // Cấu hình interceptor cho axios ( tất cả request gọi = axios đều được cấu hình) ( 1 dự án làm một lần duy nhất)
 export const http = axios.create({
