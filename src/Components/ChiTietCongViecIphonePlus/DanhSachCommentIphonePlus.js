@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getApiDanhSachComment,
   getApiDanhSachCommentMoi,
-} from "../../../Redux/Actions/ChiTietCongViecActions/ChiTietCongViecActions";
-import Style from "../ChiTietCongViecDeskTopCss/ThongTinCongViecDesktop.module.css";
-import UserComment from "./UserComment";
-export default function DanhSachCommentDesktop(props) {
+} from "../../Redux/Actions/ChiTietCongViecActions/ChiTietCongViecActions";
+import Style from "./ThongTinCongViecIphonePlus.module.css";
+import UserComment from "../../_Pages/ChiTietCongViec/ChiTietCongViecDesktop/UserComment";
+export default function DanhSachCommentIphonePlus(props) {
   let [commentPerPage, setCommentPerPage] = useState(5);
   let { danhSachComment } = useSelector(
     (rootReducer) => rootReducer.ChiTietCongViecReducer
@@ -36,6 +36,7 @@ export default function DanhSachCommentDesktop(props) {
     const action = getApiDanhSachComment();
     dispatch(action);
   }, [danhSachCommentMoi]);
+
   const renderDanhSachComment = () => {
     return danhSachComment.slice(0, commentPerPage).map((item, index) => {
       return (
@@ -46,7 +47,7 @@ export default function DanhSachCommentDesktop(props) {
                 <img
                   src="/image/homeImg/unknowavatar.jpg"
                   alt="/image/homeImg/unknowavatar.jpg"
-                  style={{ width: "10%", borderRadius: "50%" }}
+                  style={{ width: "10%" }}
                 />
                 <p className={Style["userName"]}>Unknow</p>
               </div>
@@ -73,7 +74,7 @@ export default function DanhSachCommentDesktop(props) {
     <div>
       {danhSachComment.length >= 1 ? (
         <div>
-          <h3>What people said about this seller</h3>
+          <h3 style={{ fontSize: 24 }}>What people said about this seller</h3>
           {commentPerPage > 5 ? (
             <p
               onClick={() => {
@@ -106,6 +107,7 @@ export default function DanhSachCommentDesktop(props) {
           <form onSubmit={handleSubmit} className={Style["box-container"]}>
             <div style={{ width: "100%", height: "100px", padding: 20 }}>
               <textarea
+                style={{ padding: 10 }}
                 placeholder="Hãy cho chúng tôi biết suy nghĩ của bạn ..."
                 type="text"
                 name={comment}

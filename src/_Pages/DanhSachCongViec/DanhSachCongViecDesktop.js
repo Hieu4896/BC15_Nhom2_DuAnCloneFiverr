@@ -13,6 +13,7 @@ import {
 import _, { debounce } from "lodash";
 import { useState } from "react";
 import HomeFooter from "../../Components/homeFooter/HomeFooter";
+import UserCreated from "../../Components/otherPagesHeader/otherPagesHeaderDesktop/UserCreated";
 
 export default function DanhSachCongViecDesktop(props) {
   let keyWord = props.match.params.typejob;
@@ -23,7 +24,7 @@ export default function DanhSachCongViecDesktop(props) {
   );
   console.log(danhSachCongViec);
   let Pages = [];
-
+  let [notFounding, setNotFounding] = useState(false);
   let [currentPage, setcurrentPage] = useState(1);
   let [itemPerPage, setitemPerPage] = useState(12);
   let [pageNumberLimit, setpageNumberLimit] = useState(5);
@@ -94,10 +95,7 @@ export default function DanhSachCongViecDesktop(props) {
     return currentItem.map((job, index) => {
       return (
         <div className="col-3 mb-3 " key={index}>
-          <NavLink
-            style={{ color: "black" }}
-            to={`/chitietcongviec/${job._id}`}
-          >
+          <a style={{ color: "black" }} href={`/chitietcongviec/${job._id}`}>
             {" "}
             <img src={job.image} alt="" style={{ width: "100%" }} />
             <div
@@ -109,12 +107,7 @@ export default function DanhSachCongViecDesktop(props) {
                 position: "relative",
               }}
             >
-              <p style={{ padding: "0 10px" }}>
-                User{" "}
-                <span style={{ color: "black", fontWeight: "bolder" }}>
-                  {job.userCreated}
-                </span>
-              </p>
+              <UserCreated userCreated={job.userCreated} />
               <p
                 style={{ color: "black", marginBottom: 10, padding: "0 10px" }}
               >
@@ -159,7 +152,7 @@ export default function DanhSachCongViecDesktop(props) {
                 </span>
               </div>
             </div>
-          </NavLink>
+          </a>
         </div>
       );
     });
@@ -219,7 +212,7 @@ export default function DanhSachCongViecDesktop(props) {
   };
   let dispatch = useDispatch();
   useEffect(() => {
-    let timeOut = setTimeout(() => {
+    let timeOut1 = setTimeout(() => {
       const setNewKeyWord = setStateKeyWord(keyWord);
       dispatch(setNewKeyWord);
       const actionDanhSachCongViec = getApiDanhSachCongViec();
@@ -228,14 +221,22 @@ export default function DanhSachCongViecDesktop(props) {
       window.addEventListener("scroll", toggleBackToTop);
     }, 1000);
     return () => {
-      clearTimeout(timeOut);
+      clearTimeout(timeOut1);
+
       window.removeEventListener("scroll", toggleBackToTop);
     };
   }, [keyWord]);
-
+  useEffect(() => {
+    let timeOut2 = setTimeout(() => {
+      setNotFounding(true);
+    }, 2000);
+    return () => {
+      clearTimeout(timeOut2);
+    };
+  }, [keyWord]);
   return (
     <div>
-      {loading && keyWord == stateKeyWord ? (
+      {loading && keyWord == stateKeyWord && newFilter.length >= 1 ? (
         <div>
           <div style={{ position: "relative" }}>
             <div style={{ padding: "5px 50px" }}>
@@ -277,41 +278,71 @@ export default function DanhSachCongViecDesktop(props) {
                 }}
               >
                 <div className="row">{renderDanhSachCongViec()}</div>
-                {currentItem.length >= 1 ? (
-                  <ul className={Style["PageNumber"]}>
-                    <button
-                      disabled={currentPage == Pages[0] ? true : false}
-                      onClick={handlePrevButton}
-                    >
-                      Prev
-                    </button>
 
-                    {renderPagesNumber()}
+                <ul className={Style["PageNumber"]}>
+                  <button
+                    disabled={currentPage == Pages[0] ? true : false}
+                    onClick={handlePrevButton}
+                  >
+                    Prev
+                  </button>
 
-                    <button
-                      disabled={
-                        currentPage == Pages[Pages.length - 1] ? true : false
-                      }
-                      onClick={handleNextButton}
-                    >
-                      Next
-                    </button>
-                  </ul>
-                ) : (
-                  ""
-                )}
+                  {renderPagesNumber()}
+
+                  <button
+                    disabled={
+                      currentPage == Pages[Pages.length - 1] ? true : false
+                    }
+                    onClick={handleNextButton}
+                  >
+                    Next
+                  </button>
+                </ul>
               </div>
             </div>
           </div>
           <HomeFooter />
         </div>
       ) : (
-        <div
-          style={{ position: "absolute", right: "50%" }}
-          className="spinner-grow text-success"
-          role="status"
-        >
-          <span className="sr-only text-success">Loading...</span>
+        <div>
+          <div
+            style={{
+              position: "absolute",
+              right: "50%",
+              animationIterationCount: 4,
+            }}
+            className="spinner-grow text-success"
+            role="status"
+          >
+            <span className="sr-only text-success">Loading...</span>
+          </div>
+          {notFounding && keyWord == stateKeyWord ? (
+            <div>
+              {" "}
+              <div
+                style={{ textAlign: "center" }}
+                className="d-flex justify-content-center flex-column align-items-center"
+              >
+                <img
+                  src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/search_perseus/apps/empty-search-results.229c0d3.png"
+                  alt="empty result image"
+                  style={{ width: "30%", objectFit: "cover" }}
+                />
+                <div>
+                  <h2 style={{ fontSize: 30 }}>
+                    No Services Found For Your Search
+                  </h2>
+                  <p style={{ fontSize: 16, color: "#62646a" }}>
+                    Try a new search or get a free quote for your project <br />
+                    from our community of freelancers.
+                  </p>
+                </div>
+              </div>
+              <HomeFooter />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       )}
     </div>

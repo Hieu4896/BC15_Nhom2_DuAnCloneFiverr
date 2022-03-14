@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import DanhSachCommentDesktop from "./DanhSachCommentDesktop";
-import DatCongViecDesktop from "./DatCongViecDesktop";
-import ThongTinCongViecDesktop from "./ThongTinCongViecDesktop";
-import HomeFooter from "../../../Components/homeFooter/HomeFooter";
-export default function ChiTietCongViecDesktop(props) {
+import HomeFooterIpad from "../../Components/homeFooter/HomeFooterIpad";
+import ThongTinCongViecIpad from "./ThongTinCongViecIpad";
+import DanhSachCommentIpad from "./DanhSachCommentIpad";
+import DatCongViecIpad from "./DatCongViecIpad";
+export default function ChiTietCongViecIpad(props) {
   let idjob = props.match.params.idjob;
   let [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -22,16 +21,14 @@ export default function ChiTietCongViecDesktop(props) {
         <div>
           <div style={{ position: "relative", padding: "50px 50px" }}>
             <div className="row m-0 p-0 justify-content-between">
-              <div className="col-7 p-0 m-0">
-                <ThongTinCongViecDesktop idjob={idjob} />
-                <DanhSachCommentDesktop idjob2={idjob} />
-              </div>
-              <div className="col-4 p-0 m-0">
-                <DatCongViecDesktop idjob3={idjob} />
+              <div className="col-12 p-0 m-0">
+                <ThongTinCongViecIpad idjob={idjob} />
+                <DatCongViecIpad idjob3={idjob} />
+                <DanhSachCommentIpad idjob2={idjob} />
               </div>
             </div>
           </div>
-          <HomeFooter />
+          <HomeFooterIpad />
         </div>
       ) : (
         <div

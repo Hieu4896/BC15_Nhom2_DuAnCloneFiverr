@@ -15,10 +15,9 @@ export default function ThongTinCongViecDesktop(props) {
   }, []);
 
   return (
-    <div style={{ padding: "20px 50px" }} className="row m-0">
-      <div className={`col-7 p-0 m-0 ${Style.inforJob_Div}`}>
+    <div>
+      <div className={`${Style.inforJob_Div}`}>
         <h3>
-          {" "}
           <span style={{ fontSize: 35, color: "green", fontStyle: "normal" }}>
             {thongTinCongViec.name}
           </span>

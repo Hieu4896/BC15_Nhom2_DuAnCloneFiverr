@@ -3,17 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getApiDatCongViec,
   getApiThongTinCongViec,
-} from "../../../Redux/Actions/ChiTietCongViecActions/ChiTietCongViecActions";
-import Style from "../ChiTietCongViecDeskTopCss/ThongTinCongViecDesktop.module.css";
-export default function DatCongViecDesktop(props) {
+} from "../../Redux/Actions/ChiTietCongViecActions/ChiTietCongViecActions";
+import Style from "./ThongTinCongViecIphone.module.css";
+export default function DatCongViecIphone(props) {
   let [hireBasic, SethireBasic] = useState(true);
   let [hireStandard, SethireStandard] = useState(false);
   let [hirePremium, SethirePremium] = useState(false);
+  let [datCongViec, setDatCongViec] = useState(false);
   let { thongTinCongViec } = useSelector(
     (rootReducer) => rootReducer.ChiTietCongViecReducer
   );
-  let [datCongViec, setDatCongViec] = useState(false);
-  console.log(datCongViec);
   let idjob = props.idjob3;
   let dispatch = useDispatch();
   useEffect(() => {
@@ -76,13 +75,13 @@ export default function DatCongViecDesktop(props) {
             </p>
             <span style={{ marginLeft: 20 }}>
               <i style={{ marginRight: 10 }} className="far fa-clock"></i>
-              <span style={{ color: "#74767e", fontSize: 14 }}>
+              <span style={{ color: "#74767e", fontSize: 12 }}>
                 14 Days Delivery
               </span>
             </span>
             <span style={{ marginLeft: 20 }}>
               <i style={{ marginRight: 10 }} className="fab fa-rev"></i>
-              <span style={{ color: "#74767e", fontSize: 14 }}>
+              <span style={{ color: "#74767e", fontSize: 12 }}>
                 2 Revisions
               </span>
             </span>
@@ -145,6 +144,7 @@ export default function DatCongViecDesktop(props) {
                 onClick={() => {
                   const actionDatCongViec = getApiDatCongViec(idjob);
                   dispatch(actionDatCongViec);
+                  setDatCongViec(true);
                 }}
               >
                 Continue {`($${thongTinCongViec.price * 1.5})`}

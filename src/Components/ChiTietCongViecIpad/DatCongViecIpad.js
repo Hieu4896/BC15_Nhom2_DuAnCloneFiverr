@@ -3,17 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getApiDatCongViec,
   getApiThongTinCongViec,
-} from "../../../Redux/Actions/ChiTietCongViecActions/ChiTietCongViecActions";
-import Style from "../ChiTietCongViecDeskTopCss/ThongTinCongViecDesktop.module.css";
-export default function DatCongViecDesktop(props) {
+} from "../../Redux/Actions/ChiTietCongViecActions/ChiTietCongViecActions";
+import Style from "./ThongTinCongViecIpad.module.css";
+export default function DatCongViecIpad(props) {
   let [hireBasic, SethireBasic] = useState(true);
   let [hireStandard, SethireStandard] = useState(false);
   let [hirePremium, SethirePremium] = useState(false);
+  let [datCongViec, setDatCongViec] = useState(false);
   let { thongTinCongViec } = useSelector(
     (rootReducer) => rootReducer.ChiTietCongViecReducer
   );
-  let [datCongViec, setDatCongViec] = useState(false);
-  console.log(datCongViec);
   let idjob = props.idjob3;
   let dispatch = useDispatch();
   useEffect(() => {

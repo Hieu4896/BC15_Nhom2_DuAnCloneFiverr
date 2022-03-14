@@ -60,8 +60,7 @@
 }
 .hire_box {
   border: 1px solid #dadbdd;
-  position: sticky;
-  top: 0;
+  margin-bottom: 20px;
 }
 .button_hire {
   text-align: center;

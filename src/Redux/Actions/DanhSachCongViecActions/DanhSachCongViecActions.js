@@ -37,3 +37,34 @@ export const getApiDanhSachCongViec = () => {
     }
   };
 };
+export const getApiUserCreated = (userId) => {
+  return async (dispatch) => {
+    try {
+      let result = await http.get(`${DOMAIN}/api/users/${userId}`);
+      console.log("result", result);
+      //SAu khi lây được dữ liệu về thì cập nhật dữ liệu vào redux
+      dispatch({
+        type: "GET_API_USER_CREATED",
+        data: result.data,
+      });
+    } catch (err) {
+      console.log("err", err.response?.data);
+    }
+  };
+};
+export const getApiUserComment = (userId) => {
+  return async (dispatch) => {
+    try {
+      let result = await http.get(`${DOMAIN}/api/users/${userId}`);
+      console.log("result", result);
+      //SAu khi lây được dữ liệu về thì cập nhật dữ liệu vào redux
+
+      dispatch({
+        type: "GET_API_USER_COMMENT",
+        data: result.data,
+      });
+    } catch (err) {
+      console.log("err", err.response?.data);
+    }
+  };
+};
