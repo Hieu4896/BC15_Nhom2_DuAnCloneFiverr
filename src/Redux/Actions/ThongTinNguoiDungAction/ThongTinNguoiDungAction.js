@@ -1,6 +1,7 @@
 import axios from "axios";
 import { http, DOMAIN } from "../../../Util/Setting";
 export const getApiChiTietThongTinNguoiDung = (avatar) => {
+  console.log(avatar);
   return async (dispatch) => {
     try {
       let result = await http.post(`${DOMAIN}/api/users/upload-avatar`, avatar);

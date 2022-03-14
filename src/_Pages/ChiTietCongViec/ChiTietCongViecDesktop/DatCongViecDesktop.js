@@ -12,6 +12,8 @@ export default function DatCongViecDesktop(props) {
   let { thongTinCongViec } = useSelector(
     (rootReducer) => rootReducer.ChiTietCongViecReducer
   );
+  let [datCongViec, setDatCongViec] = useState(false);
+  console.log(datCongViec);
   let idjob = props.idjob3;
   let dispatch = useDispatch();
   useEffect(() => {
@@ -100,6 +102,7 @@ export default function DatCongViecDesktop(props) {
                 onClick={() => {
                   const actionDatCongViec = getApiDatCongViec(idjob);
                   dispatch(actionDatCongViec);
+                  setDatCongViec(true);
                 }}
               >
                 Continue {`($${thongTinCongViec.price})`}
@@ -201,6 +204,13 @@ export default function DatCongViecDesktop(props) {
           ""
         )}
       </div>
+      {datCongViec ? (
+        <div className="alert alert-success" role="alert" data-dismiss="alert">
+          Bạn đã đặt việc thành công ✌️✌️✌️!
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

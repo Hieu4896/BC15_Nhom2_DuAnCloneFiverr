@@ -9,6 +9,7 @@ export default function DatCongViecIpad(props) {
   let [hireBasic, SethireBasic] = useState(true);
   let [hireStandard, SethireStandard] = useState(false);
   let [hirePremium, SethirePremium] = useState(false);
+  let [datCongViec, setDatCongViec] = useState(false);
   let { thongTinCongViec } = useSelector(
     (rootReducer) => rootReducer.ChiTietCongViecReducer
   );
@@ -100,6 +101,7 @@ export default function DatCongViecIpad(props) {
                 onClick={() => {
                   const actionDatCongViec = getApiDatCongViec(idjob);
                   dispatch(actionDatCongViec);
+                  setDatCongViec(true);
                 }}
               >
                 Continue {`($${thongTinCongViec.price})`}
@@ -201,6 +203,13 @@ export default function DatCongViecIpad(props) {
           ""
         )}
       </div>
+      {datCongViec ? (
+        <div className="alert alert-success" role="alert" data-dismiss="alert">
+          Bạn đã đặt việc thành công ✌️✌️✌️!
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

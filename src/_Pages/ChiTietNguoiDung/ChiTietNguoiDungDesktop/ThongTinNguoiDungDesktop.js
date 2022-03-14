@@ -1,48 +1,43 @@
-import React, { useRef, useState } from "react";
-import Style from "../ChiTietNguoiDungDeskTopCss/ChiTietNguoiDungDeskTop.module.css";
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { getApiChiTietThongTinNguoiDung } from "../../../Redux/Actions/ThongTinNguoiDungAction/ThongTinNguoiDungAction";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getApiUserComment } from "../../../Redux/Actions/DanhSachCongViecActions/DanhSachCongViecActions";
-export default function ThongTinNguoiDungDesktop(props) {
+import { getApiChiTietThongTinNguoiDung } from "../../../Redux/Actions/ThongTinNguoiDungAction/ThongTinNguoiDungAction";
+export default function ThongTinNguoiDungDesktop() {
   let dispatch = useDispatch();
 
-  let [avatar, setAvatar] = useState("");
-  const avatarHandle = () => {
-    const formData = new FormData();
-    formData.append("avatar", avatar, avatar.name);
-    const action = getApiChiTietThongTinNguoiDung(formData);
-    dispatch(action);
-  };
-
+  let { userComment } = useSelector(
+    (rootReducer) => rootReducer.UserCommentReducer
+  );
   let { avatarState } = useSelector(
     (rootReducer) => rootReducer.ThongTinNguoiDungReducer
   );
-  console.log(avatar);
+
+  let [selectedFile, setSelectedFile] = useState(null);
+  const fileSelectedHandle = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+  const fileUploadHandle = (event) => {
+    event.preventDefault();
+    let fd = new FormData();
+    fd.append("avatar", selectedFile, selectedFile.name);
+    const action = getApiChiTietThongTinNguoiDung(fd);
+    dispatch(action);
+  };
+  useEffect(() => {
+    const action = getApiUserComment("622ca2f3f85597001ca82fcb");
+    dispatch(action);
+  }, [avatarState]);
   return (
-    <div className={Style["Infor_User_container"]}>
-      <div className={Style["Avatar"]}>
-        <img
-          src={avatar}
-          alt={avatar}
-          style={{ width: "50%", borderRadius: "50%" }}
-        />
-        <p
-          style={{
-            color: "green",
-            fontWeight: "bolder",
-            fontSize: 20,
-          }}
-        ></p>
+    <div>
+      <div>
+        <img src={userComment.avatar} alt={userComment.avatar} />
       </div>
-      <div className={Style["buttonUpload"]}>
-        <input
-          type="file"
-          onChange={(event) => {
-            setAvatar(event.target.files[0]);
-          }}
-        />
-        <button onClick={avatarHandle}>Upload</button>
+      <div>
+        <input type="file" name="image" onChange={fileSelectedHandle} />
+        <button name="upload" onClick={fileUploadHandle}>
+          Upload
+        </button>
       </div>
     </div>
   );

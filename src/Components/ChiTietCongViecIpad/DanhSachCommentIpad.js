@@ -124,7 +124,7 @@ export default function DanhSachCommentIpad(props) {
                   fontWeight: "bolder",
                   fontSize: 20,
                 }}
-                type="submit"
+                type="button"
               >
                 SUBMIT
               </button>

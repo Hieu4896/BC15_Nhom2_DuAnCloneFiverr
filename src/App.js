@@ -61,11 +61,6 @@ function App() {
           IphonePlusComponent={ChiTietCongViecIphonePlus}
           IphoneComponent={ChiTietCongViecIphone}
         />
-        <ChiTietNguoiDungTemplate
-          exact
-          path="/chitietnguoidung"
-          Component={ChiTietNguoiDungDeskTop}
-        />
         <HomeTemplate
           exact
           path="/"

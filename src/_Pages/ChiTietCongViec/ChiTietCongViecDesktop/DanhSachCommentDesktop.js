@@ -36,7 +36,6 @@ export default function DanhSachCommentDesktop(props) {
     const action = getApiDanhSachComment();
     dispatch(action);
   }, [danhSachCommentMoi]);
-
   const renderDanhSachComment = () => {
     return danhSachComment.slice(0, commentPerPage).map((item, index) => {
       return (
